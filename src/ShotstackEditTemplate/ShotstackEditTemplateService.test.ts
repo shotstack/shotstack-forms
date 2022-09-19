@@ -31,27 +31,35 @@ describe('ShotstackEditTemplateService.setTemplateSource', () => {
 		expect(editTemplateService.template.merge).toEqual([{ find: 'test', replace: 'foo' }]);
 	});
 
-	describe('ShotstackEditTemplateService.updateResultMergeFields', () => {
-		test('Correctly updates the result merge array', () => {
-			const editTemplateService = new ShotstackEditTemplateService({
-				merge: [
-					{
-						find: 'test',
-						replace: 'foo'
-					}
-				]
-			});
+	test('Throws error if not merge array passed', () => {
+		const editTemplateService = new ShotstackEditTemplateService();
 
-			expect(editTemplateService.result.merge).toEqual([
+		expect(() => editTemplateService.setTemplateSource('{}')).toThrowError(
+			'No merge fields array was found'
+		);
+	});
+});
+
+describe('ShotstackEditTemplateService.updateResultMergeFields', () => {
+	test('Correctly updates the result merge array', () => {
+		const editTemplateService = new ShotstackEditTemplateService({
+			merge: [
 				{
 					find: 'test',
 					replace: 'foo'
 				}
-			]);
-
-			editTemplateService.updateResultMergeFields({ find: 'test', replace: 'foo_edited' });
-
-			expect(editTemplateService.result.merge).toEqual([{ find: 'test', replace: 'foo_edited' }]);
+			]
 		});
+
+		expect(editTemplateService.result.merge).toEqual([
+			{
+				find: 'test',
+				replace: 'foo'
+			}
+		]);
+
+		editTemplateService.updateResultMergeFields({ find: 'test', replace: 'foo_edited' });
+
+		expect(editTemplateService.result.merge).toEqual([{ find: 'test', replace: 'foo_edited' }]);
 	});
 });

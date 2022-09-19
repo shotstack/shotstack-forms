@@ -22,9 +22,17 @@ export class ShotstackEditTemplateService {
 		}
 	}
 
+	validateMergeArray(editTemplateObject: any) {
+		return !!editTemplateObject.merge;
+	}
+
 	setTemplateSource(JSONtemplate: string): IParsedShotstackEditObject {
 		try {
 			const parsedTemplate = JSON.parse(JSONtemplate);
+
+			if (!this.validateMergeArray(parsedTemplate)) {
+				throw new Error('No merge fields array was found');
+			}
 			this.template = parsedTemplate;
 			this.result = parsedTemplate;
 			return parsedTemplate;
