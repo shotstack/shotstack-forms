@@ -1,6 +1,6 @@
-interface MergeField {
+export interface MergeField {
 	find: string;
-	replace: string;
+	replace: string | number | boolean;
 }
 
 interface IParsedShotstackEditObject {
@@ -45,8 +45,19 @@ export class ShotstackEditTemplateService {
 	}
 
 	updateResultMergeFields(mergeFieldInput: MergeField) {
+		const { find, replace } = mergeFieldInput;
+		const validMergeField = { find, replace };
+
+		if (!isNaN(Number(replace))) {
+			validMergeField.replace = Number(replace);
+		} else if (replace === 'true' || replace === 'false') {
+			validMergeField.replace = replace === 'true' ? true : false;
+		} else {
+			validMergeField.replace = JSON.parse(replace);
+		}
+
 		const merge = this.result.merge.map((mergeField) =>
-			mergeField?.find === mergeFieldInput.find ? mergeFieldInput : mergeField
+			mergeField?.find === mergeFieldInput.find ? validMergeField : mergeField
 		);
 		this.result = { ...this.result, merge: merge };
 		return merge;

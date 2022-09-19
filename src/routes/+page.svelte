@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { ShotstackEditTemplateService } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
+	import type { MergeField } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
 
 	// DEFAULT JSON VALUE PLACEHOLDER TO JSON TEXTAREA INPUT
 	const defaultJSONInput = {
@@ -115,26 +116,27 @@
 
 	let template = editTemplateService.template;
 	let result = editTemplateService.result;
-	let error: string;
+	let templateError: string;
+	let resultError: string;
 
 	function handleTemplateInput(e: any) {
 		try {
 			const updatedTemplate = editTemplateService.setTemplateSource(e.target.value);
 			template = updatedTemplate;
 			result = updatedTemplate;
-			error = '';
+			templateError = '';
 		} catch (err: any) {
-			error = err.message;
+			templateError = err.message;
 		}
 	}
 
-	function handleFormInput(mergeField: any) {
+	function handleFormInput(mergeField: MergeField) {
 		try {
 			const updatedMergeFields = editTemplateService.updateResultMergeFields(mergeField);
 			result = { ...result, merge: updatedMergeFields };
-			error = '';
+			resultError = '';
 		} catch (err: any) {
-			error = err.message;
+			resultError = err.message;
 		}
 	}
 
@@ -156,15 +158,15 @@
 			/>
 		</div>
 
-		{#if error}
+		{#if templateError}
 			<p class=" bg-rose-200 rounded py-2 px-4">
 				<span class="monospace text-orange-900">
-					{error}
+					{templateError}
 				</span>
 			</p>
 		{/if}
 
-		{#if template.merge?.length && !error}
+		{#if template.merge?.length && !templateError}
 			<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
 			<div class="border p-4 mb-6">
 				{#each template.merge as { find, replace }}
@@ -183,7 +185,15 @@
 		{/if}
 	</form>
 
-	{#if !error}
+	{#if resultError}
+		<p class=" bg-rose-200 rounded py-2 px-4">
+			<span class="monospace text-orange-900">
+				{resultError}
+			</span>
+		</p>
+	{/if}
+
+	{#if !resultError && !templateError}
 		<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
 		<abbr title="Copy to clipboard">
 			<img
