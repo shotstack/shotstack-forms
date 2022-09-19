@@ -8,7 +8,7 @@ interface IParsedShotstackEditObject {
 	[key: string]: any;
 }
 
-export class MergeForm {
+export class ShotstackEditTemplateService {
 	public template: IParsedShotstackEditObject;
 	public result: IParsedShotstackEditObject;
 
@@ -22,12 +22,12 @@ export class MergeForm {
 		}
 	}
 
-	setTemplateSource(jsonEditObject: string): IParsedShotstackEditObject {
+	setTemplateSource(JSONtemplate: string): IParsedShotstackEditObject {
 		try {
-			const parsedJSONUserInput = JSON.parse(jsonEditObject);
-			this.template = parsedJSONUserInput;
-			this.result = this.template;
-			return parsedJSONUserInput;
+			const parsedTemplate = JSON.parse(JSONtemplate);
+			this.template = parsedTemplate;
+			this.result = parsedTemplate;
+			return parsedTemplate;
 		} catch (err: any) {
 			if (err.message) {
 				throw new Error(err.message);

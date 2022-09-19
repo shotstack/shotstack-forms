@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { MergeForm } from '../MergeForm/MergeForm';
+	import { ShotstackEditTemplateService } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
 
 	// DEFAULT JSON VALUE PLACEHOLDER TO JSON TEXTAREA INPUT
 	const defaultJSONInput = {
@@ -111,15 +111,15 @@
 		disk: 'local'
 	};
 
-	const mergeForm = new MergeForm(defaultJSONInput);
+	const editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
-	let template = mergeForm.template;
-	let result = mergeForm.result;
+	let template = editTemplateService.template;
+	let result = editTemplateService.result;
 	let error: string;
 
 	function handleTemplateInput(e: any) {
 		try {
-			const updatedTemplate = mergeForm.setTemplateSource(e.target.value);
+			const updatedTemplate = editTemplateService.setTemplateSource(e.target.value);
 			template = updatedTemplate;
 			result = updatedTemplate;
 			error = '';
@@ -130,7 +130,7 @@
 
 	function handleFormInput(mergeField: any) {
 		try {
-			const updatedMergeFields = mergeForm.updateResultMergeFields(mergeField);
+			const updatedMergeFields = editTemplateService.updateResultMergeFields(mergeField);
 			result = { ...result, merge: updatedMergeFields };
 			error = '';
 		} catch (err: any) {
@@ -138,7 +138,7 @@
 		}
 	}
 
-	function handleCopyToClipboard() {
+	function handleCopyToClipboardClick() {
 		navigator.clipboard.writeText(JSON.stringify(result));
 		alert('JSON copied to clipboard!');
 	}
@@ -190,7 +190,7 @@
 				src="img/copy-regular.svg"
 				alt="copy-button"
 				class="h-4 cursor-pointer inline mb-1"
-				on:click={handleCopyToClipboard}
+				on:click={handleCopyToClipboardClick}
 			/>
 		</abbr>
 		<p class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
