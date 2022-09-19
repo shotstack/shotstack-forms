@@ -10,13 +10,15 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"deploy": "node ./gh-pages.js"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.19.1",
 		"@babel/preset-env": "^7.19.1",
 		"@babel/preset-typescript": "^7.18.6",
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-static": "^1.0.0-next.43",
 		"@sveltejs/kit": "next",
 		"@types/jest": "^29.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
