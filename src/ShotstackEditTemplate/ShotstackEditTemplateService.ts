@@ -45,7 +45,8 @@ export class ShotstackEditTemplateService {
 	}
 
 	updateResultMergeFields(mergeFieldInput: MergeField) {
-		const { find, replace } = mergeFieldInput;
+		const { find } = mergeFieldInput;
+		const replace = mergeFieldInput.replace
 		const validMergeField = { find, replace };
 
 		if (!isNaN(Number(replace))) {
@@ -53,7 +54,12 @@ export class ShotstackEditTemplateService {
 		} else if (replace === 'true' || replace === 'false') {
 			validMergeField.replace = replace === 'true' ? true : false;
 		} else {
-			validMergeField.replace = JSON.parse(replace);
+			try {
+				validMergeField.replace = JSON.parse(replace);
+			}
+			catch (error) {
+				validMergeField.replace = replace
+			}
 		}
 
 		const merge = this.result.merge.map((mergeField) =>
