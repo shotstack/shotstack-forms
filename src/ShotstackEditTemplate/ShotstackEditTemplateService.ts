@@ -38,9 +38,9 @@ export class ShotstackEditTemplateService {
 
 	updateResultMergeFields(mergeFieldInput: MergeField) {
 		const merge = this.result.merge.map((mergeField) =>
-			mergeField.find === mergeFieldInput.find ? mergeFieldInput : mergeField
+			mergeField?.find === mergeFieldInput.find ? mergeFieldInput : mergeField
 		);
-		this.result = { ...this.result, merge };
+		this.result = { ...this.result, merge: merge };
 		return merge;
 	}
 }
