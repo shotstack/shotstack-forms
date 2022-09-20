@@ -6,13 +6,13 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
 	<link href="/shotstack-merge-fields/app/immutable/assets/_page-38eac5a1.css" rel="stylesheet">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/start-65505511.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/start-f62a86c2.js">
 	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/index-16192b9f.js">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/singletons-b9c3b8b6.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/singletons-9bbe65c6.js">
 	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/layout.svelte-c1378ca5.js">
 	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/modules/pages/_layout.ts-2d55546e.js">
 	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/_layout-c9a66c0f.js">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/pages/_page.svelte-6392d260.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/pages/_page.svelte-7baf0e8f.js">
 	</head>
 	<body>
 		<div>
@@ -20,6 +20,12 @@
 
 <section class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"><form class="svelte-u6rap9"><div class="mb-6 svelte-u6rap9"><label for="json-input" class="text-teal-400 px-1 svelte-u6rap9">Paste template </label>
 			<textarea class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9" id="json-input">{
+  &quot;merge&quot;: [
+    {
+      &quot;find&quot;: &quot;NAME&quot;,
+      &quot;replace&quot;: &quot;world&quot;
+    }
+  ],
   &quot;timeline&quot;: {
     &quot;tracks&quot;: [
       {
@@ -45,13 +51,21 @@
 
 		
 
-		</form>
+		<h1 class="text-teal-400 px-1 svelte-u6rap9">Modify Merge Values</h1>
+			<div class="border p-4 mb-6 svelte-u6rap9"><label for="NAME" class="block mb-2 monospace svelte-u6rap9">{{ NAME }} </label>
+					<input class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-u6rap9" id="NAME" type="text" value="world"></div></form>
 
 	
 
 	<h1 class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9">Result</h1>
 		<abbr title="Copy to clipboard" class="svelte-u6rap9"><img src="img/copy-regular.svg" alt="copy-button" class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"></abbr>
 		<p class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9">{
+  "merge": [
+    {
+      "find": "NAME",
+      "replace": "world"
+    }
+  ],
   "timeline": {
     "tracks": [
       {
@@ -77,8 +91,8 @@
 </section>
 
 
-		<script type="module" data-sveltekit-hydrate="1xr1gkt">
-		import { start } from "/shotstack-merge-fields/app/immutable/start-65505511.js";
+		<script type="module" data-sveltekit-hydrate="1011yv0">
+		import { start } from "/shotstack-merge-fields/app/immutable/start-f62a86c2.js";
 
 		start({
 			env: {},
@@ -92,7 +106,7 @@
 				form: null
 			},
 			paths: {"base":"/shotstack-merge-fields","assets":"/shotstack-merge-fields"},
-			target: document.querySelector('[data-sveltekit-hydrate="1xr1gkt"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="1011yv0"]').parentNode,
 			trailing_slash: "always"
 		});
 	</script>
