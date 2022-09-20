@@ -1,4 +1,10 @@
 {
+    "merge": [
+        {
+            "find": "NAME",
+            "replace": "world"
+        }
+    ],
     "timeline": {
         "tracks": [
             {
