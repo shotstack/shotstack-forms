@@ -3,7 +3,7 @@
 describe("Smoke test", () => {
     it("Should show the page", () => {
         cy.visit('localhost:5173')
-        cy.get("label").should("have.text", "Paste template")
+        cy.get("section>h1").should("have.text", "Result")
     })
 })
 
