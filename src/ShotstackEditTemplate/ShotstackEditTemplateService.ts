@@ -18,7 +18,7 @@ export class ShotstackEditTemplateService {
 	}
 
 	validateMergeArray(editTemplateObject: any) {
-		return !!editTemplateObject.merge;
+		return Boolean(editTemplateObject.merge);
 	}
 
 	setTemplateSource(JSONtemplate: string): IParsedEditSchema {
