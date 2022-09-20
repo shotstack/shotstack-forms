@@ -17,8 +17,8 @@ export class ShotstackEditTemplateService {
 		this.result = template;
 	}
 
-	validateMergeArray(editTemplateObject: any) {
-		return Boolean(editTemplateObject.merge);
+	validateMergeArray(editTemplate: any) {
+		return Boolean(editTemplate.merge);
 	}
 
 	setTemplateSource(JSONtemplate: string): IParsedEditSchema {
