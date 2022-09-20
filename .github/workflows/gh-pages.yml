@@ -1,0 +1,28 @@
+name: gh-pages
+on:
+  # Should only be on push to main. Pull request to main for testing purposes, later to be removed
+  # Removing main from branches until it has a working deploy
+  push:
+    branches: [ "github-pages" ]
+  pull_request:
+    branches: [ "github-pages" ]
+  workflow_dispatch: 
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Create build folder
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          branch: gh-pages
+          folder: build
+          clean: true
+          force: true
