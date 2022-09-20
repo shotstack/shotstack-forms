@@ -1,10 +1,11 @@
 name: gh-pages
 on:
   # Should only be on push to main. Pull request to main for testing purposes, later to be removed
+  # Removing main from branches until it has a working deploy
   push:
-    branches: [ "main", "github-pages" ]
+    branches: [ "github-pages" ]
   pull_request:
-    branches: [ "main", "github-pages" ]
+    branches: [ "github-pages" ]
   workflow_dispatch: 
 
 jobs:
