@@ -3,14 +3,14 @@ export interface MergeField {
 	replace: string | number | boolean;
 }
 
-interface IParsedShotstackEditObject {
+interface IParsedEditSchema {
 	merge: Array<MergeField> | [];
 	[key: string]: any;
 }
 
 export class ShotstackEditTemplateService {
-	public template: IParsedShotstackEditObject;
-	public result: IParsedShotstackEditObject;
+	public template: IParsedEditSchema;
+	public result: IParsedEditSchema;
 
 	constructor(defaultTemplate?: any) {
 		if (defaultTemplate) {
@@ -26,7 +26,7 @@ export class ShotstackEditTemplateService {
 		return !!editTemplateObject.merge;
 	}
 
-	setTemplateSource(JSONtemplate: string): IParsedShotstackEditObject {
+	setTemplateSource(JSONtemplate: string): IParsedEditSchema {
 		try {
 			const parsedTemplate = JSON.parse(JSONtemplate);
 
