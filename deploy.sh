@@ -5,7 +5,7 @@ set -e
 npm run build
 
 # navigate into the build output directory
-cd .svelte-kit
+cd build
 
 git init
 git checkout -b github-pages
