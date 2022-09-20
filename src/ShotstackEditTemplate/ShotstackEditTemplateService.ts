@@ -21,9 +21,9 @@ export class ShotstackEditTemplateService {
 		return Boolean(editTemplate.merge);
 	}
 
-	setTemplateSource(JSONtemplate: string): IParsedEditSchema {
+	setTemplateSource(jsonTemplate: string): IParsedEditSchema {
 		try {
-			const parsedTemplate = JSON.parse(JSONtemplate);
+			const parsedTemplate = JSON.parse(jsonTemplate);
 
 			if (!this.validateMergeArray(parsedTemplate)) {
 				throw new Error('No merge fields array was found');
