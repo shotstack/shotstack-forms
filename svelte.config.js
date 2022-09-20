@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
-
+const dev = process.env.NODE_ENV === 'development';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
@@ -17,12 +17,11 @@ const config = {
 			// these options are set automatically — see below
 			pages: 'build',
 			assets: 'build',
-			fallback: null,
 			precompress: false,
 		}),
-		outDir: '.svelte-kit',
+		appDir: "app",
 		paths: {
-			base:'/shotstack-merge-fields'
+			base: dev ? '' : '/shotstack-merge-fields'
 		},
 		trailingSlash: 'always',
 
