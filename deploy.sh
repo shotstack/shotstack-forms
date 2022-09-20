@@ -8,7 +8,7 @@ npm run build
 cd .svelte-kit
 
 git init
-git checkout -b merge-fields-form
+git checkout -b github-pages
 git add -A
 git commit -m 'deploy'
 
@@ -16,6 +16,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:r-argentina-programa/shotstack-merge-fields.git merge-fields-form:gh-pages
+git push -f git@github.com:r-argentina-programa/shotstack-merge-fields.git github-pages:gh-pages
 
 cd -
