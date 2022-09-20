@@ -35,7 +35,7 @@ export class ShotstackEditTemplateService {
 			if (err.message) {
 				throw new Error(err.message);
 			}
-			throw new Error('Error parsing JSON.');
+			throw new Error('Error parsing JSON');
 		}
 	}
 
