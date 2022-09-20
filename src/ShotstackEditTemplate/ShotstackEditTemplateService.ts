@@ -12,14 +12,9 @@ export class ShotstackEditTemplateService {
 	public template: IParsedEditSchema;
 	public result: IParsedEditSchema;
 
-	constructor(defaultTemplate?: any) {
-		if (defaultTemplate) {
-			this.template = defaultTemplate;
-			this.result = defaultTemplate;
-		} else {
-			this.template = { merge: [] };
-			this.result = { merge: [] };
-		}
+	constructor(template: any = { merge: [] }) {
+		this.template = template;
+		this.result = template;
 	}
 
 	validateMergeArray(editTemplateObject: any) {
