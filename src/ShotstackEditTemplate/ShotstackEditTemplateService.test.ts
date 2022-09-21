@@ -3,6 +3,7 @@
  */
 
 import { describe, expect, test } from '@jest/globals';
+import { INVALID_JSON, MERGE_NOT_FOUND } from './constants';
 
 import { ShotstackEditTemplateService } from './ShotstackEditTemplateService';
 
@@ -34,14 +35,12 @@ describe('ShotstackEditTemplateService.setTemplateSource', () => {
 	test('Throws error if not merge array passed', () => {
 		const editTemplateService = new ShotstackEditTemplateService();
 
-		expect(() => editTemplateService.setTemplateSource('{}')).toThrowError(
-			'No merge fields array was found'
-		);
+		expect(() => editTemplateService.setTemplateSource('{}')).toThrowError(MERGE_NOT_FOUND);
 	});
 });
 
 describe('ShotstackEditTemplateService.updateResultMergeFields', () => {
-	test('Correctly updates the result merge array', () => {
+	test('Correctly updates the resulting merge array', () => {
 		const editTemplateService = new ShotstackEditTemplateService({
 			merge: [
 				{

@@ -1,3 +1,4 @@
+import { FIND_MUST_BE_STRING, FIND_NOT_EMPTY, FIND_NOT_FOUND, MERGE_MUST_BE_ARRAY, MERGE_NOT_EMPTY, MERGE_NOT_FOUND, REPLACE_NOT_FOUND } from "./constants"
 import type { IParsedEditSchema } from "./types"
 
 export class ValidationError extends Error {
@@ -27,14 +28,14 @@ function isEmptyArray(prop: string, json: any) {
 export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
     try {
         let parsed = JSON.parse(jsonTemplate)
-        if (propertyDoesNotExist("merge", parsed)) throw new ValidationError("A 'merge' property is required")
-        if (isNotInstanceOfArray("merge", parsed)) throw new ValidationError("Property 'merge' must be an array")
-        if (isEmptyArray('merge', parsed)) throw new ValidationError("Property 'merge' must contain at least one element")
+        if (propertyDoesNotExist("merge", parsed)) throw new ValidationError(MERGE_NOT_FOUND)
+        if (isNotInstanceOfArray("merge", parsed)) throw new ValidationError(MERGE_MUST_BE_ARRAY)
+        if (isEmptyArray('merge', parsed)) throw new ValidationError(MERGE_NOT_EMPTY)
         parsed.merge.forEach((field: any, index: number) => {
-            if (propertyDoesNotExist("find", field)) throw new ValidationError(`Missing property 'find' at index ${index}`)
-            if (propertyDoesNotExist("replace", field)) throw new ValidationError(`Missing property 'replace' at index ${index}`)
-            if (isNotString("find", field)) throw new ValidationError(`Property 'find' at index ${index} must be a string`)
-            if (isEmptyString('find', field)) throw new ValidationError(`Value of property 'find' at index ${index} must not be empty`)
+            if (propertyDoesNotExist("find", field)) throw new ValidationError(FIND_NOT_FOUND)
+            if (propertyDoesNotExist("replace", field)) throw new ValidationError(REPLACE_NOT_FOUND)
+            if (isNotString("find", field)) throw new ValidationError(FIND_MUST_BE_STRING)
+            if (isEmptyString('find', field)) throw new ValidationError(FIND_NOT_EMPTY)
         })
         return parsed as IParsedEditSchema
     }
