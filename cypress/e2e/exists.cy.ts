@@ -5,15 +5,18 @@ const templateInputSection = '[data-cy=template-input-section]';
 const templateInput = '[data-cy=template-input]';
 const templateInputError = '[data-cy=template-input-error]';
 const mergeFieldsInputSection = '[data-cy=merge-fields-input-section]';
+const mergeFieldsLabelInputContainer = '[data-cy=label-input]';
 const mergeFieldsInputError = '[data-cy=merge-fields-input-error]';
 const resultSection = '[data-cy=result-section]';
+const result = '[data-cy=result]';
+
+beforeEach(() => {
+	cy.intercept('+page.svelte?svelte&type=style&lang.css').as('svelte');
+	cy.visit('localhost:5173');
+	cy.wait('@svelte');
+});
 
 describe('Form component', () => {
-	beforeEach(() => {
-		cy.intercept('+page.svelte?svelte&type=style&lang.css').as('svelte')
-		cy.visit('localhost:5173');
-		cy.wait('@svelte')
-	})
 	it('Renders properly', () => {
 		//Assert
 		cy.get(formContainer).should('be.visible');
@@ -96,6 +99,47 @@ describe('Merge inputs section', () => {
 		cy.get(mergeFieldsInputSection + ' input')
 			.eq(1)
 			.should('have.value', 'bar');
+	});
+});
+
+describe('Result JSON', () => {
+	it('Updates and displays an updated JSON template when the input values are changed', () => {
+		// Arrange
+		cy.get(templateInput)
+			.click()
+			.clear()
+			.type(
+				'{{}	"merge": [	{{} "find": "HELLO", "replace": "foo" },		{{} "find": "BYE", "replace": "bar" }	]}'
+			);
+
+		// Get a parsed version of the merge array in the result
+		let mergeFieldsArrayResult: [];
+		cy.get(result).then((result) => {
+			const JSONresult = result[0].innerText;
+			const cleanJSONresult = JSONresult.replace('\\n', '');
+			const parsedJSONresult = JSON.parse(cleanJSONresult);
+			mergeFieldsArrayResult = parsedJSONresult.merge;
+		});
+
+		// Act
+		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
+			// Loop through label/input pairs of the form
+			for (let labelInputPair of labelInputContainers) {
+				const label = <HTMLLabelElement>labelInputPair.children[0];
+				const input = <HTMLInputElement>labelInputPair.children[1];
+
+				// Filter the merge array to find a matching object between label/input values and find/replace props;
+				const matchingMergeFieldObject: any = mergeFieldsArrayResult.find(
+					(mergeFieldObject: any) =>
+						label.innerText.includes(mergeFieldObject.find) &&
+						input.value === mergeFieldObject.replace
+				);
+
+				// Assert
+				// Check the existance of a matching object
+				expect(matchingMergeFieldObject).not.to.be.undefined;
+			}
+		});
 	});
 });
 

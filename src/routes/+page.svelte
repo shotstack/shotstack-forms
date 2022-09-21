@@ -65,16 +65,18 @@
 				<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
 				<div class="border p-4 mb-6">
 					{#each template.merge as { find, replace }}
-						<label for={find} class="block mb-2 monospace">
-							{'{{ ' + find + ' }} '}
-						</label>
-						<input
-							class="border w-full mb-3 pl-2 py-1 text-stone-500"
-							id={find}
-							type="text"
-							value={replace}
-							on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
-						/>
+						<div data-cy="label-input">
+							<label for={find} class="block mb-2 monospace">
+								{'{{ ' + find + ' }} '}
+							</label>
+							<input
+								class="border w-full mb-3 pl-2 py-1 text-stone-500"
+								id={find}
+								type="text"
+								value={replace}
+								on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
+							/>
+						</div>
 					{/each}
 				</div>
 			</div>
@@ -100,7 +102,7 @@
 					on:click={handleCopyToClipboardClick}
 				/>
 			</abbr>
-			<p class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
+			<p data-cy="result" class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
 				{JSON.stringify(result, null, 2)}
 			</p>
 		</div>
