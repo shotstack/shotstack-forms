@@ -12,6 +12,7 @@ describe('Form component', () => {
 	it('Renders properly', () => {
 		// Arrange
 		cy.visit('localhost:5173');
+		cy.wait(2000);
 
 		//Assert
 		cy.get(formContainer).should('be.visible');
@@ -27,6 +28,7 @@ describe('Template input section', () => {
 	it('Shows template error if invalid JSON template passed to template textarea input', () => {
 		// Arrange
 		cy.visit('localhost:5173');
+		cy.wait(2000);
 
 		// Act
 		cy.get(templateInput).click().clear();
@@ -66,6 +68,7 @@ describe('Merge inputs section', () => {
 	it('Shows a label containing the "find" value and a input field containing the "replace" value for every merge object found inside the merge array of the template JSON input', () => {
 		// Arrange
 		cy.visit('localhost:5173');
+		cy.wait(2000);
 
 		// Act
 		cy.get(templateInput)

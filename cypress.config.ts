@@ -6,6 +6,5 @@ export default defineConfig({
 			// implement node event listeners here
 		}
 	},
-	video: false,
-	retries: 3
+	video: false
 });
