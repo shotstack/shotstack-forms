@@ -105,6 +105,9 @@ describe('Merge inputs section', () => {
 describe('Result JSON', () => {
 	it('Updates and displays an updated JSON template when the input values are changed', () => {
 		// Arrange
+
+		let mergeFieldsArrayResult: [];
+
 		cy.get(templateInput)
 			.click()
 			.clear()
@@ -112,8 +115,36 @@ describe('Result JSON', () => {
 				'{{}	"merge": [	{{} "find": "HELLO", "replace": "foo" },		{{} "find": "BYE", "replace": "bar" }	]}'
 			);
 
+		// Act
 		// Get a parsed version of the merge array in the result
-		let mergeFieldsArrayResult: [];
+		cy.get(result).then((result) => {
+			const JSONresult = result[0].innerText;
+			const cleanJSONresult = JSONresult.replace('\\n', '');
+			const parsedJSONresult = JSON.parse(cleanJSONresult);
+			mergeFieldsArrayResult = parsedJSONresult.merge;
+		});
+		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
+			// Loop through label/input pairs of the form
+			for (let labelInputPair of labelInputContainers) {
+				const label = <HTMLLabelElement>labelInputPair.children[0];
+				const input = <HTMLInputElement>labelInputPair.children[1];
+
+				// Filter the merge array to find a matching object between label/input values and find/replace props;
+				const matchingMergeFieldObject: any = mergeFieldsArrayResult.find(
+					(mergeFieldObject: any) =>
+						label.innerText.includes(mergeFieldObject.find) &&
+						input.value === mergeFieldObject.replace
+				);
+
+				// Assert
+				// Check the existance of a matching object
+				expect(matchingMergeFieldObject).not.to.be.undefined;
+			}
+		});
+
+		// Act
+		cy.get('#HELLO').click().clear().type('Edited HELLO value');
+
 		cy.get(result).then((result) => {
 			const JSONresult = result[0].innerText;
 			const cleanJSONresult = JSONresult.replace('\\n', '');
@@ -121,7 +152,7 @@ describe('Result JSON', () => {
 			mergeFieldsArrayResult = parsedJSONresult.merge;
 		});
 
-		// Act
+		// Assert
 		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
 			// Loop through label/input pairs of the form
 			for (let labelInputPair of labelInputContainers) {
