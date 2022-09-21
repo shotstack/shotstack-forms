@@ -1,4 +1,4 @@
-import { FIND_MUST_BE_STRING, FIND_NOT_EMPTY, FIND_NOT_FOUND, MERGE_MUST_BE_ARRAY, MERGE_NOT_EMPTY, MERGE_NOT_FOUND, REPLACE_NOT_FOUND } from "./constants"
+import { FIND_NOT_STRING, FIND_NOT_EMPTY, FIND_NOT_FOUND, MERGE_NOT_ARRAY, MERGE_NOT_EMPTY, MERGE_NOT_FOUND, REPLACE_NOT_FOUND } from "./constants"
 import type { IParsedEditSchema } from "./types"
 
 export class ValidationError extends Error {
@@ -29,12 +29,12 @@ export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
     try {
         let parsed = JSON.parse(jsonTemplate)
         if (propertyDoesNotExist("merge", parsed)) throw new ValidationError(MERGE_NOT_FOUND)
-        if (isNotInstanceOfArray("merge", parsed)) throw new ValidationError(MERGE_MUST_BE_ARRAY)
+        if (isNotInstanceOfArray("merge", parsed)) throw new ValidationError(MERGE_NOT_ARRAY)
         if (isEmptyArray('merge', parsed)) throw new ValidationError(MERGE_NOT_EMPTY)
         parsed.merge.forEach((field: any, index: number) => {
             if (propertyDoesNotExist("find", field)) throw new ValidationError(FIND_NOT_FOUND)
             if (propertyDoesNotExist("replace", field)) throw new ValidationError(REPLACE_NOT_FOUND)
-            if (isNotString("find", field)) throw new ValidationError(FIND_MUST_BE_STRING)
+            if (isNotString("find", field)) throw new ValidationError(FIND_NOT_STRING)
             if (isEmptyString('find', field)) throw new ValidationError(FIND_NOT_EMPTY)
         })
         return parsed as IParsedEditSchema
