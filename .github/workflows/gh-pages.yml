@@ -21,10 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Download build folder as artifact
-        uses: actions/download-artifact@v3
+      - name: Download build folder from workflow artifact
+        uses: dawidd6/action-download-artifact@v2.23.0
         with:
-          name: build
+          workflow: cypress-test-e2e.yml
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
