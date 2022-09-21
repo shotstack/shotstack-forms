@@ -1,34 +1,35 @@
-export interface MergeField {
-	find: string;
-	replace: string | number | boolean;
+type JSONValidTypes = string | number | boolean | Array<JSONValidTypes> | JSONLikeObject
+
+interface JSONLikeObject {
+	[key: string]: JSONValidTypes
 }
 
-interface IParsedShotstackEditObject {
+export interface MergeField {
+	find: string;
+	replace: JSONValidTypes;
+}
+
+interface IParsedEditSchema {
 	merge: Array<MergeField> | [];
 	[key: string]: any;
 }
 
 export class ShotstackEditTemplateService {
-	public template: IParsedShotstackEditObject;
-	public result: IParsedShotstackEditObject;
+	public template: IParsedEditSchema;
+	public result: IParsedEditSchema;
 
-	constructor(defaultTemplate?: any) {
-		if (defaultTemplate) {
-			this.template = defaultTemplate;
-			this.result = defaultTemplate;
-		} else {
-			this.template = { merge: [] };
-			this.result = { merge: [] };
-		}
+	constructor(template: any = { merge: [] }) {
+		this.template = template;
+		this.result = template;
 	}
 
-	validateMergeArray(editTemplateObject: any) {
-		return !!editTemplateObject.merge;
+	validateMergeArray(editTemplate: any) {
+		return Boolean(editTemplate.merge);
 	}
 
-	setTemplateSource(JSONtemplate: string): IParsedShotstackEditObject {
+	setTemplateSource(jsonTemplate: string): IParsedEditSchema {
 		try {
-			const parsedTemplate = JSON.parse(JSONtemplate);
+			const parsedTemplate = JSON.parse(jsonTemplate);
 
 			if (!this.validateMergeArray(parsedTemplate)) {
 				throw new Error('No merge fields array was found');
@@ -40,32 +41,30 @@ export class ShotstackEditTemplateService {
 			if (err.message) {
 				throw new Error(err.message);
 			}
-			throw new Error('Error parsing JSON.');
+			throw new Error('Error parsing JSON');
 		}
 	}
 
-	updateResultMergeFields(mergeFieldInput: MergeField) {
-		const { find } = mergeFieldInput;
-		const replace = mergeFieldInput.replace
-		const validMergeField = { find, replace };
+	updateResultMergeFields(mergeFieldInput: { find: string, replace: string }) {
+		const { find, replace } = mergeFieldInput;
+		const validMergeField: MergeField = { find, replace };
 
-		if (!isNaN(Number(replace))) {
+		if (!isNaN(Number(replace)) && replace.length > 0) {
 			validMergeField.replace = Number(replace);
-		} else if (replace === 'true' || replace === 'false') {
-			validMergeField.replace = replace === 'true' ? true : false;
-		} else {
+		}
+		else {
 			try {
 				validMergeField.replace = JSON.parse(replace);
 			}
 			catch (error) {
-				validMergeField.replace = replace
+				validMergeField.replace = replace;
 			}
 		}
 
 		const merge = this.result.merge.map((mergeField) =>
 			mergeField?.find === mergeFieldInput.find ? validMergeField : mergeField
 		);
-		this.result = { ...this.result, merge: merge };
+		this.result = { ...this.result, merge };
 		return merge;
 	}
 }
