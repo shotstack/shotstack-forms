@@ -1,12 +1,12 @@
-type JSONLikeObject = string | number | boolean | Array<JSONLikeObject> | JSONObj
+type JSONValidTypes = string | number | boolean | Array<JSONValidTypes> | JSONLikeObject
 
-interface JSONObj { 
-	[key: string]: JSONLikeObject
+interface JSONLikeObject {
+	[key: string]: JSONValidTypes
 }
 
 export interface MergeField {
 	find: string;
-	replace: JSONLikeObject ;
+	replace: JSONValidTypes;
 }
 
 interface IParsedEditSchema {
@@ -45,20 +45,19 @@ export class ShotstackEditTemplateService {
 		}
 	}
 
-	updateResultMergeFields(mergeFieldInput: MergeField) {
+	updateResultMergeFields(mergeFieldInput: { find: string, replace: string }) {
 		const { find, replace } = mergeFieldInput;
-		const validMergeField = { find, replace };
+		const validMergeField: MergeField = { find, replace };
 
-		if (!isNaN(Number(replace))) {
+		if (!isNaN(Number(replace)) && replace.length > 0) {
 			validMergeField.replace = Number(replace);
-		} else if (replace === 'true' || replace === 'false') {
-			validMergeField.replace = replace === 'true' ? true : false;
-		} else {
+		}
+		else {
 			try {
 				validMergeField.replace = JSON.parse(replace);
 			}
 			catch (error) {
-				validMergeField.replace = replace
+				validMergeField.replace = replace;
 			}
 		}
 

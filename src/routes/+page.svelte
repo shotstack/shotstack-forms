@@ -2,8 +2,8 @@
 	import '../app.css';
 	import { ShotstackEditTemplateService } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import type { MergeField } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
-	import defaultJSONInput from './default.json'
-	
+	import defaultJSONInput from './default.json';
+
 	// DEFAULT JSON VALUE PLACEHOLDER TO JSON TEXTAREA INPUT
 	const editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
@@ -23,7 +23,7 @@
 		}
 	}
 
-	function handleFormInput(mergeField: MergeField) {
+	function handleFormInput(mergeField: { find: string; replace: string }) {
 		try {
 			const updatedMergeFields = editTemplateService.updateResultMergeFields(mergeField);
 			result = { ...result, merge: updatedMergeFields };
