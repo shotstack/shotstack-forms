@@ -1,15 +1,11 @@
 name: gh-pages
 on:
-  # Should only be on push to main. Pull request to main for testing purposes, later to be removed
-  # Removing main from branches until it has a working deploy
-  push:
-    branches: [ "main", "development" ]
-  pull_request:
-    branches: [ "main", "development" ]
-  workflow_dispatch: 
+  workflow_run:
+    workflows: ["cypress-test-e2e"]
+    types:
+      - completed
 
 jobs:
-  # This workflow contains a single job called "build"
   build:
     runs-on: ubuntu-latest
     steps:
@@ -25,8 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
-      - name: Create build folder
-        run: npm run build
+      - name: Download build folder from workflow artifact
+        uses: dawidd6/action-download-artifact@v2.23.0
+        with:
+          workflow: cypress-test-e2e.yml
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
