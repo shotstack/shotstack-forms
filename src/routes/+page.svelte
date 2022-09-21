@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
 	import { ShotstackEditTemplateService } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
-	import type { MergeField } from '../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './default.json';
 
 	// DEFAULT JSON VALUE PLACEHOLDER TO JSON TEXTAREA INPUT
