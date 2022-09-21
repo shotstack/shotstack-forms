@@ -1,0 +1,40 @@
+name: cypress-test-e2e
+on:
+  # Should only be on push to main. Pull request to main for testing purposes, later to be removed
+  # Removing main from branches until it has a working deploy
+  push:
+    branches: [ "main", "development" ]
+  pull_request:
+    branches: [ "main", "development" ]
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      # Cache dependencies
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Create build folder
+        run: npm run build
+
+      - name: Store build folder as artifact for deploy
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+      
+      - name: Cypress E2E on chrome
+        uses: cypress-io/github-action@v4.2.0
+          with:
+            browser: chrome
+            start: npm run dev
