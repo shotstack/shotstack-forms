@@ -1,6 +1,12 @@
+type JSONLikeObject = string | number | boolean | Array<JSONLikeObject> | JSONObj
+
+interface JSONObj { 
+	[key: string]: JSONLikeObject
+}
+
 export interface MergeField {
 	find: string;
-	replace: string | number | boolean;
+	replace: JSONLikeObject ;
 }
 
 interface IParsedEditSchema {
@@ -40,8 +46,7 @@ export class ShotstackEditTemplateService {
 	}
 
 	updateResultMergeFields(mergeFieldInput: MergeField) {
-		const { find } = mergeFieldInput;
-		const replace = mergeFieldInput.replace
+		const { find, replace } = mergeFieldInput;
 		const validMergeField = { find, replace };
 
 		if (!isNaN(Number(replace))) {
@@ -60,7 +65,7 @@ export class ShotstackEditTemplateService {
 		const merge = this.result.merge.map((mergeField) =>
 			mergeField?.find === mergeFieldInput.find ? validMergeField : mergeField
 		);
-		this.result = { ...this.result, merge: merge };
+		this.result = { ...this.result, merge };
 		return merge;
 	}
 }
