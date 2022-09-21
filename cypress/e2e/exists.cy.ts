@@ -9,10 +9,12 @@ const mergeFieldsInputError = '[data-cy=merge-fields-input-error]';
 const resultSection = '[data-cy=result-section]';
 
 describe('Form component', () => {
-	it('Renders properly', () => {
-		// Arrange
+	beforeEach(() => {
+		cy.intercept('+page.svelte?svelte&type=style&lang.css').as('svelte')
 		cy.visit('localhost:5173');
-
+		cy.wait('@svelte')
+	})
+	it('Renders properly', () => {
 		//Assert
 		cy.get(formContainer).should('be.visible');
 		cy.get(templateInputSection).should('be.visible');
@@ -25,9 +27,6 @@ describe('Form component', () => {
 
 describe('Template input section', () => {
 	it('Shows template error if invalid JSON template passed to template textarea input', () => {
-		// Arrange
-		cy.visit('localhost:5173');
-
 		// Act
 		cy.get(templateInput).click().clear();
 
@@ -64,9 +63,6 @@ describe('Template input section', () => {
 
 describe('Merge inputs section', () => {
 	it('Shows a label containing the "find" value and a input field containing the "replace" value for every merge object found inside the merge array of the template JSON input', () => {
-		// Arrange
-		cy.visit('localhost:5173');
-
 		// Act
 		cy.get(templateInput)
 			.click()
