@@ -44,6 +44,7 @@
 		<div data-cy="template-input-section" class="mb-6">
 			<label for="json-input" class="text-teal-400 px-1">Paste template </label>
 			<textarea
+				data-cy="template-input"
 				class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
 				id="json-input"
 				on:input={handleTemplateInput}
