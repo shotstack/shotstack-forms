@@ -1,0 +1,29 @@
+{
+    "merge": [
+        {
+            "find": "NAME",
+            "replace": "world"
+        }
+    ],
+    "timeline": {
+        "tracks": [
+            {
+                "clips": [
+                    {
+                        "asset": {
+                            "type": "title",
+                            "text": "Hello {{ NAME }}",
+                            "style": "future"
+                        },
+                        "start": 0,
+                        "length": 5
+                    }
+                ]
+            }
+        ]
+    },
+    "output": {
+        "format": "mp4",
+        "resolution": "hd"
+    }
+}
