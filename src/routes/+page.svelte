@@ -39,11 +39,12 @@
 	}
 </script>
 
-<section class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4">
+<section data-cy="form-container" class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4">
 	<form>
-		<div class="mb-6">
+		<div data-cy="template-input-section" class="mb-6">
 			<label for="json-input" class="text-teal-400 px-1">Paste template </label>
 			<textarea
+				data-cy="template-input"
 				class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
 				id="json-input"
 				on:input={handleTemplateInput}
@@ -52,7 +53,7 @@
 		</div>
 
 		{#if templateError}
-			<p class=" bg-rose-200 rounded py-2 px-4">
+			<p data-cy="template-input-error" class=" bg-rose-200 rounded py-2 px-4">
 				<span class="monospace text-orange-900">
 					{templateError}
 				</span>
@@ -60,45 +61,49 @@
 		{/if}
 
 		{#if template.merge?.length && !templateError}
-			<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
-			<div class="border p-4 mb-6">
-				{#each template.merge as { find, replace }}
-					<label for={find} class="block mb-2 monospace">
-						{'{{ ' + find + ' }} '}
-					</label>
-					<input
-						class="border w-full mb-3 pl-2 py-1 text-stone-500"
-						id={find}
-						type="text"
-						value={replace}
-						on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
-					/>
-				{/each}
+			<div data-cy="merge-fields-input-section">
+				<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
+				<div class="border p-4 mb-6">
+					{#each template.merge as { find, replace }}
+						<label for={find} class="block mb-2 monospace">
+							{'{{ ' + find + ' }} '}
+						</label>
+						<input
+							class="border w-full mb-3 pl-2 py-1 text-stone-500"
+							id={find}
+							type="text"
+							value={replace}
+							on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
+						/>
+					{/each}
+				</div>
 			</div>
+		{/if}
+
+		{#if resultError}
+			<p data-cy="merge-fields-input-error" class=" bg-rose-200 rounded py-2 px-4">
+				<span class="monospace text-orange-900">
+					{resultError}
+				</span>
+			</p>
 		{/if}
 	</form>
 
-	{#if resultError}
-		<p class=" bg-rose-200 rounded py-2 px-4">
-			<span class="monospace text-orange-900">
-				{resultError}
-			</span>
-		</p>
-	{/if}
-
 	{#if !resultError && !templateError}
-		<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
-		<abbr title="Copy to clipboard">
-			<img
-				src="img/copy-regular.svg"
-				alt="copy-button"
-				class="h-4 cursor-pointer inline mb-1"
-				on:click={handleCopyToClipboardClick}
-			/>
-		</abbr>
-		<p class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
-			{JSON.stringify(result, null, 2)}
-		</p>
+		<div data-cy="result-section">
+			<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
+			<abbr title="Copy to clipboard">
+				<img
+					src="img/copy-regular.svg"
+					alt="copy-button"
+					class="h-4 cursor-pointer inline mb-1"
+					on:click={handleCopyToClipboardClick}
+				/>
+			</abbr>
+			<p class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
+				{JSON.stringify(result, null, 2)}
+			</p>
+		</div>
 	{/if}
 </section>
 
