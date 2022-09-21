@@ -24,8 +24,9 @@ jobs:
       - name: Download build folder as artifact
         uses: actions/download-artifact@v3
         with:
+          workflow: cypress-test-e2e.yml
           name: build
-          path: build
+
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.4.0
