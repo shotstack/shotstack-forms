@@ -27,12 +27,57 @@ jobs:
       - name: Create build folder
         run: npm run build
 
+      - name: Store .svelte-kit folder as artifact for testing
+        uses: actions/upload-artifact@v3
+        with:
+          name: .svelte-kit
+          path: .svelte-kit
+
       - name: Store build folder as artifact for deploy
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
+
+  jest:
+    runs-on: ubuntu-latest
+    steps:      
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
       
+      # Cache dependencies
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run jest
+        run: npm run test
+
+  cypress-e2e:
+    runs-on: ubuntu-latest
+    steps:      
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      # Cache dependencies
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Downloads .svelte-kit  a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: .svelte-kit
+          path: .svelte-kit
+
       - name: Cypress E2E on chrome
         uses: cypress-io/github-action@v4.2.0
         with:
