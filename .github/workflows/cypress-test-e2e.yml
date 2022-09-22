@@ -1,11 +1,10 @@
 name: cypress-test-e2e
 on:
-  # Should only be on push to main. Pull request to main for testing purposes, later to be removed
-  # Removing main from branches until it has a working deploy
+  # Should only be on push or pull request to main. 
   push:
-    branches: [ "main", "development" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "development" ]
+    branches: [ "main" ]
   workflow_dispatch: 
 
 jobs:
