@@ -11,6 +11,11 @@ const resultSection = '[data-cy=result-section]';
 const result = '[data-cy=result]';
 
 beforeEach(() => {
+	// Vite SSR creates issues when testing e2e with cypress, due to cypress 
+	// running the tests before vite has a chance to hydrate, making the tests flaky.
+	// Potential solutions involve waiting until hydration finishes. Current solution
+	// implements intercepting svelte file and wait until it finishes downloading.
+
 	cy.intercept('+page.svelte?svelte&type=style&lang.css').as('svelte');
 	cy.visit('localhost:5173');
 	cy.wait('@svelte');
