@@ -75,7 +75,7 @@ describe('Merge inputs section', () => {
 		cy.get(templateInput)
 			.click()
 			.clear()
-			.type('{{} "merge": [ {{} "find": "TEST", "replace" : "foo" } ] } ');
+			.type(JSON.stringify({ merge: [{ find: "TEST", replace: "foo" }] }))
 
 		// Assert
 		cy.get(mergeFieldsInputSection + ' input').should('have.length', 1);
@@ -86,9 +86,12 @@ describe('Merge inputs section', () => {
 		cy.get(templateInput)
 			.click()
 			.clear()
-			.type(
-				'{{} "merge": [ {{} "find": "FOO", "replace" : "foo" } , {{} "find": "BAR", "replace" : "bar" } ] }'
-			);
+			.type(JSON.stringify({
+				merge: [
+					{ find: "FOO", replace: 'foo' },
+					{ find: "BAR", replace: 'bar' }
+				]
+			}));
 
 		// Assert
 		cy.get(mergeFieldsInputSection + ' input').should('have.length', 2);
