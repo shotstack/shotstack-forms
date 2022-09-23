@@ -1,5 +1,5 @@
 /// <reference types="Cypress"/>
-
+import type { MergeField } from '../../src/ShotstackEditTemplate/types'
 const formContainer = '[data-cy=form-container]';
 const templateInputSection = '[data-cy=template-input-section]';
 const templateInput = '[data-cy=template-input]';
@@ -110,73 +110,75 @@ describe('Merge inputs section', () => {
 describe('Result JSON', () => {
 	it('Updates and displays an updated JSON template when the input values are changed', () => {
 		// Arrange
+		let sampleMergeFields = {
+			merge: [
+				{ find: "HELLO", replace: "foo" },
+				{ find: "BYE", replace: "bar" },
+				{ find: "fizz", replace: "BUZZ" },
+			]
+		}
 
-		let mergeFieldsArrayResult: [];
-
+		//Act
 		cy.get(templateInput)
 			.click()
 			.clear()
-			.type(
-				'{{}	"merge": [	{{} "find": "HELLO", "replace": "foo" },		{{} "find": "BYE", "replace": "bar" }	]}'
-			);
-
-		// Act
-		// Get a parsed version of the merge array in the result
-		cy.get(result).then((result) => {
-			const JSONresult = result[0].innerText;
-			const cleanJSONresult = JSONresult.replace('\\n', '');
-			const parsedJSONresult = JSON.parse(cleanJSONresult);
-			mergeFieldsArrayResult = parsedJSONresult.merge;
-		});
-		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
-			// Loop through label/input pairs of the form
-			for (let labelInputPair of labelInputContainers) {
-				const label = <HTMLLabelElement>labelInputPair.children[0];
-				const input = <HTMLInputElement>labelInputPair.children[1];
-
-				// Filter the merge array to find a matching object between label/input values and find/replace props;
-				const matchingMergeFieldObject: any = mergeFieldsArrayResult.find(
-					(mergeFieldObject: any) =>
-						label.innerText.includes(mergeFieldObject.find) &&
-						input.value === mergeFieldObject.replace
-				);
-
-				// Assert
-				// Check the existance of a matching object
-				expect(matchingMergeFieldObject).not.to.be.undefined;
-			}
-		});
-
-		// Act
-		cy.get('#HELLO').click().clear().type('Edited HELLO value');
-
-		cy.get(result).then((result) => {
-			const JSONresult = result[0].innerText;
-			const cleanJSONresult = JSONresult.replace('\\n', '');
-			const parsedJSONresult = JSON.parse(cleanJSONresult);
-			mergeFieldsArrayResult = parsedJSONresult.merge;
-		});
+			.type(JSON.stringify(sampleMergeFields),
+				{ parseSpecialCharSequences: false })
 
 		// Assert
-		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
-			// Loop through label/input pairs of the form
-			for (let labelInputPair of labelInputContainers) {
-				const label = <HTMLLabelElement>labelInputPair.children[0];
-				const input = <HTMLInputElement>labelInputPair.children[1];
+		// Parsed result template should equal to sample
+		cy
+			.get(result)
+			.then(res => expect(JSON.parse(res[0].innerText)).to.eql(sampleMergeFields))
 
-				// Filter the merge array to find a matching object between label/input values and find/replace props;
-				const matchingMergeFieldObject: any = mergeFieldsArrayResult.find(
-					(mergeFieldObject: any) =>
-						label.innerText.includes(mergeFieldObject.find) &&
-						input.value === mergeFieldObject.replace
-				);
+		// Grab label-input container
+		cy.get(mergeFieldsLabelInputContainer)
+			.then((labelInputContainers) => {
+				//For each label input container return an object where
+				let mapped = labelInputContainers
+					.map((index: number, el: HTMLElement) => {
+						let label = el.children[0] as HTMLLabelElement
+						let input = el.children[1] as HTMLInputElement
+						// We extract the inner text of label without braces
+						// We extract the input value
+						// We build a MergeField object
+						return { find: label.innerText.slice(3, -3), replace: input.value }
+					})
 
-				// Assert
-				// Check the existance of a matching object
-				expect(matchingMergeFieldObject).not.to.be.undefined;
-			}
-		});
+				//Assert
+				expect(sampleMergeFields.merge).to.eql(mapped.toArray())
+			});
+
+		// Arrange
+		const TARGET = sampleMergeFields.merge[0].find
+		const EDITED_VALUE = "a new value"
+		// We deep clone our sample merge fields
+		let clonedSampleMergeFields = JSON.parse(JSON.stringify(sampleMergeFields)).merge as MergeField[]
+		// We find the target entry in our clone
+		let modifiedField = clonedSampleMergeFields.find((el: MergeField) => el.find === TARGET) as MergeField
+		// We modify the replace value
+		modifiedField.replace = EDITED_VALUE
+
+		// We update target field value
+		cy.get(`#${TARGET}`).click().clear().type(EDITED_VALUE);
+		cy.get(mergeFieldsLabelInputContainer)
+			.then((labelInputContainers) => {
+				//For each label input container return an object where
+				let mapped = labelInputContainers
+					.map((index: number, el: HTMLElement) => {
+						let label = el.children[0] as HTMLLabelElement
+						let input = el.children[1] as HTMLInputElement
+						// We extract the inner text of label without braces and the input value
+						let find = label.innerText.slice(3, -3)
+						let replace = input.value
+						// We build a MergeField object and return it
+						return { find, replace }
+					})
+
+				//Assert
+				expect(clonedSampleMergeFields).to.eql(mapped.toArray())
+			});
 	});
 });
 
-export {};
+export { };
