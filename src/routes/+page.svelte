@@ -36,6 +36,16 @@
 		navigator.clipboard.writeText(JSON.stringify(result));
 		alert('JSON copied to clipboard!');
 	}
+
+	function safeApply(val: any) {
+		if (typeof val === 'string') return val;
+		else
+			try {
+				return JSON.stringify(val);
+			} catch (error) {
+				return val;
+			}
+	}
 </script>
 
 <section data-cy="form-container" class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4">
@@ -72,7 +82,7 @@
 								class="border w-full mb-3 pl-2 py-1 text-stone-500"
 								id={find}
 								type="text"
-								value={replace}
+								value={safeApply(replace)}
 								on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
 							/>
 						</div>
