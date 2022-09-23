@@ -8,7 +8,7 @@ export class ValidationError extends Error {
 }
 
 function propertyDoesNotExist(prop: string, json: any) {
-    return json[prop] === undefined
+    return !(prop in json)
 }
 
 function isNotInstanceOfArray(prop: string, json: any) {
@@ -31,7 +31,7 @@ export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
         if (propertyDoesNotExist("merge", parsed)) throw new ValidationError(MERGE_NOT_FOUND)
         if (isNotInstanceOfArray("merge", parsed)) throw new ValidationError(MERGE_NOT_ARRAY)
         if (isEmptyArray('merge', parsed)) throw new ValidationError(MERGE_NOT_EMPTY)
-        parsed.merge.forEach((field: any, index: number) => {
+        parsed.merge.forEach((field: any, index: number) => {            
             if (propertyDoesNotExist("find", field)) throw new ValidationError(FIND_NOT_FOUND)
             if (propertyDoesNotExist("replace", field)) throw new ValidationError(REPLACE_NOT_FOUND)
             if (isNotString("find", field)) throw new ValidationError(FIND_NOT_STRING)
