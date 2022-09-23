@@ -75,7 +75,8 @@ describe('Merge inputs section', () => {
 		cy.get(templateInput)
 			.click()
 			.clear()
-			.type(JSON.stringify({ merge: [{ find: "TEST", replace: "foo" }] }))
+			.type(JSON.stringify({ merge: [{ find: "TEST", replace: "foo" }] }),
+				{ parseSpecialCharSequences: false })
 
 		// Assert
 		cy.get(mergeFieldsInputSection + ' input').should('have.length', 1);
@@ -91,7 +92,7 @@ describe('Merge inputs section', () => {
 					{ find: "FOO", replace: 'foo' },
 					{ find: "BAR", replace: 'bar' }
 				]
-			}));
+			}), { parseSpecialCharSequences: false });
 
 		// Assert
 		cy.get(mergeFieldsInputSection + ' input').should('have.length', 2);
@@ -182,6 +183,90 @@ describe('Result JSON', () => {
 				expect(clonedSampleMergeFields).to.eql(mapped.toArray())
 			});
 	});
+	it("Replace values are cast into valid JSON types, or if invalid, into strings", () => {
+		// Arrange
+		let jsonValidTypes: { [key: string]: any } = {
+			bNull: null,
+			bFalse: false,
+			bTrue: true,
+			str: "string",
+			num: 123,
+			objects: { a: "a", b: "b" },
+			array: [1, "2", 3],
+		}
+		let jsonInvalidTypes: { [key: string]: any } = {
+			fn: "() => { }",
+			bUndefined: "undefined",
+			symbol: "Symbol('foo')",
+			date: "new Date()"
+		}
+
+		let fields = { ...jsonValidTypes, ...jsonInvalidTypes }
+		let mergeFields = {
+			merge: Object
+				.keys(fields)
+				.map((key) => ({ find: key, replace: fields[key] }))
+		}
+
+		//Act 
+		cy.get(templateInput)
+			.click()
+			.clear()
+			.type(JSON.stringify(mergeFields),
+				{ parseSpecialCharSequences: false })
+
+		cy.get(mergeFieldsLabelInputContainer)
+			.then((labelInputContainers) => {
+				//For each label input container return an object where
+				let mapped = labelInputContainers
+					.map((index: number, el: HTMLElement) => {
+						let label = el.children[0] as HTMLLabelElement
+						let input = el.children[1] as HTMLInputElement
+						// We extract the inner text of label without braces
+						// We extract the input value
+						// We build a MergeField object
+						return { find: label.innerText.slice(3, -3), replace: input.value }
+					})
+
+				// Assert
+				let inputsMergeFieldArray: { find: string, replace: string }[] = mapped.toArray()
+				inputsMergeFieldArray.forEach((field) => {
+					switch (field.find in jsonValidTypes) {
+						case true: {
+							// We stringify every valid json type value
+							let prop = jsonValidTypes[field.find]
+							let stringifiedValue = typeof prop === 'string' ? prop : JSON.stringify(prop)
+							// We check if input value equals stringified text
+							expect(stringifiedValue).to.eql(field.replace)
+							break
+						}
+						default: {
+							// Invalid types are already stringified
+							let stringifiedValue = jsonInvalidTypes[field.find]
+							// We check if input value equals stringified text
+							expect(stringifiedValue).to.eql(field.replace)
+							break
+						}
+					}
+				})
+
+				// Act
+				// We get the resulting json template and we parse to remove indentations
+				// We get the merge field
+				cy
+					.get(result)
+					.then(res => {
+						// We parse the resulting template json so we can get the merge prop and
+						// delete indentation and we stringify every non string value result of parsing
+						let parsedJsonMergeFieldValues = JSON.parse(res[0].innerText).merge as MergeField[]
+						let withStringifiedValues = parsedJsonMergeFieldValues
+							.map(k => ({ find: k.find, replace: typeof k.replace === 'string' ? k.replace : JSON.stringify(k.replace) }))
+
+						// Assert									
+						expect(withStringifiedValues).to.eql(inputsMergeFieldArray)
+					})
+			})
+	})
 });
 
 export { };
