@@ -9,7 +9,7 @@ import {
 	MERGE_NOT_FOUND,
 	REPLACE_NOT_FOUND
 } from './constants';
-import { validateTemplate, ValidationError, validateMerge } from './validate';
+import { validateTemplate, validateMerge } from './validate';
 describe('ShotstackEditTemplate/validate.ts', () => {
 	test('If valid stringified json is passed, it should return a valid json', () => {
 		const validStringified = JSON.stringify(defaultJSON);
