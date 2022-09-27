@@ -28,10 +28,8 @@
 // export {} is required to make this a module
 
 declare global {
-    namespace Cypress {
-        interface Chainable {
-
-        }
-    }
+	namespace Cypress {
+		interface Chainable {}
+	}
 }
-export { }
+export {};

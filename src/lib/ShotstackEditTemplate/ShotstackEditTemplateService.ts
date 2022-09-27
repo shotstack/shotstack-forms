@@ -1,4 +1,4 @@
-import type { IParsedEditSchema, MergeField } from './types'
+import type { IParsedEditSchema, MergeField } from './types';
 import { validateTemplate } from './validate';
 
 export class ShotstackEditTemplateService {
@@ -22,9 +22,9 @@ export class ShotstackEditTemplateService {
 		}
 	}
 
-	updateResultMergeFields(mergeFieldInput: { find: string, replace: string }) {
+	updateResultMergeFields(mergeFieldInput: { find: string; replace: string }) {
 		const { find, replace } = mergeFieldInput;
-		const validMergeField: MergeField = {find, replace};
+		const validMergeField: MergeField = { find, replace };
 		const merge = this.result.merge.map((mergeField) =>
 			mergeField?.find === mergeFieldInput.find ? validMergeField : mergeField
 		);
