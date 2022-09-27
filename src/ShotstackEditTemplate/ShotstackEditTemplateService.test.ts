@@ -30,13 +30,11 @@ describe('ShotstackEditTemplateService.setTemplateSource', () => {
 		editTemplateService.setTemplateSource('{ "merge": [ { "find": "test", "replace": "foo" } ] }');
 
 		expect(editTemplateService.template.merge).toEqual([{ find: 'test', replace: 'foo' }]);
-
-
 	});
 
 	test('Throws error if not merge array passed', () => {
 		const editTemplateService = new ShotstackEditTemplateService();
-		expect(() => editTemplateService.setTemplateSource("<>")).toThrowError(INVALID_JSON)
+		expect(() => editTemplateService.setTemplateSource('<>')).toThrowError(INVALID_JSON);
 		expect(() => editTemplateService.setTemplateSource('{}')).toThrowError(MERGE_NOT_FOUND);
 	});
 });
