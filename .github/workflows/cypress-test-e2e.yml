@@ -26,6 +26,9 @@ jobs:
       - name: Create build folder
         run: npm run build
 
+      - name: Create package folder
+        run: npm run package
+
       - name: Store .svelte-kit folder as artifact for testing
         uses: actions/upload-artifact@v3
         with:
@@ -37,6 +40,12 @@ jobs:
         with:
           name: build
           path: build
+      
+      - name: Store build folder as artifact for deploy
+        uses: actions/upload-artifact@v3
+        with:
+          name: package
+          path: package
 
   jest:
     runs-on: ubuntu-latest
