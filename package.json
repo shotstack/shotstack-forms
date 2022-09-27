@@ -11,8 +11,9 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"deploy": "node ./gh-pages.js",
-		"cypress": "cypress open"
+		"cypress": "cypress open",
+		"package": "PACKAGE=package vite build",
+		"package:win": "set PACKAGE=package&& vite build"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.19.1",
