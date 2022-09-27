@@ -1,7 +1,7 @@
-export type JSONValidTypes = string | number | boolean | null | JSONValidTypes[]| JSONLikeObject
+export type JSONValidTypes = string | number | boolean | null | JSONValidTypes[] | JSONLikeObject;
 
 export interface JSONLikeObject {
-	[key: string]: JSONValidTypes
+	[key: string]: JSONValidTypes;
 }
 
 export interface MergeField {
