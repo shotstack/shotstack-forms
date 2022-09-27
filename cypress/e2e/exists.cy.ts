@@ -1,5 +1,5 @@
 /// <reference types="Cypress"/>
-import type { MergeField } from '../../src/ShotstackEditTemplate/types'
+import type { MergeField } from '../../src/lib/ShotstackEditTemplate/types'
 const formContainer = '[data-cy=form-container]';
 const templateInputSection = '[data-cy=template-input-section]';
 const templateInput = '[data-cy=template-input]';
@@ -16,7 +16,7 @@ beforeEach(() => {
 	// Potential solutions involve waiting until hydration finishes. Current solution
 	// implements intercepting svelte file and wait until it finishes downloading.
 
-	cy.intercept('+page.svelte?svelte&type=style&lang.css').as('svelte');
+	cy.intercept('Form.svelte?svelte&type=style&lang.css').as('svelte');
 	cy.visit('localhost:5173');
 	cy.wait('@svelte');
 });

@@ -1,4 +1,4 @@
-import defaultJSON from '../routes/default.json'
+import defaultJSON from '../components/Form/defaultMerge.json'
 import { FIND_NOT_EMPTY, FIND_NOT_FOUND, FIND_NOT_STRING, INVALID_JSON, MERGE_NOT_ARRAY, MERGE_NOT_EMPTY, MERGE_NOT_FOUND, REPLACE_NOT_FOUND } from './constants'
 import { validateTemplate, ValidationError, validateMerge } from './validate'
 describe("ShotstackEditTemplate/validate.ts", () => {
