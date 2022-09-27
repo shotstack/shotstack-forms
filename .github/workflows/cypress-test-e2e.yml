@@ -41,7 +41,7 @@ jobs:
           name: build
           path: build
       
-      - name: Store build folder as artifact for deploy
+      - name: Store package folder as artifact for deploy
         uses: actions/upload-artifact@v3
         with:
           name: package
