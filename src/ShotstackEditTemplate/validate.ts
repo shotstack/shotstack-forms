@@ -1,5 +1,5 @@
 import { FIND_NOT_STRING, FIND_NOT_EMPTY, FIND_NOT_FOUND, MERGE_NOT_ARRAY, MERGE_NOT_EMPTY, MERGE_NOT_FOUND, REPLACE_NOT_FOUND } from "./constants"
-import type { IParsedEditSchema } from "./types"
+import type { IParsedEditSchema, JSONValidTypes} from "./types"
 
 export class ValidationError extends Error {
     constructor(message: string) {
@@ -27,21 +27,31 @@ function isEmptyArray(prop: string, json: any) {
 }
 export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
     try {
-        let parsed = JSON.parse(jsonTemplate)
+        const parsed = JSON.parse(jsonTemplate)
+    
         if (propertyDoesNotExist("merge", parsed)) throw new ValidationError(MERGE_NOT_FOUND)
         if (isNotInstanceOfArray("merge", parsed)) throw new ValidationError(MERGE_NOT_ARRAY)
         if (isEmptyArray('merge', parsed)) throw new ValidationError(MERGE_NOT_EMPTY)
-        parsed.merge.forEach((field: any, index: number) => {            
-            if (propertyDoesNotExist("find", field)) throw new ValidationError(FIND_NOT_FOUND)
-            if (propertyDoesNotExist("replace", field)) throw new ValidationError(REPLACE_NOT_FOUND)
-            if (isNotString("find", field)) throw new ValidationError(FIND_NOT_STRING)
-            if (isEmptyString('find', field)) throw new ValidationError(FIND_NOT_EMPTY)
-        })
-        return parsed as IParsedEditSchema
+
+        const merge = validateMerge(parsed.merge)
+        return {...parsed, merge} as IParsedEditSchema
     }
     catch (error) {
         if (error instanceof ValidationError) throw error
         else if (error.message) throw error
         else throw new ValidationError('There was a problem parsing the template json')
     }
+}
+
+export function validateMerge(template: unknown[]){
+    const validTemplate = template.map((field: unknown) => {            
+        if (propertyDoesNotExist("find", field)) throw new ValidationError(FIND_NOT_FOUND)
+        if (propertyDoesNotExist("replace", field)) throw new ValidationError(REPLACE_NOT_FOUND)
+        if (isNotString("find", field)) throw new ValidationError(FIND_NOT_STRING)
+        if (isEmptyString('find', field)) throw new ValidationError(FIND_NOT_EMPTY)
+        return field as {find: string, replace: JSONValidTypes}
+    })
+    return validTemplate.map(({find, replace}) =>(
+        {find, replace: typeof replace === "string" ? replace : JSON.stringify(replace)}
+    ))
 }

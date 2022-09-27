@@ -1,4 +1,4 @@
-import type { IParsedEditSchema, JSONValidTypes, MergeField } from './types'
+import type { IParsedEditSchema, MergeField } from './types'
 import { validateTemplate } from './validate';
 
 export class ShotstackEditTemplateService {
@@ -22,20 +22,9 @@ export class ShotstackEditTemplateService {
 		}
 	}
 
-	castIntoType(input: string): JSONValidTypes {
-		if (!isNaN(Number(input)) && input.length > 0) return Number(input)
-		try {
-			let parsed = JSON.parse(input);
-			return parsed
-		}
-		catch (error) {
-			return input;
-		}
-	}
-
 	updateResultMergeFields(mergeFieldInput: { find: string, replace: string }) {
 		const { find, replace } = mergeFieldInput;
-		const validMergeField: MergeField = { find, replace: this.castIntoType(replace) };
+		const validMergeField: MergeField = {find, replace};
 		const merge = this.result.merge.map((mergeField) =>
 			mergeField?.find === mergeFieldInput.find ? validMergeField : mergeField
 		);
