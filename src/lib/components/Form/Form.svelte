@@ -1,5 +1,4 @@
 <script lang="ts">
-	import './Form.css';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
 
