@@ -1,5 +1,5 @@
 <script lang="ts">
-	import "./Form.css"
+	import './Form.css';
 	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';

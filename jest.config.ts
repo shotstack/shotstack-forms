@@ -1,5 +1,4 @@
 import type { Config } from 'jest';
-import { defaults } from 'jest-config';
 
 const config: Config = {
 	moduleFileExtensions: ['js', 'ts', 'svelte'],
@@ -8,7 +7,8 @@ const config: Config = {
 		'^.+\\.js$': 'babel-jest',
 		'^.+\\.ts$': 'ts-jest',
 		'^.+\\.svelte$': ['svelte-jester', { preprocess: true }]
-	}
+	},
+	moduleNameMapper: { '^.+.(css|less|scss|svg)$': 'babel-jest' }
 };
 
 export default config;
