@@ -1,4 +1,6 @@
 <script lang="ts">
+	import "./Form.css"
+	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
 
@@ -104,7 +106,7 @@
 			<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
 			<abbr title="Copy to clipboard">
 				<img
-					src="img/copy-regular.svg"
+					src={copyRegular}
 					alt="copy-button"
 					class="h-4 cursor-pointer inline mb-1"
 					on:click={handleCopyToClipboardClick}

@@ -18,7 +18,8 @@ function configOptions(environment: boolean): UserConfig {
 					lib: {
 						entry: resolve(__dirname, 'src/lib/index.ts'),
 						name: 'Shotstack',
-						fileName: 'Shotstack'
+						fileName: 'Shotstack',
+						formats: ['es', 'iife']
 					}
 				}
 			};
