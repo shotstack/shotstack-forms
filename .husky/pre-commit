@@ -3,4 +3,4 @@
 npm run format
 npm run lint
 npm test
-npx cypress run
+npm run dev & npx cypress run 
