@@ -39,48 +39,48 @@ function Ee(e, t, r, n) {
   }
   return e;
 }
-function we(e) {
+function Ne(e) {
   if (e.hydrate_init)
     return;
   e.hydrate_init = !0;
   let t = e.childNodes;
   if (e.nodeName === "HEAD") {
-    const s = [];
+    const a = [];
     for (let c = 0; c < t.length; c++) {
       const u = t[c];
-      u.claim_order !== void 0 && s.push(u);
+      u.claim_order !== void 0 && a.push(u);
     }
-    t = s;
+    t = a;
   }
   const r = new Int32Array(t.length + 1), n = new Int32Array(t.length);
   r[0] = -1;
   let l = 0;
-  for (let s = 0; s < t.length; s++) {
-    const c = t[s].claim_order, u = (l > 0 && t[r[l]].claim_order <= c ? l + 1 : Ee(1, l, (_) => t[r[_]].claim_order, c)) - 1;
-    n[s] = r[u] + 1;
+  for (let a = 0; a < t.length; a++) {
+    const c = t[a].claim_order, u = (l > 0 && t[r[l]].claim_order <= c ? l + 1 : Ee(1, l, (_) => t[r[_]].claim_order, c)) - 1;
+    n[a] = r[u] + 1;
     const p = u + 1;
-    r[p] = s, l = Math.max(p, l);
+    r[p] = a, l = Math.max(p, l);
   }
   const o = [], i = [];
-  let a = t.length - 1;
-  for (let s = r[l] + 1; s != 0; s = n[s - 1]) {
-    for (o.push(t[s - 1]); a >= s; a--)
-      i.push(t[a]);
-    a--;
+  let s = t.length - 1;
+  for (let a = r[l] + 1; a != 0; a = n[a - 1]) {
+    for (o.push(t[a - 1]); s >= a; s--)
+      i.push(t[s]);
+    s--;
   }
-  for (; a >= 0; a--)
-    i.push(t[a]);
-  o.reverse(), i.sort((s, c) => s.claim_order - c.claim_order);
-  for (let s = 0, c = 0; s < i.length; s++) {
-    for (; c < o.length && i[s].claim_order >= o[c].claim_order; )
+  for (; s >= 0; s--)
+    i.push(t[s]);
+  o.reverse(), i.sort((a, c) => a.claim_order - c.claim_order);
+  for (let a = 0, c = 0; a < i.length; a++) {
+    for (; c < o.length && i[a].claim_order >= o[c].claim_order; )
       c++;
     const u = c < o.length ? o[c] : null;
-    e.insertBefore(i[s], u);
+    e.insertBefore(i[a], u);
   }
 }
 function h(e, t) {
   if (j) {
-    for (we(e), (e.actual_end_child === void 0 || e.actual_end_child !== null && e.actual_end_child.parentNode !== e) && (e.actual_end_child = e.firstChild); e.actual_end_child !== null && e.actual_end_child.claim_order === void 0; )
+    for (Ne(e), (e.actual_end_child === void 0 || e.actual_end_child !== null && e.actual_end_child.parentNode !== e) && (e.actual_end_child = e.firstChild); e.actual_end_child !== null && e.actual_end_child.claim_order === void 0; )
       e.actual_end_child = e.actual_end_child.nextSibling;
     t !== e.actual_end_child ? (t.claim_order !== void 0 || t.parentNode !== e) && e.insertBefore(t, e.actual_end_child) : e.actual_end_child = t.nextSibling;
   } else
@@ -92,18 +92,18 @@ function P(e, t, r) {
 function m(e) {
   e.parentNode.removeChild(e);
 }
-function Ne(e, t) {
+function we(e, t) {
   for (let r = 0; r < e.length; r += 1)
     e[r] && e[r].d(t);
 }
 function E(e) {
   return document.createElement(e);
 }
-function x(e) {
+function $(e) {
   return document.createTextNode(e);
 }
 function O() {
-  return x(" ");
+  return $(" ");
 }
 function W(e, t, r, n) {
   return e.addEventListener(t, r, n), () => e.removeEventListener(t, r, n);
@@ -121,17 +121,17 @@ function fe(e, t, r, n, l = !1) {
   Se(e);
   const o = (() => {
     for (let i = e.claim_info.last_index; i < e.length; i++) {
-      const a = e[i];
-      if (t(a)) {
-        const s = r(a);
-        return s === void 0 ? e.splice(i, 1) : e[i] = s, l || (e.claim_info.last_index = i), a;
+      const s = e[i];
+      if (t(s)) {
+        const a = r(s);
+        return a === void 0 ? e.splice(i, 1) : e[i] = a, l || (e.claim_info.last_index = i), s;
       }
     }
     for (let i = e.claim_info.last_index - 1; i >= 0; i--) {
-      const a = e[i];
-      if (t(a)) {
-        const s = r(a);
-        return s === void 0 ? e.splice(i, 1) : e[i] = s, l ? s === void 0 && e.claim_info.last_index-- : e.claim_info.last_index = i, a;
+      const s = e[i];
+      if (t(s)) {
+        const a = r(s);
+        return a === void 0 ? e.splice(i, 1) : e[i] = a, l ? a === void 0 && e.claim_info.last_index-- : e.claim_info.last_index = i, s;
       }
     }
     return n();
@@ -142,13 +142,13 @@ function Te(e, t, r, n) {
   return fe(e, (l) => l.nodeName === t, (l) => {
     const o = [];
     for (let i = 0; i < l.attributes.length; i++) {
-      const a = l.attributes[i];
-      r[a.name] || o.push(a.name);
+      const s = l.attributes[i];
+      r[s.name] || o.push(s.name);
     }
     o.forEach((i) => l.removeAttribute(i));
   }, () => n(t));
 }
-function w(e, t, r) {
+function N(e, t, r) {
   return Te(e, t, r, E);
 }
 function I(e, t) {
@@ -163,7 +163,7 @@ function I(e, t) {
       } else
         r.data = n;
     },
-    () => x(t),
+    () => $(t),
     !0
   );
 }
@@ -177,30 +177,30 @@ let X;
 function D(e) {
   X = e;
 }
-const R = [], ee = [], q = [], te = [], ke = Promise.resolve();
+const R = [], ee = [], F = [], te = [], ke = Promise.resolve();
 let U = !1;
 function Ae() {
   U || (U = !0, ke.then(de));
 }
 function Y(e) {
-  q.push(e);
+  F.push(e);
 }
 const H = /* @__PURE__ */ new Set();
-let F = 0;
+let q = 0;
 function de() {
   const e = X;
   do {
-    for (; F < R.length; ) {
-      const t = R[F];
-      F++, D(t), Oe(t.$$);
+    for (; q < R.length; ) {
+      const t = R[q];
+      q++, D(t), Oe(t.$$);
     }
-    for (D(null), R.length = 0, F = 0; ee.length; )
+    for (D(null), R.length = 0, q = 0; ee.length; )
       ee.pop()();
-    for (let t = 0; t < q.length; t += 1) {
-      const r = q[t];
+    for (let t = 0; t < F.length; t += 1) {
+      const r = F[t];
       H.has(r) || (H.add(r), r());
     }
-    q.length = 0;
+    F.length = 0;
   } while (R.length);
   for (; te.length; )
     te.pop()();
@@ -218,11 +218,11 @@ function $e(e, t) {
   e && e.i && (Me.delete(e), e.i(t));
 }
 function xe(e, t, r, n) {
-  const { fragment: l, on_mount: o, on_destroy: i, after_update: a } = e.$$;
+  const { fragment: l, on_mount: o, on_destroy: i, after_update: s } = e.$$;
   l && l.m(t, r), n || Y(() => {
-    const s = o.map(ue).filter(_e);
-    i ? i.push(...s) : V(s), e.$$.on_mount = [];
-  }), a.forEach(Y);
+    const a = o.map(ue).filter(_e);
+    i ? i.push(...a) : V(a), e.$$.on_mount = [];
+  }), s.forEach(Y);
 }
 function Ie(e, t) {
   const r = e.$$;
@@ -231,8 +231,8 @@ function Ie(e, t) {
 function Pe(e, t) {
   e.$$.dirty[0] === -1 && (R.push(e), Ae(), e.$$.dirty.fill(0)), e.$$.dirty[t / 31 | 0] |= 1 << t % 31;
 }
-function Re(e, t, r, n, l, o, i, a = [-1]) {
-  const s = X;
+function Re(e, t, r, n, l, o, i, s = [-1]) {
+  const a = X;
   D(e);
   const c = e.$$ = {
     fragment: null,
@@ -246,11 +246,11 @@ function Re(e, t, r, n, l, o, i, a = [-1]) {
     on_disconnect: [],
     before_update: [],
     after_update: [],
-    context: new Map(t.context || (s ? s.$$.context : [])),
+    context: new Map(t.context || (a ? a.$$.context : [])),
     callbacks: Z(),
-    dirty: a,
+    dirty: s,
     skip_bound: !1,
-    root: t.target || s.$$.root
+    root: t.target || a.$$.root
   };
   i && i(c.root);
   let u = !1;
@@ -266,7 +266,7 @@ function Re(e, t, r, n, l, o, i, a = [-1]) {
       c.fragment && c.fragment.c();
     t.intro && $e(e.$$.fragment), xe(e, t.target, t.anchor, t.customElement), be(), de();
   }
-  D(s);
+  D(a);
 }
 class De {
   $destroy() {
@@ -283,8 +283,8 @@ class De {
     this.$$set && !ye(t) && (this.$$.skip_bound = !0, this.$$set(t), this.$$.skip_bound = !1);
   }
 }
-const Ce = "A 'merge' property is required", Je = "Property 'merge' must be an array", Fe = "Property 'merge' must contain at least one element", qe = "A 'find' property is required on every element inside 'merge'", Le = "Every 'find' property inside 'merge' must be of type string", Ve = "Every 'find' property inside 'merge' must be a string of length equal to or higher than one", je = "A 'replace' property is required on every element inside 'merge'";
-class $ extends Error {
+const Ce = "A 'merge' property is required", Je = "Property 'merge' must be an array", qe = "Property 'merge' must contain at least one element", Fe = "A 'find' property is required on every element inside 'merge'", Le = "Every 'find' property inside 'merge' must be of type string", Ve = "Every 'find' property inside 'merge' must be a string of length equal to or higher than one", je = "A 'replace' property is required on every element inside 'merge'";
+class x extends Error {
   constructor(t) {
     super(t);
   }
@@ -308,27 +308,27 @@ function Ye(e) {
   try {
     const t = JSON.parse(e);
     if (z("merge", t))
-      throw new $(Ce);
+      throw new x(Ce);
     if (Be("merge", t))
-      throw new $(Je);
+      throw new x(Je);
     if (Ue("merge", t))
-      throw new $(Fe);
+      throw new x(qe);
     const r = ze(t.merge);
     return { ...t, merge: r };
   } catch (t) {
-    throw t instanceof $ || t.message ? t : new $("There was a problem parsing the template json");
+    throw t instanceof Error ? t : new x("There was a problem parsing the template json");
   }
 }
 function ze(e) {
   return e.map((r) => {
     if (z("find", r))
-      throw new $(qe);
+      throw new x(Fe);
     if (z("replace", r))
-      throw new $(je);
+      throw new x(je);
     if (Ge("find", r))
-      throw new $(Le);
+      throw new x(Le);
     if (He("find", r))
-      throw new $(Ve);
+      throw new x(Ve);
     return r;
   }).map(({ find: r, replace: n }) => ({
     find: r,
@@ -393,12 +393,12 @@ function ne(e) {
   let t, r, n;
   return {
     c() {
-      t = E("p"), r = E("span"), n = x(e[2]), this.h();
+      t = E("p"), r = E("span"), n = $(e[2]), this.h();
     },
     l(l) {
-      t = w(l, "P", { "data-cy": !0, class: !0 });
+      t = N(l, "P", { "data-cy": !0, class: !0 });
       var o = T(t);
-      r = w(o, "SPAN", { class: !0 });
+      r = N(o, "SPAN", { class: !0 });
       var i = T(r);
       n = I(i, e[2]), i.forEach(m), o.forEach(m), this.h();
     },
@@ -417,93 +417,93 @@ function ne(e) {
   };
 }
 function le(e) {
-  let t, r, n, l, o, i = e[0].merge, a = [];
-  for (let s = 0; s < i.length; s += 1)
-    a[s] = ie(re(e, i, s));
+  let t, r, n, l, o, i = e[0].merge, s = [];
+  for (let a = 0; a < i.length; a += 1)
+    s[a] = ie(re(e, i, a));
   return {
     c() {
-      t = E("div"), r = E("h1"), n = x("Modify Merge Values"), l = O(), o = E("div");
-      for (let s = 0; s < a.length; s += 1)
-        a[s].c();
+      t = E("div"), r = E("h1"), n = $("Modify Merge Values"), l = O(), o = E("div");
+      for (let a = 0; a < s.length; a += 1)
+        s[a].c();
       this.h();
     },
-    l(s) {
-      t = w(s, "DIV", { "data-cy": !0, class: !0 });
+    l(a) {
+      t = N(a, "DIV", { "data-cy": !0, class: !0 });
       var c = T(t);
-      r = w(c, "H1", { class: !0 });
+      r = N(c, "H1", { class: !0 });
       var u = T(r);
-      n = I(u, "Modify Merge Values"), u.forEach(m), l = M(c), o = w(c, "DIV", { class: !0 });
+      n = I(u, "Modify Merge Values"), u.forEach(m), l = M(c), o = N(c, "DIV", { class: !0 });
       var p = T(o);
-      for (let _ = 0; _ < a.length; _ += 1)
-        a[_].l(p);
+      for (let _ = 0; _ < s.length; _ += 1)
+        s[_].l(p);
       p.forEach(m), c.forEach(m), this.h();
     },
     h() {
       d(r, "class", "text-teal-400 px-1 svelte-u6rap9"), d(o, "class", "border p-4 mb-6 svelte-u6rap9"), d(t, "data-cy", "merge-fields-input-section"), d(t, "class", "svelte-u6rap9");
     },
-    m(s, c) {
-      P(s, t, c), h(t, r), h(r, n), h(t, l), h(t, o);
-      for (let u = 0; u < a.length; u += 1)
-        a[u].m(o, null);
+    m(a, c) {
+      P(a, t, c), h(t, r), h(r, n), h(t, l), h(t, o);
+      for (let u = 0; u < s.length; u += 1)
+        s[u].m(o, null);
     },
-    p(s, c) {
+    p(a, c) {
       if (c & 33) {
-        i = s[0].merge;
+        i = a[0].merge;
         let u;
         for (u = 0; u < i.length; u += 1) {
-          const p = re(s, i, u);
-          a[u] ? a[u].p(p, c) : (a[u] = ie(p), a[u].c(), a[u].m(o, null));
+          const p = re(a, i, u);
+          s[u] ? s[u].p(p, c) : (s[u] = ie(p), s[u].c(), s[u].m(o, null));
         }
-        for (; u < a.length; u += 1)
-          a[u].d(1);
-        a.length = i.length;
+        for (; u < s.length; u += 1)
+          s[u].d(1);
+        s.length = i.length;
       }
     },
-    d(s) {
-      s && m(t), Ne(a, s);
+    d(a) {
+      a && m(t), we(s, a);
     }
   };
 }
 function ie(e) {
-  let t, r, n = "{{ " + e[9] + " }} ", l, o, i, a, s, c, u, p, _;
+  let t, r, n = "{{ " + e[9] + " }} ", l, o, i, s, a, c, u, p, _;
   function y(...g) {
     return e[7](e[9], ...g);
   }
   return {
     c() {
-      t = E("div"), r = E("label"), l = x(n), i = O(), a = E("input"), u = O(), this.h();
+      t = E("div"), r = E("label"), l = $(n), i = O(), s = E("input"), u = O(), this.h();
     },
     l(g) {
-      t = w(g, "DIV", { "data-cy": !0, class: !0 });
+      t = N(g, "DIV", { "data-cy": !0, class: !0 });
       var f = T(t);
-      r = w(f, "LABEL", { for: !0, class: !0 });
+      r = N(f, "LABEL", { for: !0, class: !0 });
       var v = T(r);
-      l = I(v, n), v.forEach(m), i = M(f), a = w(f, "INPUT", { class: !0, id: !0, type: !0 }), u = M(f), f.forEach(m), this.h();
+      l = I(v, n), v.forEach(m), i = M(f), s = N(f, "INPUT", { class: !0, id: !0, type: !0 }), u = M(f), f.forEach(m), this.h();
     },
     h() {
-      d(r, "for", o = e[9]), d(r, "class", "block mb-2 monospace svelte-u6rap9"), d(a, "class", "border w-full mb-3 pl-2 py-1 text-stone-500 svelte-u6rap9"), d(a, "id", s = e[9]), d(a, "type", "text"), a.value = c = oe(e[10]), d(t, "data-cy", "label-input"), d(t, "class", "svelte-u6rap9");
+      d(r, "for", o = e[9]), d(r, "class", "block mb-2 monospace svelte-u6rap9"), d(s, "class", "border w-full mb-3 pl-2 py-1 text-stone-500 svelte-u6rap9"), d(s, "id", a = e[9]), d(s, "type", "text"), s.value = c = oe(e[10]), d(t, "data-cy", "label-input"), d(t, "class", "svelte-u6rap9");
     },
     m(g, f) {
-      P(g, t, f), h(t, r), h(r, l), h(t, i), h(t, a), h(t, u), p || (_ = W(a, "input", y), p = !0);
+      P(g, t, f), h(t, r), h(r, l), h(t, i), h(t, s), h(t, u), p || (_ = W(s, "input", y), p = !0);
     },
     p(g, f) {
-      e = g, f & 1 && n !== (n = "{{ " + e[9] + " }} ") && B(l, n), f & 1 && o !== (o = e[9]) && d(r, "for", o), f & 1 && s !== (s = e[9]) && d(a, "id", s), f & 1 && c !== (c = oe(e[10])) && a.value !== c && (a.value = c);
+      e = g, f & 1 && n !== (n = "{{ " + e[9] + " }} ") && B(l, n), f & 1 && o !== (o = e[9]) && d(r, "for", o), f & 1 && a !== (a = e[9]) && d(s, "id", a), f & 1 && c !== (c = oe(e[10])) && s.value !== c && (s.value = c);
     },
     d(g) {
       g && m(t), p = !1, _();
     }
   };
 }
-function se(e) {
+function ae(e) {
   let t, r, n;
   return {
     c() {
-      t = E("p"), r = E("span"), n = x(e[3]), this.h();
+      t = E("p"), r = E("span"), n = $(e[3]), this.h();
     },
     l(l) {
-      t = w(l, "P", { "data-cy": !0, class: !0 });
+      t = N(l, "P", { "data-cy": !0, class: !0 });
       var o = T(t);
-      r = w(o, "SPAN", { class: !0 });
+      r = N(o, "SPAN", { class: !0 });
       var i = T(r);
       n = I(i, e[3]), i.forEach(m), o.forEach(m), this.h();
     },
@@ -521,28 +521,28 @@ function se(e) {
     }
   };
 }
-function ae(e) {
-  let t, r, n, l, o, i, a, s, c, u = JSON.stringify(e[1], null, 2) + "", p, _, y;
+function se(e) {
+  let t, r, n, l, o, i, s, a, c, u = JSON.stringify(e[1], null, 2) + "", p, _, y;
   return {
     c() {
-      t = E("div"), r = E("h1"), n = x("Result"), l = O(), o = E("abbr"), i = E("img"), s = O(), c = E("p"), p = x(u), this.h();
+      t = E("div"), r = E("h1"), n = $("Result"), l = O(), o = E("abbr"), i = E("img"), a = O(), c = E("p"), p = $(u), this.h();
     },
     l(g) {
-      t = w(g, "DIV", { "data-cy": !0, class: !0 });
+      t = N(g, "DIV", { "data-cy": !0, class: !0 });
       var f = T(t);
-      r = w(f, "H1", { class: !0 });
+      r = N(f, "H1", { class: !0 });
       var v = T(r);
-      n = I(v, "Result"), v.forEach(m), l = M(f), o = w(f, "ABBR", { title: !0, class: !0 });
-      var N = T(o);
-      i = w(N, "IMG", { src: !0, alt: !0, class: !0 }), N.forEach(m), s = M(f), c = w(f, "P", { "data-cy": !0, class: !0 });
+      n = I(v, "Result"), v.forEach(m), l = M(f), o = N(f, "ABBR", { title: !0, class: !0 });
+      var w = T(o);
+      i = N(w, "IMG", { src: !0, alt: !0, class: !0 }), w.forEach(m), a = M(f), c = N(f, "P", { "data-cy": !0, class: !0 });
       var S = T(c);
       p = I(S, u), S.forEach(m), f.forEach(m), this.h();
     },
     h() {
-      d(r, "class", "text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"), ge(i.src, a = "img/copy-regular.svg") || d(i, "src", a), d(i, "alt", "copy-button"), d(i, "class", "h-4 cursor-pointer inline mb-1 svelte-u6rap9"), d(o, "title", "Copy to clipboard"), d(o, "class", "svelte-u6rap9"), d(c, "data-cy", "result"), d(c, "class", "h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"), d(t, "data-cy", "result-section"), d(t, "class", "svelte-u6rap9");
+      d(r, "class", "text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"), ge(i.src, s = "img/copy-regular.svg") || d(i, "src", s), d(i, "alt", "copy-button"), d(i, "class", "h-4 cursor-pointer inline mb-1 svelte-u6rap9"), d(o, "title", "Copy to clipboard"), d(o, "class", "svelte-u6rap9"), d(c, "data-cy", "result"), d(c, "class", "h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"), d(t, "data-cy", "result-section"), d(t, "class", "svelte-u6rap9");
     },
     m(g, f) {
-      P(g, t, f), h(t, r), h(r, n), h(t, l), h(t, o), h(o, i), h(t, s), h(t, c), h(c, p), _ || (y = W(i, "click", e[6]), _ = !0);
+      P(g, t, f), h(t, r), h(r, n), h(t, l), h(t, o), h(o, i), h(t, a), h(t, c), h(c, p), _ || (y = W(i, "click", e[6]), _ = !0);
     },
     p(g, f) {
       f & 2 && u !== (u = JSON.stringify(g[1], null, 2) + "") && B(p, u);
@@ -554,36 +554,36 @@ function ae(e) {
 }
 function et(e) {
   var K;
-  let t, r, n, l, o, i, a, s, c, u, p, _, y, g, f = e[2] && ne(e), v = ((K = e[0].merge) == null ? void 0 : K.length) && !e[2] && le(e), N = e[3] && se(e), S = !e[3] && !e[2] && ae(e);
+  let t, r, n, l, o, i, s, a, c, u, p, _, y, g, f = e[2] && ne(e), v = ((K = e[0].merge) == null ? void 0 : K.length) && !e[2] && le(e), w = e[3] && ae(e), S = !e[3] && !e[2] && se(e);
   return {
     c() {
-      t = E("section"), r = E("form"), n = E("div"), l = E("label"), o = x("Paste template"), i = O(), a = E("textarea"), c = O(), f && f.c(), u = O(), v && v.c(), p = O(), N && N.c(), _ = O(), S && S.c(), this.h();
+      t = E("section"), r = E("form"), n = E("div"), l = E("label"), o = $("Paste template"), i = O(), s = E("textarea"), c = O(), f && f.c(), u = O(), v && v.c(), p = O(), w && w.c(), _ = O(), S && S.c(), this.h();
     },
     l(b) {
-      t = w(b, "SECTION", { "data-cy": !0, class: !0 });
+      t = N(b, "SECTION", { "data-cy": !0, class: !0 });
       var k = T(t);
-      r = w(k, "FORM", { class: !0 });
+      r = N(k, "FORM", { class: !0 });
       var A = T(r);
-      n = w(A, "DIV", { "data-cy": !0, class: !0 });
+      n = N(A, "DIV", { "data-cy": !0, class: !0 });
       var C = T(n);
-      l = w(C, "LABEL", { for: !0, class: !0 });
+      l = N(C, "LABEL", { for: !0, class: !0 });
       var Q = T(l);
-      o = I(Q, "Paste template"), Q.forEach(m), i = M(C), a = w(C, "TEXTAREA", { "data-cy": !0, class: !0, id: !0 }), T(a).forEach(m), C.forEach(m), c = M(A), f && f.l(A), u = M(A), v && v.l(A), p = M(A), N && N.l(A), A.forEach(m), _ = M(k), S && S.l(k), k.forEach(m), this.h();
+      o = I(Q, "Paste template"), Q.forEach(m), i = M(C), s = N(C, "TEXTAREA", { "data-cy": !0, class: !0, id: !0 }), T(s).forEach(m), C.forEach(m), c = M(A), f && f.l(A), u = M(A), v && v.l(A), p = M(A), w && w.l(A), A.forEach(m), _ = M(k), S && S.l(k), k.forEach(m), this.h();
     },
     h() {
-      d(l, "for", "json-input"), d(l, "class", "text-teal-400 px-1 svelte-u6rap9"), d(a, "data-cy", "template-input"), d(a, "class", "w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"), d(a, "id", "json-input"), a.value = s = JSON.stringify(e[0], null, 2), d(n, "data-cy", "template-input-section"), d(n, "class", "mb-6 svelte-u6rap9"), d(r, "class", "svelte-u6rap9"), d(t, "data-cy", "form-container"), d(t, "class", "max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9");
+      d(l, "for", "json-input"), d(l, "class", "text-teal-400 px-1 svelte-u6rap9"), d(s, "data-cy", "template-input"), d(s, "class", "w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"), d(s, "id", "json-input"), s.value = a = JSON.stringify(e[0], null, 2), d(n, "data-cy", "template-input-section"), d(n, "class", "mb-6 svelte-u6rap9"), d(r, "class", "svelte-u6rap9"), d(t, "data-cy", "form-container"), d(t, "class", "max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9");
     },
     m(b, k) {
-      P(b, t, k), h(t, r), h(r, n), h(n, l), h(l, o), h(n, i), h(n, a), h(r, c), f && f.m(r, null), h(r, u), v && v.m(r, null), h(r, p), N && N.m(r, null), h(t, _), S && S.m(t, null), y || (g = W(a, "input", e[4]), y = !0);
+      P(b, t, k), h(t, r), h(r, n), h(n, l), h(l, o), h(n, i), h(n, s), h(r, c), f && f.m(r, null), h(r, u), v && v.m(r, null), h(r, p), w && w.m(r, null), h(t, _), S && S.m(t, null), y || (g = W(s, "input", e[4]), y = !0);
     },
     p(b, [k]) {
       var A;
-      k & 1 && s !== (s = JSON.stringify(b[0], null, 2)) && (a.value = s), b[2] ? f ? f.p(b, k) : (f = ne(b), f.c(), f.m(r, u)) : f && (f.d(1), f = null), ((A = b[0].merge) == null ? void 0 : A.length) && !b[2] ? v ? v.p(b, k) : (v = le(b), v.c(), v.m(r, p)) : v && (v.d(1), v = null), b[3] ? N ? N.p(b, k) : (N = se(b), N.c(), N.m(r, null)) : N && (N.d(1), N = null), !b[3] && !b[2] ? S ? S.p(b, k) : (S = ae(b), S.c(), S.m(t, null)) : S && (S.d(1), S = null);
+      k & 1 && a !== (a = JSON.stringify(b[0], null, 2)) && (s.value = a), b[2] ? f ? f.p(b, k) : (f = ne(b), f.c(), f.m(r, u)) : f && (f.d(1), f = null), ((A = b[0].merge) == null ? void 0 : A.length) && !b[2] ? v ? v.p(b, k) : (v = le(b), v.c(), v.m(r, p)) : v && (v.d(1), v = null), b[3] ? w ? w.p(b, k) : (w = ae(b), w.c(), w.m(r, null)) : w && (w.d(1), w = null), !b[3] && !b[2] ? S ? S.p(b, k) : (S = se(b), S.c(), S.m(t, null)) : S && (S.d(1), S = null);
     },
     i: L,
     o: L,
     d(b) {
-      b && m(t), f && f.d(), v && v.d(), N && N.d(), S && S.d(), y = !1, g();
+      b && m(t), f && f.d(), v && v.d(), w && w.d(), S && S.d(), y = !1, g();
     }
   };
 }
@@ -598,8 +598,8 @@ function oe(e) {
 }
 function tt(e, t, r) {
   const n = new We(Ze);
-  let l = n.template, o = n.result, i, a;
-  function s(_) {
+  let l = n.template, o = n.result, i, s;
+  function a(_) {
     try {
       const y = n.setTemplateSource(_.target.value);
       r(0, l = y), r(1, o = y), r(2, i = "");
@@ -610,9 +610,9 @@ function tt(e, t, r) {
   function c(_) {
     try {
       const y = n.updateResultMergeFields(_);
-      r(1, o = { ...o, merge: y }), r(3, a = "");
+      r(1, o = { ...o, merge: y }), r(3, s = "");
     } catch (y) {
-      r(3, a = y.message);
+      r(3, s = y.message);
     }
   }
   function u() {
@@ -622,8 +622,8 @@ function tt(e, t, r) {
     l,
     o,
     i,
-    a,
     s,
+    a,
     c,
     u,
     (_, y) => c({ find: _, replace: y.currentTarget.value })
