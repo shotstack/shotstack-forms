@@ -44,8 +44,7 @@ export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
 		const merge = validateMerge(parsed.merge);
 		return { ...parsed, merge } as IParsedEditSchema;
 	} catch (error) {
-		if (error instanceof ValidationError) throw error;
-		else if (error.message) throw error;
+		if (error instanceof Error) throw error;
 		else throw new ValidationError('There was a problem parsing the template json');
 	}
 }
