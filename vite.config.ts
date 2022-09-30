@@ -13,6 +13,7 @@ function configOptions(environment: boolean): UserConfig {
 						preprocess: [sveltePreprocess({ postcss: true })]
 					})
 				],
+				publicDir: 'src/lib/public',
 				build: {
 					outDir: 'package',
 					lib: {
