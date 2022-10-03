@@ -1,5 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Testing Shotstack module entry point On initialization, should render the form inside the an element with id 'shotstack-form-field' if any 1`] = `
+<div
+  id="shotstack-form-field"
+>
+  <section
+    class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"
+    data-cy="form-container"
+  >
+    <form
+      class="svelte-u6rap9"
+    >
+      <div
+        class="mb-6 svelte-u6rap9"
+        data-cy="template-input-section"
+      >
+        <label
+          class="text-teal-400 px-1 svelte-u6rap9"
+          for="json-input"
+        >
+          Paste template
+        </label>
+         
+        <textarea
+          class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"
+          data-cy="template-input"
+          id="json-input"
+        />
+      </div>
+       
+       
+       
+    </form>
+     
+    <div
+      class="svelte-u6rap9"
+      data-cy="result-section"
+    >
+      <h1
+        class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"
+      >
+        Result
+      </h1>
+       
+      <abbr
+        class="svelte-u6rap9"
+        title="Copy to clipboard"
+      >
+        <img
+          alt="copy-button"
+          class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"
+          src="[object Object]"
+        />
+      </abbr>
+       
+      <p
+        class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"
+        data-cy="result"
+      >
+        {
+  "merge": []
+}
+      </p>
+    </div>
+  </section>
+</div>
+`;
+
 exports[`Testing Shotstack module entry point Shotstack.render() should deploy the app inside target element 1`] = `
 <div>
   <section

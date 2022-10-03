@@ -4,8 +4,7 @@
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
 
-	// DEFAULT JSON VALUE PLACEHOLDER TO JSON TEXTAREA INPUT
-	const editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
+	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
 	let template = editTemplateService.template;
 	let result = editTemplateService.result;

@@ -5,11 +5,20 @@ export class ShotstackEditTemplateService {
 	public template: IParsedEditSchema;
 	public result: IParsedEditSchema;
 
-	constructor(template: any = { merge: [] }) {
-		this.template = template;
-		this.result = template;
+	constructor(template?: unknown) {
+		const parsedInitialTemplate = this.parseInitialTemplate(template);
+		this.template = parsedInitialTemplate;
+		this.result = parsedInitialTemplate;
 	}
-
+	parseInitialTemplate(initialTemplate: unknown) {
+		const isString = typeof initialTemplate === 'string';
+		const stringified = isString ? initialTemplate : JSON.stringify(initialTemplate);
+		try {
+			return validateTemplate(stringified);
+		} catch (error) {
+			return { merge: [] };
+		}
+	}
 	setTemplateSource(jsonTemplate: string): IParsedEditSchema {
 		try {
 			const parsedTemplate = validateTemplate(jsonTemplate);
