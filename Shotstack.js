@@ -177,30 +177,30 @@ let $;
 function z(t) {
   $ = t;
 }
-const x = [], ee = [], J = [], te = [], Se = Promise.resolve();
+const x = [], ee = [], P = [], te = [], Se = Promise.resolve();
 let H = !1;
 function we() {
   H || (H = !0, Se.then(de));
 }
 function V(t) {
-  J.push(t);
+  P.push(t);
 }
 const G = /* @__PURE__ */ new Set();
-let P = 0;
+let J = 0;
 function de() {
   const t = $;
   do {
-    for (; P < x.length; ) {
-      const e = x[P];
-      P++, z(e), De(e.$$);
+    for (; J < x.length; ) {
+      const e = x[J];
+      J++, z(e), De(e.$$);
     }
-    for (z(null), x.length = 0, P = 0; ee.length; )
+    for (z(null), x.length = 0, J = 0; ee.length; )
       ee.pop()();
-    for (let e = 0; e < J.length; e += 1) {
-      const r = J[e];
+    for (let e = 0; e < P.length; e += 1) {
+      const r = P[e];
       G.has(r) || (G.add(r), r());
     }
-    J.length = 0;
+    P.length = 0;
   } while (x.length);
   for (; te.length; )
     te.pop()();
@@ -283,7 +283,7 @@ class ze {
     this.$$set && !Ne(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
   }
 }
-const Ye = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuMi4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIyIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNNTAyLjYgNzAuNjNsLTYxLjI1LTYxLjI1QzQzNS40IDMuMzcxIDQyNy4yIDAgNDE4LjcgMEgyNTUuMWMtMzUuMzUgMC02NCAyOC42Ni02NCA2NGwuMDE5NSAyNTZDMTkyIDM1NS40IDIyMC43IDM4NCAyNTYgMzg0aDE5MmMzNS4yIDAgNjQtMjguOCA2NC02NFY5My4yNUM1MTIgODQuNzcgNTA4LjYgNzYuNjMgNTAyLjYgNzAuNjN6TTQ2NCAzMjBjMCA4LjgzNi03LjE2NCAxNi0xNiAxNkgyNTUuMWMtOC44MzggMC0xNi03LjE2NC0xNi0xNkwyMzkuMSA2NC4xM2MwLTguODM2IDcuMTY0LTE2IDE2LTE2aDEyOEwzODQgOTZjMCAxNy42NyAxNC4zMyAzMiAzMiAzMmg0Ny4xVjMyMHpNMjcyIDQ0OGMwIDguODM2LTcuMTY0IDE2LTE2IDE2SDYzLjFjLTguODM4IDAtMTYtNy4xNjQtMTYtMTZMNDcuOTggMTkyLjFjMC04LjgzNiA3LjE2NC0xNiAxNi0xNkgxNjBWMTI4SDYzLjk5Yy0zNS4zNSAwLTY0IDI4LjY1LTY0IDY0bC4wMDk4IDI1NkMuMDAyIDQ4My4zIDI4LjY2IDUxMiA2NCA1MTJoMTkyYzM1LjIgMCA2NC0yOC44IDY0LTY0di0zMmgtNDcuMUwyNzIgNDQ4eiIvPjwvc3ZnPg==", Re = "A 'merge' property is required", Pe = "Property 'merge' must be an array", Je = "Property 'merge' must contain at least one element", Fe = "A 'find' property is required on every element inside 'merge'", Be = "Every 'find' property inside 'merge' must be of type string", Ue = "Every 'find' property inside 'merge' must be a string of length equal to or higher than one", Ze = "A 'replace' property is required on every element inside 'merge'";
+const Ye = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgUHJvIDYuMi4wIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlIChDb21tZXJjaWFsIExpY2Vuc2UpIENvcHlyaWdodCAyMDIyIEZvbnRpY29ucywgSW5jLiAtLT48cGF0aCBkPSJNNTAyLjYgNzAuNjNsLTYxLjI1LTYxLjI1QzQzNS40IDMuMzcxIDQyNy4yIDAgNDE4LjcgMEgyNTUuMWMtMzUuMzUgMC02NCAyOC42Ni02NCA2NGwuMDE5NSAyNTZDMTkyIDM1NS40IDIyMC43IDM4NCAyNTYgMzg0aDE5MmMzNS4yIDAgNjQtMjguOCA2NC02NFY5My4yNUM1MTIgODQuNzcgNTA4LjYgNzYuNjMgNTAyLjYgNzAuNjN6TTQ2NCAzMjBjMCA4LjgzNi03LjE2NCAxNi0xNiAxNkgyNTUuMWMtOC44MzggMC0xNi03LjE2NC0xNi0xNkwyMzkuMSA2NC4xM2MwLTguODM2IDcuMTY0LTE2IDE2LTE2aDEyOEwzODQgOTZjMCAxNy42NyAxNC4zMyAzMiAzMiAzMmg0Ny4xVjMyMHpNMjcyIDQ0OGMwIDguODM2LTcuMTY0IDE2LTE2IDE2SDYzLjFjLTguODM4IDAtMTYtNy4xNjQtMTYtMTZMNDcuOTggMTkyLjFjMC04LjgzNiA3LjE2NC0xNiAxNi0xNkgxNjBWMTI4SDYzLjk5Yy0zNS4zNSAwLTY0IDI4LjY1LTY0IDY0bC4wMDk4IDI1NkMuMDAyIDQ4My4zIDI4LjY2IDUxMiA2NCA1MTJoMTkyYzM1LjIgMCA2NC0yOC44IDY0LTY0di0zMmgtNDcuMUwyNzIgNDQ4eiIvPjwvc3ZnPg==", Re = "A 'merge' property is required", Je = "Property 'merge' must be an array", Pe = "Property 'merge' must contain at least one element", Fe = "A 'find' property is required on every element inside 'merge'", Be = "Every 'find' property inside 'merge' must be of type string", Ue = "Every 'find' property inside 'merge' must be a string of length equal to or higher than one", Ze = "A 'replace' property is required on every element inside 'merge'";
 class k extends Error {
   constructor(e) {
     super(e);
@@ -310,9 +310,9 @@ function re(t) {
     if (Q("merge", e))
       throw new k(Re);
     if (Ge("merge", e))
-      throw new k(Pe);
-    if (Qe("merge", e))
       throw new k(Je);
+    if (Qe("merge", e))
+      throw new k(Pe);
     const r = We(e.merge);
     return { ...e, merge: r };
   } catch (e) {
@@ -338,19 +338,22 @@ function We(t) {
 class he {
   constructor(e) {
     C(this, "template");
-    C(this, "result");
+    C(this, "_result");
     C(this, "handlers");
     const r = this.parseInitialTemplate(e);
-    this.template = r, this.result = r, this.handlers = { change: [], submit: [] };
+    this.template = r, this._result = r, this.handlers = { change: [], submit: [] };
+  }
+  set result(e) {
+    this._result = e, this.handlers.change.forEach((r) => r(e));
+  }
+  get result() {
+    return this._result;
   }
   on(e, r) {
     this.handlers[e].push(r);
   }
   submit() {
     this.handlers.submit.forEach((e) => e(this.result));
-  }
-  change() {
-    this.handlers.change.forEach((e) => e(this.result));
   }
   parseInitialTemplate(e) {
     const n = typeof e == "string" ? e : JSON.stringify(e);
@@ -363,7 +366,7 @@ class he {
   setTemplateSource(e) {
     try {
       const r = re(e);
-      return this.template = r, this.result = r, this.change(), r;
+      return this.template = r, this.result = r, r;
     } catch (r) {
       throw r instanceof Error ? r : new Error("Error parsing JSON");
     }
@@ -372,7 +375,7 @@ class he {
     const { find: r, replace: n } = e, l = { find: r, replace: n }, c = this.result.merge.map(
       (i) => (i == null ? void 0 : i.find) === e.find ? l : i
     );
-    return this.result = { ...this.result, merge: c }, this.change(), c;
+    return this.result = { ...this.result, merge: c }, c;
   }
 }
 const $e = [
