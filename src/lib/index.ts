@@ -6,7 +6,7 @@ class Shotstack {
 	public templateService: ShotstackEditTemplateService;
 	constructor(
 		initialTemplate?: unknown,
-		public containerElement = document.querySelector('#shotstack-form-field') as HTMLElement
+		public containerElement = document.querySelector('#shotstack-form-field') as HTMLElement | null
 	) {
 		this.templateService = new ShotstackEditTemplateService(initialTemplate);
 		this.initialize();
@@ -21,6 +21,9 @@ class Shotstack {
 	}
 
 	initialize() {
+		if (!this.containerElement) {
+			return;
+		}
 		this.containerElement && this.render(this.containerElement);
 	}
 	render(container: HTMLElement) {
@@ -32,9 +35,15 @@ class Shotstack {
 		});
 	}
 	display() {
+		if (!this.containerElement) {
+			return;
+		}
 		this.containerElement.style.display = 'block';
 	}
 	hide() {
+		if (!this.containerElement) {
+			return;
+		}
 		this.containerElement.style.display = 'none';
 	}
 	attach(newElement: HTMLElement) {
@@ -43,10 +52,16 @@ class Shotstack {
 		this.render(this.containerElement);
 	}
 	remove() {
+		if (!this.containerElement) {
+			return;
+		}
 		this.containerElement.replaceChildren();
 	}
 
 	get container() {
+		if (!this.containerElement) {
+			return;
+		}
 		return this.containerElement;
 	}
 	merge() {
