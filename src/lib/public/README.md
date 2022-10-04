@@ -1,3 +1,7 @@
+# Shotstack Merge Fields
+
+Shotstack Merge Fields is a simple library that you can embed in any app. It's an application designed to help you easily modify a template for a Shotstack Video and generate a JSON with updated values ready to be consumed by the [Shotstack Video Editing API](https://shotstack.io/product/video-editing-api/).
+
 ## How to implement it on your website.
 
 This module will always try to find an HTML `element` with id "shotstack-form-field", and will render the form using that `element` as a container.
