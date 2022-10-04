@@ -1,5 +1,6 @@
 import { Form } from './components';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplate/ShotstackEditTemplateService';
+import type { IShotstackEvents, TemplateEvent } from './ShotstackEditTemplate/types';
 
 class Shotstack {
 	public templateService: ShotstackEditTemplateService;
@@ -10,6 +11,15 @@ class Shotstack {
 		this.templateService = new ShotstackEditTemplateService(initialTemplate);
 		this.initialize();
 	}
+
+	on(eventName: TemplateEvent, callback: IShotstackEvents[TemplateEvent]) {
+		this.templateService.on(eventName, callback);
+	}
+
+	submit() {
+		this.templateService.submit();
+	}
+
 	initialize() {
 		this.container && this.render(this.container);
 	}
