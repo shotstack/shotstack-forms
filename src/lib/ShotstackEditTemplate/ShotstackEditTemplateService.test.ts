@@ -21,6 +21,29 @@ describe('ShotstackEditTemplateService', () => {
 	});
 });
 
+describe('ShotstackEditTempalteService._results', () => {
+	const sampleJson = { merge: [{ find: 'Hello', replace: 'World' }] };
+	const modifiedJson = { merge: [{ find: 'Hello', replace: 'Worlds' }] };
+
+	test('Getter should return current result template value', () => {
+		const editTemplateService = new ShotstackEditTemplateService(sampleJson);
+		expect(editTemplateService.result).toEqual(sampleJson);
+	});
+	test('Setter should establish new updated value', () => {
+		const editTemplateService = new ShotstackEditTemplateService(sampleJson);
+		editTemplateService.result = modifiedJson;
+		expect(editTemplateService.result).toEqual(modifiedJson);
+	});
+	test('Setter should call onChange event handlers with result as argument', () => {
+		const editTemplateService = new ShotstackEditTemplateService(sampleJson);
+		const mock = jest.fn();
+		editTemplateService.on('change', mock);
+		editTemplateService.result = modifiedJson;
+		expect(mock).toHaveBeenCalled();
+		expect(mock).toHaveBeenCalledWith(modifiedJson);
+	});
+});
+
 describe('ShotstackEditTemplateService.setTemplateSource', () => {
 	test('Correctly updates the source edit object', () => {
 		const editTemplateService = new ShotstackEditTemplateService();
