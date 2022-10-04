@@ -8,17 +8,16 @@
 
 	let template = editTemplateService.template;
 	let result = editTemplateService.result;
-	let templateError: string;
-	let resultError: string;
+	let error: string | null = null;
 
 	function handleTemplateInput(e: any) {
 		try {
 			const updatedTemplate = editTemplateService.setTemplateSource(e.target.value);
 			template = updatedTemplate;
 			result = updatedTemplate;
-			templateError = '';
+			error = null;
 		} catch (err: any) {
-			templateError = err.message;
+			error = err.message;
 		}
 	}
 
@@ -26,9 +25,9 @@
 		try {
 			const updatedMergeFields = editTemplateService.updateResultMergeFields(mergeField);
 			result = { ...result, merge: updatedMergeFields };
-			resultError = '';
+			error = null;
 		} catch (err: any) {
-			resultError = err.message;
+			error = err.message;
 		}
 	}
 
@@ -51,15 +50,15 @@
 			/>
 		</div>
 
-		{#if templateError}
+		{#if error}
 			<p data-cy="template-input-error" class=" bg-rose-200 rounded py-2 px-4">
 				<span class="monospace text-orange-900">
-					{templateError}
+					{error}
 				</span>
 			</p>
 		{/if}
 
-		{#if template.merge?.length && !templateError}
+		{#if template.merge?.length && !error}
 			<div data-cy="merge-fields-input-section">
 				<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
 				<div class="border p-4 mb-6">
@@ -80,17 +79,9 @@
 				</div>
 			</div>
 		{/if}
-
-		{#if resultError}
-			<p data-cy="merge-fields-input-error" class=" bg-rose-200 rounded py-2 px-4">
-				<span class="monospace text-orange-900">
-					{resultError}
-				</span>
-			</p>
-		{/if}
 	</form>
 
-	{#if !resultError && !templateError}
+	{#if !error}
 		<div data-cy="result-section">
 			<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
 			<abbr title="Copy to clipboard">

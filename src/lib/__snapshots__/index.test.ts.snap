@@ -30,7 +30,6 @@ exports[`Testing Shotstack module entry point On initialization, should render t
       </div>
        
        
-       
     </form>
      
     <div
@@ -93,7 +92,6 @@ exports[`Testing Shotstack module entry point Shotstack.render() should deploy t
           id="json-input"
         />
       </div>
-       
        
        
     </form>
