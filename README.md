@@ -30,7 +30,6 @@ After downloading the released `package` from this repository you’ll be provid
 │   Shotstack.js
 │   Shotstack.iife.js
 │   style.css
-
 ```
 
 To use, you can either import the library as an es module or include Shotstack as a global variable.
@@ -39,9 +38,17 @@ To use provided styles: include a `<link rel="stylesheet" href="style.css">` tag
 
 ### Shotstack references
 
-|        | method | arguments           | effect                                                 |
-| ------ | ------ | ------------------- | ------------------------------------------------------ |
-| public | render | target: HTMLElement | Renders and appends the form inside target DOM element |
+|        | method      | arguments                                                        | effect                                                                                                                                                                                                                                                                                                                                           |
+| ------ | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|        | constructor | initialTemplate?: any, container?: HTMLElement                   | Mounts the component with the provided template inside the container. If no initial template, Shotstack will mount with minimal data. If no container is found, it will look for an HTML element with an id of "shotstack-form-field". If this also fails, it will not render anything, and the render method will need to be called afterwards. |
+| public | render      | target: HTMLElement                                              | Renders and appends the form inside target DOM element                                                                                                                                                                                                                                                                                           |
+| public | on          | event: 'change' \| 'submit', callback: (resultTemplate) => void; | Appends a new event handler for a specific event at the component's lifecycle                                                                                                                                                                                                                                                                    |
+| public | display     | none                                                             | Changes the display of the current container to show the component                                                                                                                                                                                                                                                                               |
+| public | hide        | none                                                             | Changes the display of the current container to hide the component                                                                                                                                                                                                                                                                               |
+| public | attach      | newElement: HTMLElement                                          | Changes the current container where the element should be rendered, cleaning the previous container                                                                                                                                                                                                                                              |
+| public | remove      | none                                                             | Removes the component from the container where it has been rendered                                                                                                                                                                                                                                                                              |
+| public | container   | none => HTMLElement                                              | Returns the HTML Element where the component is being rendered                                                                                                                                                                                                                                                                                   |
+| public | merge       | none => JSON                                                     | Returns a merged JSON template to be used on the Shotstack API                                                                                                                                                                                                                                                                                   |
 
 ### Using Shotstack as a module import
 
@@ -103,10 +110,10 @@ To implement this library as a global variable, just include the following in th
 
 <body>
     <h1>My business</h1>
-    <div id="root"></div>
+    <div id="shotstack-form-field"></div>
     <div>
         <script>
-            let form = Shotstack.render(document.querySelector("#root"))
+            let shotstack = new Shotstack()
         </script>
     </div>
 </body>
