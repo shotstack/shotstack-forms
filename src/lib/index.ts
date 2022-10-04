@@ -23,7 +23,7 @@ class Shotstack {
 	initialize() {
 		this.containerElement && this.render(this.containerElement);
 	}
-	render(container: Element) {
+	render(container: HTMLElement) {
 		new Form({
 			target: container,
 			props: {
@@ -43,9 +43,10 @@ class Shotstack {
 		this.render(this.containerElement);
 	}
 	remove() {
-		this.containerElement.remove();
+		this.containerElement.replaceChildren();
 	}
-	container() {
+
+	get container() {
 		return this.containerElement;
 	}
 	merge() {
