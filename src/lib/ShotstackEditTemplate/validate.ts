@@ -45,7 +45,7 @@ export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
 		const merge = validateMerge(parsed.merge);
 		return { ...parsed, merge } as IParsedEditSchema;
 	} catch (error) {
-		throw validateError(error)
+		throw validateError(error);
 	}
 }
 
@@ -59,16 +59,21 @@ export function validateMerge(template: unknown[]) {
 	});
 	return validTemplate.map(({ find, replace }) => ({
 		find,
-		replace: typeof replace === 'string' ? replace : JSON.stringify(replace)
+		replace: stringifyIfNotString(replace)
 	}));
 }
 
 function hasErrorMessage(error: unknown): error is { message: string } {
-	return typeof error === 'object' && error !== null && 'message' in error
+	return typeof error === 'object' && error !== null && 'message' in error;
 }
 
 export function validateError(error: unknown): Error {
-	if (error instanceof Error) return error
-	else if (hasErrorMessage(error)) return new ValidationError(error.message)
-	else return new ValidationError(UNEXPECTED_ERROR)
+	if (error instanceof Error) return error;
+	else if (hasErrorMessage(error)) return new ValidationError(error.message);
+	else return new ValidationError(UNEXPECTED_ERROR);
+}
+
+export function stringifyIfNotString(input: unknown): string {
+	if (typeof input === 'string') return input;
+	else return JSON.stringify(input);
 }

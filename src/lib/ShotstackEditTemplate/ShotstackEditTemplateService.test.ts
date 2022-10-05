@@ -3,8 +3,6 @@
  */
 
 import { describe, expect, test } from '@jest/globals';
-import { INVALID_JSON, MERGE_NOT_FOUND } from './constants';
-
 import { ShotstackEditTemplateService } from './ShotstackEditTemplateService';
 
 describe('ShotstackEditTemplateService', () => {
@@ -55,10 +53,10 @@ describe('ShotstackEditTemplateService.setTemplateSource', () => {
 		expect(editTemplateService.template.merge).toEqual([{ find: 'test', replace: 'foo' }]);
 	});
 
-	test('Throws error if not merge array passed', () => {
+	test('When providing an incorrect json, should update error property with error', () => {
 		const editTemplateService = new ShotstackEditTemplateService();
-		expect(() => editTemplateService.setTemplateSource('<>')).toThrowError(INVALID_JSON);
-		expect(() => editTemplateService.setTemplateSource('{}')).toThrowError(MERGE_NOT_FOUND);
+		editTemplateService.setTemplateSource('<>');
+		expect(editTemplateService.error).not.toEqual(null);
 	});
 });
 
