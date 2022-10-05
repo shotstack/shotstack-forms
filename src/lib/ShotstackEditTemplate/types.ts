@@ -16,7 +16,7 @@ export interface IParsedEditSchema {
 
 export type TemplateEvent = 'submit' | 'change' | 'error';
 export type ResultTemplateCallback = (resultTemplate: IParsedEditSchema) => void;
-export type ErrorCallback = (err: unknown, previousError: unknown) => void;
+export type ErrorCallback = (err: unknown, previousError?: unknown) => void;
 
 export interface IShotstackEvents {
 	change: ResultTemplateCallback;
