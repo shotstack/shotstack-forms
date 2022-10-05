@@ -5,7 +5,8 @@ import {
 	MERGE_NOT_ARRAY,
 	MERGE_NOT_EMPTY,
 	MERGE_NOT_FOUND,
-	REPLACE_NOT_FOUND
+	REPLACE_NOT_FOUND,
+	UNEXPECTED_ERROR
 } from './constants';
 import type { IParsedEditSchema, JSONValidTypes } from './types';
 
@@ -44,8 +45,7 @@ export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
 		const merge = validateMerge(parsed.merge);
 		return { ...parsed, merge } as IParsedEditSchema;
 	} catch (error) {
-		if (error instanceof Error) throw error;
-		else throw new ValidationError('There was a problem parsing the template json');
+		throw validateError(error)
 	}
 }
 
@@ -61,4 +61,14 @@ export function validateMerge(template: unknown[]) {
 		find,
 		replace: typeof replace === 'string' ? replace : JSON.stringify(replace)
 	}));
+}
+
+function hasErrorMessage(error: unknown): error is { message: string } {
+	return typeof error === 'object' && error !== null && 'message' in error
+}
+
+export function validateError(error: unknown): Error {
+	if (error instanceof Error) return error
+	else if (hasErrorMessage(error)) return new ValidationError(error.message)
+	else return new ValidationError(UNEXPECTED_ERROR)
 }

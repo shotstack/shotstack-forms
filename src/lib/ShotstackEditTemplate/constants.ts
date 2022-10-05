@@ -6,3 +6,4 @@ export const FIND_NOT_FOUND = `A 'find' property is required on every element in
 export const FIND_NOT_STRING = `Every 'find' property inside 'merge' must be of type string`;
 export const FIND_NOT_EMPTY = `Every 'find' property inside 'merge' must be a string of length equal to or higher than one`;
 export const REPLACE_NOT_FOUND = `A 'replace' property is required on every element inside 'merge'`;
+export const UNEXPECTED_ERROR = 'Unexpected error while parsing template JSON';
