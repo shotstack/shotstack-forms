@@ -1,5 +1,5 @@
 import type { IParsedEditSchema, IShotstackEvents, IShotstackHandlers, MergeField } from './types';
-import { validateTemplate } from './validate';
+import { validateError, validateTemplate, stringifyIfNotString } from './validate';
 
 export class ShotstackEditTemplateService {
 	public template: IParsedEditSchema;
@@ -8,12 +8,13 @@ export class ShotstackEditTemplateService {
 	private handlers: IShotstackHandlers;
 
 	constructor(template?: unknown) {
-		const parsedInitialTemplate = this.parseInitialTemplate(template);
-		this.template = parsedInitialTemplate;
 		this._error = null;
-		this._result = parsedInitialTemplate;
+		this.template = { merge: [] };
+		this._result = { merge: [] };
 		this.handlers = { change: [], submit: [], error: [] };
+		this.setTemplateSource(template);
 	}
+
 	public set error(err: null | Error) {
 		const previousError = this._error;
 		this._error = err;
@@ -37,28 +38,19 @@ export class ShotstackEditTemplateService {
 	}
 
 	submit() {
-		this.handlers.submit.forEach((fn) => fn(this.result));
+		if (this.error) throw this.error;
+		else this.handlers.submit.forEach((fn) => fn(this.result));
 	}
 
-	parseInitialTemplate(initialTemplate: unknown) {
-		const isString = typeof initialTemplate === 'string';
-		const stringified = isString ? initialTemplate : JSON.stringify(initialTemplate);
+	setTemplateSource(jsonTemplate: unknown) {
 		try {
-			const validTemplate = validateTemplate(stringified);
-			return validTemplate;
-		} catch (error) {
-			return { merge: [] };
-		}
-	}
-	setTemplateSource(jsonTemplate: string): IParsedEditSchema {
-		try {
-			const parsedTemplate = validateTemplate(jsonTemplate);
+			const parsedTemplate = validateTemplate(stringifyIfNotString(jsonTemplate));
 			this.template = parsedTemplate;
 			this.result = parsedTemplate;
-			return parsedTemplate;
+			this.error = null;
 		} catch (err) {
-			if (err instanceof Error) throw err;
-			throw new Error('Error parsing JSON');
+			const validError = validateError(err);
+			this.error = validError;
 		}
 	}
 

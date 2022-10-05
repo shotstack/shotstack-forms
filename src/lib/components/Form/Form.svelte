@@ -3,37 +3,33 @@
 	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
+	import type { IParsedEditSchema } from '$lib/ShotstackEditTemplate/types';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
 	let template = editTemplateService.template;
 	let result = editTemplateService.result;
-	let error: string | null = null;
+	let error: Error | null = null;
 
-	function handleTemplateInput(e: any) {
-		try {
-			const updatedTemplate = editTemplateService.setTemplateSource(e.target.value);
-			template = updatedTemplate;
-			result = updatedTemplate;
-			error = null;
-		} catch (err: any) {
-			error = err.message;
-		}
+	function handleTemplateInput(value: string) {
+		editTemplateService.setTemplateSource(value);
+		template = editTemplateService.template;
+		result = editTemplateService.result;
+		error = editTemplateService.error;
 	}
 
 	function handleFormInput(mergeField: { find: string; replace: string }) {
-		try {
-			const updatedMergeFields = editTemplateService.updateResultMergeFields(mergeField);
-			result = { ...result, merge: updatedMergeFields };
-			error = null;
-		} catch (err: any) {
-			error = err.message;
-		}
+		editTemplateService.updateResultMergeFields(mergeField);
+		result = editTemplateService.result;
 	}
 
 	function handleCopyToClipboardClick() {
 		navigator.clipboard.writeText(JSON.stringify(result));
 		alert('JSON copied to clipboard!');
+	}
+
+	function formatJson(json: IParsedEditSchema) {
+		return JSON.stringify(json, null, 2);
 	}
 </script>
 
@@ -45,15 +41,15 @@
 				data-cy="template-input"
 				class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
 				id="json-input"
-				on:input={handleTemplateInput}
-				value={JSON.stringify(template, null, 2)}
+				on:input={(e) => handleTemplateInput(e.currentTarget.value)}
+				value={formatJson(template)}
 			/>
 		</div>
 
 		{#if error}
 			<p data-cy="template-input-error" class=" bg-rose-200 rounded py-2 px-4">
 				<span class="monospace text-orange-900">
-					{error}
+					{error.message}
 				</span>
 			</p>
 		{/if}
@@ -93,7 +89,7 @@
 				/>
 			</abbr>
 			<p data-cy="result" class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
-				{JSON.stringify(result, null, 2)}
+				{formatJson(result)}
 			</p>
 		</div>
 	{/if}
