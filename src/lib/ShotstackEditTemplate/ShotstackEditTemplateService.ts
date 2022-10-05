@@ -1,22 +1,29 @@
-import type {
-	IParsedEditSchema,
-	IShotstackEvents,
-	IShotstackHandlers,
-	MergeField,
-	TemplateEvent
-} from './types';
+import type { IParsedEditSchema, IShotstackEvents, IShotstackHandlers, MergeField } from './types';
 import { validateTemplate } from './validate';
 
 export class ShotstackEditTemplateService {
 	public template: IParsedEditSchema;
 	private _result: IParsedEditSchema;
+	private _error: null | Error;
 	private handlers: IShotstackHandlers;
+
 	constructor(template?: unknown) {
 		const parsedInitialTemplate = this.parseInitialTemplate(template);
 		this.template = parsedInitialTemplate;
+		this._error = null;
 		this._result = parsedInitialTemplate;
-		this.handlers = { change: [], submit: [] };
+		this.handlers = { change: [], submit: [], error: [] };
 	}
+	public set error(err: null | Error) {
+		const previousError = this._error;
+		this._error = err;
+		if (err !== null) this.handlers.error.forEach((fn) => fn(err, previousError));
+	}
+
+	public get error(): null | Error {
+		return this._error;
+	}
+
 	public set result(validParsedTemplate: IParsedEditSchema) {
 		this._result = validParsedTemplate;
 		this.handlers.change.forEach((fn) => fn(validParsedTemplate));
@@ -25,7 +32,7 @@ export class ShotstackEditTemplateService {
 		return this._result;
 	}
 
-	on(eventName: TemplateEvent, callback: IShotstackEvents[TemplateEvent]) {
+	on<K extends keyof IShotstackEvents>(eventName: K, callback: IShotstackEvents[K]) {
 		this.handlers[eventName].push(callback);
 	}
 
