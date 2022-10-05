@@ -38,7 +38,8 @@ export class ShotstackEditTemplateService {
 	}
 
 	submit() {
-		this.handlers.submit.forEach((fn) => fn(this.result));
+		if (this.error) throw this.error;
+		else this.handlers.submit.forEach((fn) => fn(this.result));
 	}
 
 	setTemplateSource(jsonTemplate: unknown) {
