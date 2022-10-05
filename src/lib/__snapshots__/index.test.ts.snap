@@ -63,7 +63,6 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
           </div>
         </div>
       </div>
-       
     </form>
      
     <div
@@ -189,7 +188,6 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
           </div>
         </div>
       </div>
-       
     </form>
      
     <div
@@ -315,7 +313,6 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
           </div>
         </div>
       </div>
-       
     </form>
      
     <div
