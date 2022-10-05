@@ -14,15 +14,18 @@ export interface IParsedEditSchema {
 	[key: string]: any;
 }
 
-export type TemplateEvent = 'submit' | 'change';
+export type TemplateEvent = 'submit' | 'change' | 'error';
 export type ResultTemplateCallback = (resultTemplate: IParsedEditSchema) => void;
+export type ErrorCallback = (err: unknown, previousError: unknown) => void;
 
 export interface IShotstackEvents {
 	change: ResultTemplateCallback;
 	submit: ResultTemplateCallback;
+	error: ErrorCallback;
 }
 
-export interface IShotstackHandlers {
-	change: ResultTemplateCallback[];
-	submit: ResultTemplateCallback[];
-}
+type ShotstackHandlersArray<T, K extends keyof T> = T[K][];
+
+export type IShotstackHandlers = {
+	[key in TemplateEvent]: ShotstackHandlersArray<IShotstackEvents, key>;
+};
