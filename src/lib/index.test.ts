@@ -50,3 +50,61 @@ describe('Testing Shotstack module entry point', () => {
 		expect(mockSubmit).toHaveBeenCalledWith(expectedResultTemplate);
 	});
 });
+
+describe('Testing Shotstack methods', () => {
+	it('Shotstack.display(), container element should have property display = "block" ', () => {
+		const newContainer = document.createElement('div');
+		const shotstackService = new Shotstack(defaultJsonInput, newContainer);
+		shotstackService.display();
+		expect(newContainer).toMatchSnapshot();
+	});
+
+	it('Shotstack.hide(), container element should have property display = "none"', () => {
+		const newContainer = document.createElement('div');
+		const shotstackService = new Shotstack(defaultJsonInput, newContainer);
+		shotstackService.hide();
+		expect(newContainer).toMatchSnapshot();
+	});
+
+	it('Shotstack.attach(), when passed a new container it should render cleaning previous container', () => {
+		const previousContainer = document.createElement('div');
+		previousContainer.id = 'previous-container';
+		const newContainer = document.createElement('div');
+		newContainer.id = 'new-container';
+		const shotstackService = new Shotstack(defaultJsonInput, previousContainer);
+		shotstackService.attach(newContainer);
+		expect(previousContainer.childNodes).toHaveLength(0);
+		expect(newContainer).toMatchSnapshot();
+	});
+
+	it('Shotstack.remove(), should remove content of the container where the component is rendered on', () => {
+		const newContainer = document.createElement('div');
+		const shotstackService = new Shotstack(defaultJsonInput, newContainer);
+		shotstackService.remove();
+		expect(newContainer.childNodes).toHaveLength(0);
+		expect(newContainer).toMatchSnapshot();
+	});
+	it('Shotstack.container should return container where the component is being rendered on', () => {
+		const containerElement = document.createElement('div');
+		containerElement.id = 'container-element';
+		const shotstackService = new Shotstack(defaultJsonInput, containerElement);
+		expect(shotstackService.container).toBe(containerElement);
+	});
+
+	it('Shotstack.merge(), should return merged JSON template', () => {
+		const shotstackService = new Shotstack();
+
+		const find = 'Hello';
+		const replace = 'World';
+		const newReplace = 'New World';
+		const mergeEntry = { find, replace };
+		const replacedEntry = { find, replace: newReplace };
+		const jsonTemplate: IParsedEditSchema = { merge: [mergeEntry] };
+		const expectedResultTemplate: IParsedEditSchema = { merge: [replacedEntry] };
+
+		shotstackService.templateService.setTemplateSource(JSON.stringify(jsonTemplate));
+		shotstackService.templateService.updateResultMergeFields(replacedEntry);
+
+		expect(shotstackService.merge()).toEqual(expectedResultTemplate);
+	});
+});
