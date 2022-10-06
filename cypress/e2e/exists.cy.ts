@@ -185,7 +185,7 @@ describe('Result JSON', () => {
 	});
 	it('Replace values are cast into valid JSON types, or if invalid, into strings', () => {
 		// Arrange
-		const jsonValidTypes: { [key: string]: any } = {
+		const jsonValidTypes: { [key: string]: unknown } = {
 			bNull: null,
 			bFalse: false,
 			bTrue: true,
@@ -194,7 +194,7 @@ describe('Result JSON', () => {
 			objects: { a: 'a', b: 'b' },
 			array: [1, '2', 3]
 		};
-		const jsonInvalidTypes: { [key: string]: any } = {
+		const jsonInvalidTypes: { [key: string]: unknown } = {
 			fn: '() => { }',
 			bUndefined: 'undefined',
 			symbol: "Symbol('foo')",

@@ -7,3 +7,4 @@ export const FIND_NOT_STRING = `Every 'find' property inside 'merge' must be of 
 export const FIND_NOT_EMPTY = `Every 'find' property inside 'merge' must be a string of length equal to or higher than one`;
 export const REPLACE_NOT_FOUND = `A 'replace' property is required on every element inside 'merge'`;
 export const UNEXPECTED_ERROR = 'Unexpected error while parsing template JSON';
+export const MERGE_INDEX_NOT_OBJECT = "Every element inside the 'merge' should be an object";
