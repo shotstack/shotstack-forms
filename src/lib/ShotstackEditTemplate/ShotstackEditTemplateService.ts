@@ -16,7 +16,7 @@ export class ShotstackEditTemplateService {
 	}
 
 	public set error(err: null | Error) {
-		const previousError = this._error;
+		const previousError = (this._error && { ...this._error }) || null;
 		this._error = err;
 		if (err !== null) this.handlers.error.forEach((fn) => fn(err, previousError));
 	}
@@ -26,9 +26,11 @@ export class ShotstackEditTemplateService {
 	}
 
 	public set result(validParsedTemplate: IParsedEditSchema) {
+		const previousResult = { ...this._result };
 		this._result = validParsedTemplate;
-		this.handlers.change.forEach((fn) => fn(validParsedTemplate));
+		this.handlers.change.forEach((fn) => fn(validParsedTemplate, previousResult));
 	}
+
 	public get result() {
 		return this._result;
 	}
