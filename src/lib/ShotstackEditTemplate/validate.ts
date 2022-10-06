@@ -6,9 +6,10 @@ import {
 	MERGE_NOT_EMPTY,
 	MERGE_NOT_FOUND,
 	REPLACE_NOT_FOUND,
-	UNEXPECTED_ERROR
+	UNEXPECTED_ERROR,
+	MERGE_INDEX_NOT_OBJECT
 } from './constants';
-import type { IParsedEditSchema, JSONValidTypes } from './types';
+import type { IParsedEditSchema, JSONValidTypes, MergeField } from './types';
 
 export class ValidationError extends Error {
 	constructor(message: string) {
@@ -16,41 +17,53 @@ export class ValidationError extends Error {
 	}
 }
 
-function propertyDoesNotExist(prop: string, json: any) {
-	return !(prop in json);
+function isObject(input: unknown): input is object {
+	return typeof input === 'object';
 }
 
-function isNotInstanceOfArray(prop: string, json: any) {
-	return !(json[prop] instanceof Array);
+function isProperty<K extends string>(prop: string, json: object): json is { [key in K]: unknown } {
+	return prop in json;
 }
 
-function isNotString(prop: string, json: any) {
-	return !(typeof json[prop] === 'string');
+function propertyDoesNotExist(prop: string, json: object) {
+	return !isProperty(prop, json);
 }
 
-function isEmptyString(prop: string, json: any) {
-	return !(typeof json[prop] === 'string' && json[prop].length > 0);
+function isNotInstanceOfArray(prop: string, json: object) {
+	return isProperty(prop, json) && !(json[prop] instanceof Array);
 }
-function isEmptyArray(prop: string, json: any) {
-	return !(json[prop] instanceof Array && json[prop].length > 0);
+
+function isNotString(prop: string, json: object) {
+	return isProperty(prop, json) && !(typeof json[prop] === 'string');
 }
+
+function isEmptyString(prop: string, json: object) {
+	const value = isProperty(prop, json) && json[prop];
+	return !(typeof value === 'string' && value.length > 0);
+}
+
+function isEmptyArray(prop: string, json: object) {
+	const value = isProperty(prop, json) && json[prop];
+	return !(value instanceof Array && value.length > 0);
+}
+
 export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
 	try {
 		const parsed = JSON.parse(jsonTemplate);
-
 		if (propertyDoesNotExist('merge', parsed)) throw new ValidationError(MERGE_NOT_FOUND);
 		if (isNotInstanceOfArray('merge', parsed)) throw new ValidationError(MERGE_NOT_ARRAY);
 		if (isEmptyArray('merge', parsed)) throw new ValidationError(MERGE_NOT_EMPTY);
-
-		const merge = validateMerge(parsed.merge);
-		return { ...parsed, merge } as IParsedEditSchema;
+		const { merge: unknownMergeField } = parsed as { merge: unknown[] };
+		const merge = validateMerge(unknownMergeField);
+		return { ...parsed, merge };
 	} catch (error) {
 		throw validateError(error);
 	}
 }
 
-export function validateMerge(template: unknown[]) {
+export function validateMerge(template: unknown[]): MergeField[] {
 	const validTemplate = template.map((field: unknown) => {
+		if (!isObject(field)) throw new ValidationError(MERGE_INDEX_NOT_OBJECT);
 		if (propertyDoesNotExist('find', field)) throw new ValidationError(FIND_NOT_FOUND);
 		if (propertyDoesNotExist('replace', field)) throw new ValidationError(REPLACE_NOT_FOUND);
 		if (isNotString('find', field)) throw new ValidationError(FIND_NOT_STRING);
@@ -63,7 +76,7 @@ export function validateMerge(template: unknown[]) {
 	}));
 }
 
-function hasErrorMessage(error: unknown): error is { message: string } {
+export function hasErrorMessage(error: unknown): error is { message: string } {
 	return typeof error === 'object' && error !== null && 'message' in error;
 }
 
