@@ -353,14 +353,15 @@ class fe {
     this._error = null, this.template = { merge: [] }, this._result = { merge: [] }, this.handlers = { change: [], submit: [], error: [] }, this.setTemplateSource(e);
   }
   set error(e) {
-    const r = this._error;
+    const r = this._error && { ...this._error } || null;
     this._error = e, e !== null && this.handlers.error.forEach((n) => n(e, r));
   }
   get error() {
     return this._error;
   }
   set result(e) {
-    this._result = e, this.handlers.change.forEach((r) => r(e));
+    const r = { ...this._result };
+    this._result = e, this.handlers.change.forEach((n) => n(e, r));
   }
   get result() {
     return this._result;
