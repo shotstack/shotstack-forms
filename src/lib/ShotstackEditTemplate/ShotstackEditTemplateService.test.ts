@@ -19,7 +19,28 @@ describe('ShotstackEditTemplateService', () => {
 	});
 });
 
-describe('ShotstackEditTempalteService._results', () => {
+describe('ShoststackEditTemplateService._error', () => {
+	test('If passed a valid template, error should be null', () => {
+		const shotstack = new ShotstackEditTemplateService({
+			merge: [{ find: 'NAME', replace: 'John' }]
+		});
+		expect(shotstack.error).toEqual(null);
+	});
+	test('If passed an invalid template. error should be equal to Error object', () => {
+		const shotstack = new ShotstackEditTemplateService();
+		expect(shotstack.error).toBeInstanceOf(Error);
+	});
+	test('on Error, should trigger all error events', () => {
+		const shotstack = new ShotstackEditTemplateService({
+			merge: [{ find: 'NAME', replace: 'John' }]
+		});
+		const mock = jest.fn();
+		shotstack.on('error', mock);
+		shotstack.setTemplateSource('<>');
+		expect(mock).toHaveBeenCalled();
+	});
+});
+describe('ShoststackEditTemplateService._results', () => {
 	const sampleJson = { merge: [{ find: 'Hello', replace: 'World' }] };
 	const modifiedJson = { merge: [{ find: 'Hello', replace: 'Worlds' }] };
 
@@ -38,7 +59,25 @@ describe('ShotstackEditTempalteService._results', () => {
 		editTemplateService.on('change', mock);
 		editTemplateService.result = modifiedJson;
 		expect(mock).toHaveBeenCalled();
-		expect(mock).toHaveBeenCalledWith(modifiedJson);
+		expect(mock).toHaveBeenCalledWith(modifiedJson, sampleJson);
+	});
+});
+
+describe('ShotstackEditTemplateService.submit', () => {
+	const sampleJson = { merge: [{ find: 'Hello', replace: 'World' }] };
+	test('If state is in error, should not call any submit event handlers', () => {
+		const editTemplateService = new ShotstackEditTemplateService('Invalid json');
+		const mock = jest.fn();
+		editTemplateService.on('submit', mock);
+		expect(editTemplateService.submit).toThrow();
+		expect(mock).not.toHaveBeenCalled();
+	});
+	test('When called, should call all submit event handlers', () => {
+		const editTemplateService = new ShotstackEditTemplateService(sampleJson);
+		const mock = jest.fn();
+		editTemplateService.on('submit', mock);
+		editTemplateService.submit();
+		expect(mock).toHaveBeenCalledWith(sampleJson);
 	});
 });
 

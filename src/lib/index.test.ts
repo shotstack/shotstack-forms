@@ -26,6 +26,7 @@ describe('Testing Shotstack module entry point', () => {
 
 	it("When .on(event, fn) is called, it should add a 'fn' handler for that particular 'event'", () => {
 		const shotstackService = new Shotstack();
+		const defaultMergeField = shotstackService.templateService.result;
 		const mockChange = jest.fn();
 		const find = 'Hello';
 		const replace = 'World';
@@ -37,10 +38,10 @@ describe('Testing Shotstack module entry point', () => {
 
 		shotstackService.on('change', mockChange);
 		shotstackService.templateService.setTemplateSource(JSON.stringify(jsonTemplate));
-		expect(mockChange).toHaveBeenCalledWith(jsonTemplate);
+		expect(mockChange).toHaveBeenCalledWith(jsonTemplate, defaultMergeField);
 
 		shotstackService.templateService.updateResultMergeFields(replacedEntry);
-		expect(mockChange).toHaveBeenCalledWith(expectedResultTemplate);
+		expect(mockChange).toHaveBeenCalledWith(expectedResultTemplate, jsonTemplate);
 		expect(mockChange).toHaveBeenCalledTimes(2);
 
 		const mockSubmit = jest.fn();

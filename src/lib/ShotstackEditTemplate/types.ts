@@ -11,16 +11,20 @@ export interface MergeField {
 
 export interface IParsedEditSchema {
 	merge: MergeField[];
-	[key: string]: any;
+	[key: string]: unknown;
 }
 
 export type TemplateEvent = 'submit' | 'change' | 'error';
-export type ResultTemplateCallback = (resultTemplate: IParsedEditSchema) => void;
+export type ResultTemplateCallback = (
+	resultTemplate: IParsedEditSchema,
+	previousResult?: IParsedEditSchema
+) => void;
 export type ErrorCallback = (err: unknown, previousError?: unknown) => void;
+export type SubmitCallback = (resultTemplate: IParsedEditSchema) => void;
 
 export interface IShotstackEvents {
 	change: ResultTemplateCallback;
-	submit: ResultTemplateCallback;
+	submit: SubmitCallback;
 	error: ErrorCallback;
 }
 
