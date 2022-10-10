@@ -3,7 +3,9 @@
  */
 
 import { describe, expect, test } from '@jest/globals';
+import { MERGE_NOT_FOUND } from './constants';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplateService';
+import { ValidationError } from './validate';
 
 describe('ShotstackEditTemplateService', () => {
 	test('If valid argument passed to constructor, it sets template object with populated merge array', () => {
@@ -120,5 +122,14 @@ describe('ShotstackEditTemplateService.updateResultMergeFields', () => {
 		editTemplateService.updateResultMergeFields({ find: 'test', replace: 'foo_edited' });
 
 		expect(editTemplateService.result.merge).toEqual([{ find: 'test', replace: 'foo_edited' }]);
+	});
+
+	describe('ShotstackEditTemplateService.logger', () => {
+		it('On error, by default, should call console.error with the error', () => {
+			console.error = jest.fn();
+			new ShotstackEditTemplateService({ foo: 'bar' });
+			expect(console.error).toHaveBeenCalled();
+			expect(console.error).toHaveBeenCalledWith(new ValidationError(MERGE_NOT_FOUND));
+		});
 	});
 });

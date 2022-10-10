@@ -11,7 +11,7 @@ export class ShotstackEditTemplateService {
 		this._error = null;
 		this.template = { merge: [] };
 		this._result = { merge: [] };
-		this.handlers = { change: [], submit: [], error: [] };
+		this.handlers = { change: [], submit: [], error: [this.logger] };
 		this.setTemplateSource(template);
 	}
 
@@ -37,6 +37,9 @@ export class ShotstackEditTemplateService {
 
 	on<K extends keyof IShotstackEvents>(eventName: K, callback: IShotstackEvents[K]) {
 		this.handlers[eventName].push(callback);
+	}
+	off<K extends keyof IShotstackEvents>(eventName: K, callback: IShotstackEvents[K]) {
+		this.handlers[eventName].filter((fn) => fn !== callback);
 	}
 
 	submit() {
@@ -64,5 +67,8 @@ export class ShotstackEditTemplateService {
 		);
 		this.result = { ...this.result, merge };
 		return merge;
+	}
+	logger(error: unknown) {
+		console.error(error);
 	}
 }
