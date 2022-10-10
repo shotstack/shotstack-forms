@@ -9,6 +9,7 @@ const mergeFieldsLabelInputContainer = '[data-cy=label-input]';
 const mergeFieldsInputError = '[data-cy=merge-fields-input-error]';
 const resultSection = '[data-cy=result-section]';
 const result = '[data-cy=result]';
+const intercept = 'Form.svelte?svelte&type=style&lang.css';
 
 beforeEach(() => {
 	// Vite SSR creates issues when testing e2e with cypress, due to cypress
@@ -16,7 +17,7 @@ beforeEach(() => {
 	// Potential solutions involve waiting until hydration finishes. Current solution
 	// implements intercepting svelte file and wait until it finishes downloading.
 
-	cy.intercept('Form.svelte?svelte&type=style&lang.css').as('svelte');
+	cy.intercept(intercept).as('svelte');
 	cy.visit('localhost:5173');
 	cy.wait('@svelte');
 });
@@ -66,6 +67,23 @@ describe('Template input section', () => {
 		cy.get(templateInputError).should('exist');
 		cy.get(mergeFieldsInputSection).should('not.exist');
 		cy.get(resultSection).should('not.exist');
+	});
+	it('When an error has been found, it should log the error in the console', () => {
+		// Arrange
+		cy.intercept(intercept).as('svelte');
+		cy.visit('localhost:5173', {
+			onBeforeLoad(win) {
+				//We stub the console.error
+				cy.stub(win.console, 'error').as('consoleError');
+			}
+		});
+		cy.wait('@svelte');
+
+		// Act
+		cy.get(templateInput).click().clear();
+
+		// Assert
+		cy.get('@consoleError').should('be.calledOnce');
 	});
 });
 
