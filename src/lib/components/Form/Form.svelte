@@ -1,5 +1,6 @@
 <script lang="ts">
 	import './Form.css';
+	import './styles.css';
 	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
@@ -33,75 +34,69 @@
 	}
 </script>
 
-<section data-cy="form-container" class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4">
-	<form>
-		<div data-cy="template-input-section" class="mb-6">
-			<label for="json-input" class="text-teal-400 px-1">Paste template </label>
-			<textarea
-				data-cy="template-input"
-				class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
-				id="json-input"
-				on:input={(e) => handleTemplateInput(e.currentTarget.value)}
-				value={formatJson(template)}
-			/>
-		</div>
+<div class="shotstack-mergefield-form">
+	<section data-cy="form-container" class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4">
+		<form>
+			<div data-cy="template-input-section" class="mb-6">
+				<label for="json-input" class="text-teal-400 px-1">Paste template </label>
+				<textarea
+					data-cy="template-input"
+					class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
+					id="json-input"
+					on:input={(e) => handleTemplateInput(e.currentTarget.value)}
+					value={formatJson(template)}
+				/>
+			</div>
 
-		{#if error}
-			<p data-cy="template-input-error" class=" bg-rose-200 rounded py-2 px-4">
-				<span class="monospace text-orange-900">
-					{error.message}
-				</span>
-			</p>
-		{/if}
+			{#if error}
+				<p data-cy="template-input-error" class=" bg-rose-200 rounded py-2 px-4">
+					<span class="monospace text-orange-900">
+						{error.message}
+					</span>
+				</p>
+			{/if}
 
-		{#if template.merge?.length && !error}
-			<div data-cy="merge-fields-input-section">
-				<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
-				<div class="border p-4 mb-6">
-					{#each template.merge as { find, replace }}
-						<div data-cy="label-input">
-							<label for={find} class="block mb-2 monospace">
-								{'{{ ' + find + ' }} '}
-							</label>
-							<input
-								class="border w-full mb-3 pl-2 py-1 text-stone-500"
-								id={find}
-								type="text"
-								value={replace}
-								on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
-							/>
-						</div>
-					{/each}
+			{#if template.merge?.length && !error}
+				<div data-cy="merge-fields-input-section">
+					<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
+					<div class="border p-4 mb-6">
+						{#each template.merge as { find, replace }}
+							<div data-cy="label-input">
+								<label for={find} class="block mb-2 monospace">
+									{'{{ ' + find + ' }} '}
+								</label>
+								<input
+									class="border w-full mb-3 pl-2 py-1 text-stone-500"
+									id={find}
+									type="text"
+									value={replace}
+									on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
+								/>
+							</div>
+						{/each}
+					</div>
 				</div>
+			{/if}
+		</form>
+
+		{#if !error}
+			<div data-cy="result-section">
+				<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
+				<abbr title="Copy to clipboard">
+					<img
+						src={copyRegular}
+						alt="copy-button"
+						class="h-4 cursor-pointer inline mb-1"
+						on:click={handleCopyToClipboardClick}
+					/>
+				</abbr>
+				<p data-cy="result" class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
+					{formatJson(result)}
+				</p>
 			</div>
 		{/if}
-	</form>
+	</section>
+</div>
 
-	{#if !error}
-		<div data-cy="result-section">
-			<h1 class="text-teal-400 px-1 inline-block mr-2">Result</h1>
-			<abbr title="Copy to clipboard">
-				<img
-					src={copyRegular}
-					alt="copy-button"
-					class="h-4 cursor-pointer inline mb-1"
-					on:click={handleCopyToClipboardClick}
-				/>
-			</abbr>
-			<p data-cy="result" class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
-				{formatJson(result)}
-			</p>
-		</div>
-	{/if}
-</section>
-
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
-	.monospace {
-		font-family: monospace;
-	}
-
-	* {
-		font-family: 'Nunito Sans';
-	}
+<style src="./styles.css">
 </style>

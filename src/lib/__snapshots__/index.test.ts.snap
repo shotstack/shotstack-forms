@@ -4,93 +4,96 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
 <div
   id="new-container"
 >
-  <section
-    class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"
-    data-cy="form-container"
+  <div
+    class="shotstack-mergefield-form svelte-r93edu"
   >
-    <form
-      class="svelte-u6rap9"
+    <section
+      class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-r93edu"
+      data-cy="form-container"
     >
-      <div
-        class="mb-6 svelte-u6rap9"
-        data-cy="template-input-section"
+      <form
+        class="svelte-r93edu"
       >
-        <label
-          class="text-teal-400 px-1 svelte-u6rap9"
-          for="json-input"
+        <div
+          class="mb-6 svelte-r93edu"
+          data-cy="template-input-section"
         >
-          Paste template
-        </label>
+          <label
+            class="text-teal-400 px-1 svelte-r93edu"
+            for="json-input"
+          >
+            Paste template
+          </label>
+           
+          <textarea
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            data-cy="template-input"
+            id="json-input"
+          />
+        </div>
          
-        <textarea
-          class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"
-          data-cy="template-input"
-          id="json-input"
-        />
-      </div>
-       
-       
-      <div
-        class="svelte-u6rap9"
-        data-cy="merge-fields-input-section"
-      >
-        <h1
-          class="text-teal-400 px-1 svelte-u6rap9"
-        >
-          Modify Merge Values
-        </h1>
          
         <div
-          class="border p-4 mb-6 svelte-u6rap9"
+          class="svelte-r93edu"
+          data-cy="merge-fields-input-section"
         >
-          <div
-            class="svelte-u6rap9"
-            data-cy="label-input"
+          <h1
+            class="text-teal-400 px-1 svelte-r93edu"
           >
-            <label
-              class="block mb-2 monospace svelte-u6rap9"
-              for="NAME"
+            Modify Merge Values
+          </h1>
+           
+          <div
+            class="border p-4 mb-6 svelte-r93edu"
+          >
+            <div
+              class="svelte-r93edu"
+              data-cy="label-input"
             >
-              {{ NAME }} 
-            </label>
-             
-            <input
-              class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-u6rap9"
-              id="NAME"
-              type="text"
-            />
-             
+              <label
+                class="block mb-2 monospace svelte-r93edu"
+                for="NAME"
+              >
+                {{ NAME }} 
+              </label>
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
+                id="NAME"
+                type="text"
+              />
+               
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-     
-    <div
-      class="svelte-u6rap9"
-      data-cy="result-section"
-    >
-      <h1
-        class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"
-      >
-        Result
-      </h1>
+      </form>
        
-      <abbr
-        class="svelte-u6rap9"
-        title="Copy to clipboard"
+      <div
+        class="svelte-r93edu"
+        data-cy="result-section"
       >
-        <img
-          alt="copy-button"
-          class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"
-          src="[object Object]"
-        />
-      </abbr>
-       
-      <p
-        class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"
-        data-cy="result"
-      >
-        {
+        <h1
+          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        >
+          Result
+        </h1>
+         
+        <abbr
+          class="svelte-r93edu"
+          title="Copy to clipboard"
+        >
+          <img
+            alt="copy-button"
+            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            src="[object Object]"
+          />
+        </abbr>
+         
+        <p
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          data-cy="result"
+        >
+          {
   "merge": [
     {
       "find": "NAME",
@@ -119,9 +122,10 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
     "resolution": "hd"
   }
 }
-      </p>
-    </div>
-  </section>
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 `;
 
@@ -129,93 +133,96 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
 <div
   style="display: block;"
 >
-  <section
-    class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"
-    data-cy="form-container"
+  <div
+    class="shotstack-mergefield-form svelte-r93edu"
   >
-    <form
-      class="svelte-u6rap9"
+    <section
+      class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-r93edu"
+      data-cy="form-container"
     >
-      <div
-        class="mb-6 svelte-u6rap9"
-        data-cy="template-input-section"
+      <form
+        class="svelte-r93edu"
       >
-        <label
-          class="text-teal-400 px-1 svelte-u6rap9"
-          for="json-input"
+        <div
+          class="mb-6 svelte-r93edu"
+          data-cy="template-input-section"
         >
-          Paste template
-        </label>
+          <label
+            class="text-teal-400 px-1 svelte-r93edu"
+            for="json-input"
+          >
+            Paste template
+          </label>
+           
+          <textarea
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            data-cy="template-input"
+            id="json-input"
+          />
+        </div>
          
-        <textarea
-          class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"
-          data-cy="template-input"
-          id="json-input"
-        />
-      </div>
-       
-       
-      <div
-        class="svelte-u6rap9"
-        data-cy="merge-fields-input-section"
-      >
-        <h1
-          class="text-teal-400 px-1 svelte-u6rap9"
-        >
-          Modify Merge Values
-        </h1>
          
         <div
-          class="border p-4 mb-6 svelte-u6rap9"
+          class="svelte-r93edu"
+          data-cy="merge-fields-input-section"
         >
-          <div
-            class="svelte-u6rap9"
-            data-cy="label-input"
+          <h1
+            class="text-teal-400 px-1 svelte-r93edu"
           >
-            <label
-              class="block mb-2 monospace svelte-u6rap9"
-              for="NAME"
+            Modify Merge Values
+          </h1>
+           
+          <div
+            class="border p-4 mb-6 svelte-r93edu"
+          >
+            <div
+              class="svelte-r93edu"
+              data-cy="label-input"
             >
-              {{ NAME }} 
-            </label>
-             
-            <input
-              class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-u6rap9"
-              id="NAME"
-              type="text"
-            />
-             
+              <label
+                class="block mb-2 monospace svelte-r93edu"
+                for="NAME"
+              >
+                {{ NAME }} 
+              </label>
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
+                id="NAME"
+                type="text"
+              />
+               
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-     
-    <div
-      class="svelte-u6rap9"
-      data-cy="result-section"
-    >
-      <h1
-        class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"
-      >
-        Result
-      </h1>
+      </form>
        
-      <abbr
-        class="svelte-u6rap9"
-        title="Copy to clipboard"
+      <div
+        class="svelte-r93edu"
+        data-cy="result-section"
       >
-        <img
-          alt="copy-button"
-          class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"
-          src="[object Object]"
-        />
-      </abbr>
-       
-      <p
-        class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"
-        data-cy="result"
-      >
-        {
+        <h1
+          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        >
+          Result
+        </h1>
+         
+        <abbr
+          class="svelte-r93edu"
+          title="Copy to clipboard"
+        >
+          <img
+            alt="copy-button"
+            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            src="[object Object]"
+          />
+        </abbr>
+         
+        <p
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          data-cy="result"
+        >
+          {
   "merge": [
     {
       "find": "NAME",
@@ -244,9 +251,10 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
     "resolution": "hd"
   }
 }
-      </p>
-    </div>
-  </section>
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 `;
 
@@ -254,93 +262,96 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
 <div
   style="display: none;"
 >
-  <section
-    class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"
-    data-cy="form-container"
+  <div
+    class="shotstack-mergefield-form svelte-r93edu"
   >
-    <form
-      class="svelte-u6rap9"
+    <section
+      class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-r93edu"
+      data-cy="form-container"
     >
-      <div
-        class="mb-6 svelte-u6rap9"
-        data-cy="template-input-section"
+      <form
+        class="svelte-r93edu"
       >
-        <label
-          class="text-teal-400 px-1 svelte-u6rap9"
-          for="json-input"
+        <div
+          class="mb-6 svelte-r93edu"
+          data-cy="template-input-section"
         >
-          Paste template
-        </label>
+          <label
+            class="text-teal-400 px-1 svelte-r93edu"
+            for="json-input"
+          >
+            Paste template
+          </label>
+           
+          <textarea
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            data-cy="template-input"
+            id="json-input"
+          />
+        </div>
          
-        <textarea
-          class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"
-          data-cy="template-input"
-          id="json-input"
-        />
-      </div>
-       
-       
-      <div
-        class="svelte-u6rap9"
-        data-cy="merge-fields-input-section"
-      >
-        <h1
-          class="text-teal-400 px-1 svelte-u6rap9"
-        >
-          Modify Merge Values
-        </h1>
          
         <div
-          class="border p-4 mb-6 svelte-u6rap9"
+          class="svelte-r93edu"
+          data-cy="merge-fields-input-section"
         >
-          <div
-            class="svelte-u6rap9"
-            data-cy="label-input"
+          <h1
+            class="text-teal-400 px-1 svelte-r93edu"
           >
-            <label
-              class="block mb-2 monospace svelte-u6rap9"
-              for="NAME"
+            Modify Merge Values
+          </h1>
+           
+          <div
+            class="border p-4 mb-6 svelte-r93edu"
+          >
+            <div
+              class="svelte-r93edu"
+              data-cy="label-input"
             >
-              {{ NAME }} 
-            </label>
-             
-            <input
-              class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-u6rap9"
-              id="NAME"
-              type="text"
-            />
-             
+              <label
+                class="block mb-2 monospace svelte-r93edu"
+                for="NAME"
+              >
+                {{ NAME }} 
+              </label>
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
+                id="NAME"
+                type="text"
+              />
+               
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-     
-    <div
-      class="svelte-u6rap9"
-      data-cy="result-section"
-    >
-      <h1
-        class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"
-      >
-        Result
-      </h1>
+      </form>
        
-      <abbr
-        class="svelte-u6rap9"
-        title="Copy to clipboard"
+      <div
+        class="svelte-r93edu"
+        data-cy="result-section"
       >
-        <img
-          alt="copy-button"
-          class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"
-          src="[object Object]"
-        />
-      </abbr>
-       
-      <p
-        class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"
-        data-cy="result"
-      >
-        {
+        <h1
+          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        >
+          Result
+        </h1>
+         
+        <abbr
+          class="svelte-r93edu"
+          title="Copy to clipboard"
+        >
+          <img
+            alt="copy-button"
+            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            src="[object Object]"
+          />
+        </abbr>
+         
+        <p
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          data-cy="result"
+        >
+          {
   "merge": [
     {
       "find": "NAME",
@@ -369,9 +380,10 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
     "resolution": "hd"
   }
 }
-      </p>
-    </div>
-  </section>
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 `;
 
@@ -381,128 +393,136 @@ exports[`Testing Shotstack module entry point On initialization, should render t
 <div
   id="shotstack-form-field"
 >
-  <section
-    class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"
-    data-cy="form-container"
+  <div
+    class="shotstack-mergefield-form svelte-r93edu"
   >
-    <form
-      class="svelte-u6rap9"
+    <section
+      class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-r93edu"
+      data-cy="form-container"
     >
-      <div
-        class="mb-6 svelte-u6rap9"
-        data-cy="template-input-section"
+      <form
+        class="svelte-r93edu"
       >
-        <label
-          class="text-teal-400 px-1 svelte-u6rap9"
-          for="json-input"
+        <div
+          class="mb-6 svelte-r93edu"
+          data-cy="template-input-section"
         >
-          Paste template
-        </label>
+          <label
+            class="text-teal-400 px-1 svelte-r93edu"
+            for="json-input"
+          >
+            Paste template
+          </label>
+           
+          <textarea
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            data-cy="template-input"
+            id="json-input"
+          />
+        </div>
          
-        <textarea
-          class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"
-          data-cy="template-input"
-          id="json-input"
-        />
-      </div>
+         
+      </form>
        
-       
-    </form>
-     
-    <div
-      class="svelte-u6rap9"
-      data-cy="result-section"
-    >
-      <h1
-        class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"
+      <div
+        class="svelte-r93edu"
+        data-cy="result-section"
       >
-        Result
-      </h1>
-       
-      <abbr
-        class="svelte-u6rap9"
-        title="Copy to clipboard"
-      >
-        <img
-          alt="copy-button"
-          class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"
-          src="[object Object]"
-        />
-      </abbr>
-       
-      <p
-        class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"
-        data-cy="result"
-      >
-        {
+        <h1
+          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        >
+          Result
+        </h1>
+         
+        <abbr
+          class="svelte-r93edu"
+          title="Copy to clipboard"
+        >
+          <img
+            alt="copy-button"
+            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            src="[object Object]"
+          />
+        </abbr>
+         
+        <p
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          data-cy="result"
+        >
+          {
   "merge": []
 }
-      </p>
-    </div>
-  </section>
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 `;
 
 exports[`Testing Shotstack module entry point Shotstack.render() should deploy the app inside target element 1`] = `
 <div>
-  <section
-    class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-u6rap9"
-    data-cy="form-container"
+  <div
+    class="shotstack-mergefield-form svelte-r93edu"
   >
-    <form
-      class="svelte-u6rap9"
+    <section
+      class="max-w-lg my-4 mx-auto border rounded-xl px-7 py-4 svelte-r93edu"
+      data-cy="form-container"
     >
-      <div
-        class="mb-6 svelte-u6rap9"
-        data-cy="template-input-section"
+      <form
+        class="svelte-r93edu"
       >
-        <label
-          class="text-teal-400 px-1 svelte-u6rap9"
-          for="json-input"
+        <div
+          class="mb-6 svelte-r93edu"
+          data-cy="template-input-section"
         >
-          Paste template
-        </label>
+          <label
+            class="text-teal-400 px-1 svelte-r93edu"
+            for="json-input"
+          >
+            Paste template
+          </label>
+           
+          <textarea
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            data-cy="template-input"
+            id="json-input"
+          />
+        </div>
          
-        <textarea
-          class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-u6rap9"
-          data-cy="template-input"
-          id="json-input"
-        />
-      </div>
+         
+      </form>
        
-       
-    </form>
-     
-    <div
-      class="svelte-u6rap9"
-      data-cy="result-section"
-    >
-      <h1
-        class="text-teal-400 px-1 inline-block mr-2 svelte-u6rap9"
+      <div
+        class="svelte-r93edu"
+        data-cy="result-section"
       >
-        Result
-      </h1>
-       
-      <abbr
-        class="svelte-u6rap9"
-        title="Copy to clipboard"
-      >
-        <img
-          alt="copy-button"
-          class="h-4 cursor-pointer inline mb-1 svelte-u6rap9"
-          src="[object Object]"
-        />
-      </abbr>
-       
-      <p
-        class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-u6rap9"
-        data-cy="result"
-      >
-        {
+        <h1
+          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        >
+          Result
+        </h1>
+         
+        <abbr
+          class="svelte-r93edu"
+          title="Copy to clipboard"
+        >
+          <img
+            alt="copy-button"
+            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            src="[object Object]"
+          />
+        </abbr>
+         
+        <p
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          data-cy="result"
+        >
+          {
   "merge": []
 }
-      </p>
-    </div>
-  </section>
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 `;
