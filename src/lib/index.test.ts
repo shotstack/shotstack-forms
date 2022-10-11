@@ -134,4 +134,23 @@ describe('Testing Shotstack methods', () => {
 
 		expect(shotstackService.merge()).toEqual(expectedResultTemplate);
 	});
+
+	it('Shotstack.load(), should replace the source JSON template with a new one', () => {
+		const prevJson = { merge: [{ find: 'foo', replace: 'bar' }] };
+		const newJson = { merge: [{ find: 'foo', replace: 'baz' }] };
+		const shotstackService = new Shotstack(prevJson);
+		shotstackService.load(newJson);
+		expect(shotstackService.merge()).toEqual(newJson);
+	});
+
+	it('Shotstack.load(), should trigger onchange effects', () => {
+		const prevJson = { merge: [{ find: 'foo', replace: 'bar' }] };
+		const newJson = { merge: [{ find: 'foo', replace: 'baz' }] };
+		const shotstackService = new Shotstack(prevJson);
+		const mock = jest.fn();
+		shotstackService.on('change', mock);
+		shotstackService.load(newJson);
+		expect(mock).toHaveBeenCalled();
+		expect(mock).toHaveBeenCalledWith(newJson, prevJson);
+	});
 });
