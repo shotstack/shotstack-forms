@@ -50,6 +50,32 @@ describe('Testing Shotstack module entry point', () => {
 		expect(mockSubmit).toHaveBeenCalled();
 		expect(mockSubmit).toHaveBeenCalledWith(expectedResultTemplate);
 	});
+	it('When .off(event, callback) is called, it should remove a function from the event handler array', () => {
+		const shotstackService = new Shotstack({ merge: [{ find: 'foo', replace: 'bar' }] });
+		const mock = jest.fn();
+		shotstackService.on('submit', mock);
+		shotstackService.off('submit', mock);
+		shotstackService.submit();
+		expect(mock).not.toHaveBeenCalled();
+	});
+	it('When .off is called, it should remove a function without affecting any of the other handlers', () => {
+		const shotstackService = new Shotstack({ merge: [{ find: 'foo', replace: 'bar' }] });
+		const mockSubmit = jest.fn();
+		const mockChange = jest.fn();
+		const anotherMockSubmit = jest.fn();
+		shotstackService.on('submit', mockSubmit);
+		shotstackService.on('submit', anotherMockSubmit);
+		shotstackService.on('change', mockChange);
+		shotstackService.off('submit', mockSubmit);
+		//Update with shotstack.load()
+		shotstackService.templateService.setTemplateSource({
+			merge: [{ find: 'foo', replace: 'baz' }]
+		});
+		shotstackService.submit();
+		expect(mockSubmit).not.toHaveBeenCalled();
+		expect(anotherMockSubmit).toHaveBeenCalled();
+		expect(mockChange).toHaveBeenCalled();
+	});
 });
 
 describe('Testing Shotstack methods', () => {
