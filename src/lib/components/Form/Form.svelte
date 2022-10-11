@@ -1,10 +1,12 @@
 <script lang="ts">
 	import './Form.css';
 	import './styles.css';
+
 	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
 	import type { IParsedEditSchema } from '$lib/ShotstackEditTemplate/types';
+	import SubmitArea from './submit/SubmitArea.svelte';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
@@ -32,6 +34,22 @@
 	function formatJson(json: IParsedEditSchema) {
 		return JSON.stringify(json, null, 2);
 	}
+
+	function makeBlob(template: IParsedEditSchema) {
+		if (typeof window !== 'undefined') {
+			const blob = new Blob([JSON.stringify(template, null, 2)], {
+				type: 'text/plain'
+			});
+			return URL.createObjectURL(blob);
+		} else return null;
+	}
+
+	function submit() {
+		editTemplateService.submit();
+		window.alert('Form successfully submitted!');
+	}
+
+	$: download = makeBlob(result) || '';
 </script>
 
 <div class="shotstack-mergefield-form">
@@ -93,6 +111,7 @@
 				<p data-cy="result" class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
 					{formatJson(result)}
 				</p>
+				<SubmitArea {submit} {download} />
 			</div>
 		{/if}
 	</section>

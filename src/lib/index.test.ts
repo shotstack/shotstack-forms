@@ -2,6 +2,12 @@ import { describe, expect } from '@jest/globals';
 import Shotstack from './index';
 import defaultJsonInput from '../lib/components/Form/defaultMerge.json';
 import type { IParsedEditSchema } from './ShotstackEditTemplate/types';
+
+beforeEach(() => {
+	//Since window.URL.createObjectURL is not (yet) available in jest-dom,
+	//we need to provide a mock implementation for it.
+	window.URL.createObjectURL = jest.fn();
+});
 describe('Testing Shotstack module entry point', () => {
 	it('Shotstack.render() should deploy the app inside target element', () => {
 		const element = document.createElement('div');
