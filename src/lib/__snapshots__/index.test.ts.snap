@@ -127,8 +127,10 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
         <div
           class="flex justify-between pt-4"
         >
-          <button
+          <a
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-40 justify-center"
+            download="result.json"
+            href=""
           >
             <svg
               class="fill-current w-4 h-4 mr-2"
@@ -139,11 +141,9 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                 d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
               />
             </svg>
-             
-            <span>
-              Download
-            </span>
-          </button>
+            
+	Download
+          </a>
            
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-40"
@@ -284,8 +284,10 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
         <div
           class="flex justify-between pt-4"
         >
-          <button
+          <a
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-40 justify-center"
+            download="result.json"
+            href=""
           >
             <svg
               class="fill-current w-4 h-4 mr-2"
@@ -296,11 +298,9 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                 d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
               />
             </svg>
-             
-            <span>
-              Download
-            </span>
-          </button>
+            
+	Download
+          </a>
            
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-40"
@@ -441,8 +441,10 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
         <div
           class="flex justify-between pt-4"
         >
-          <button
+          <a
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-40 justify-center"
+            download="result.json"
+            href=""
           >
             <svg
               class="fill-current w-4 h-4 mr-2"
@@ -453,11 +455,9 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                 d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
               />
             </svg>
-             
-            <span>
-              Download
-            </span>
-          </button>
+            
+	Download
+          </a>
            
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-40"
@@ -541,8 +541,10 @@ exports[`Testing Shotstack module entry point On initialization, should render t
         <div
           class="flex justify-between pt-4"
         >
-          <button
+          <a
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-40 justify-center"
+            download="result.json"
+            href=""
           >
             <svg
               class="fill-current w-4 h-4 mr-2"
@@ -553,11 +555,9 @@ exports[`Testing Shotstack module entry point On initialization, should render t
                 d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
               />
             </svg>
-             
-            <span>
-              Download
-            </span>
-          </button>
+            
+	Download
+          </a>
            
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-40"
@@ -637,8 +637,10 @@ exports[`Testing Shotstack module entry point Shotstack.render() should deploy t
         <div
           class="flex justify-between pt-4"
         >
-          <button
+          <a
             class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center w-40 justify-center"
+            download="result.json"
+            href=""
           >
             <svg
               class="fill-current w-4 h-4 mr-2"
@@ -649,11 +651,9 @@ exports[`Testing Shotstack module entry point Shotstack.render() should deploy t
                 d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"
               />
             </svg>
-             
-            <span>
-              Download
-            </span>
-          </button>
+            
+	Download
+          </a>
            
           <button
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-40"
