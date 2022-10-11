@@ -38,8 +38,12 @@ export class ShotstackEditTemplateService {
 	on<K extends keyof IShotstackEvents>(eventName: K, callback: IShotstackEvents[K]) {
 		this.handlers[eventName].push(callback);
 	}
+
 	off<K extends keyof IShotstackEvents>(eventName: K, callback: IShotstackEvents[K]) {
-		this.handlers[eventName].filter((fn) => fn !== callback);
+		this.handlers = {
+			...this.handlers,
+			[eventName]: this.handlers[eventName].filter((fn) => fn !== callback)
+		};
 	}
 
 	submit() {
