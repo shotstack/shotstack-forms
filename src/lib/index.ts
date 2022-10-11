@@ -68,8 +68,13 @@ class Shotstack {
 		}
 		return this.containerElement;
 	}
+
 	merge() {
 		return this.templateService.result;
+	}
+
+	load(input: unknown) {
+		this.templateService.setTemplateSource(input);
 	}
 }
 
