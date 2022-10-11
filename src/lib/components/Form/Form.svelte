@@ -5,6 +5,7 @@
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
 	import type { IParsedEditSchema } from '$lib/ShotstackEditTemplate/types';
+	import SubmitArea from './submit/SubmitArea.svelte';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
@@ -93,6 +94,7 @@
 				<p data-cy="result" class="h-60 overflow-auto  border p-4 whitespace-pre monospace">
 					{formatJson(result)}
 				</p>
+				<SubmitArea />
 			</div>
 		{/if}
 	</section>
