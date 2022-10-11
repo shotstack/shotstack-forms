@@ -921,6 +921,9 @@ class $t {
   merge() {
     return this.templateService.result;
   }
+  load(e) {
+    this.templateService.setTemplateSource(e);
+  }
 }
 export {
   $t as default
