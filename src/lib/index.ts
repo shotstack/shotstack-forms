@@ -16,6 +16,10 @@ class Shotstack {
 		this.templateService.on(eventName, callback);
 	}
 
+	off(eventName: TemplateEvent, callback: IShotstackEvents[TemplateEvent]) {
+		this.templateService.off(eventName, callback);
+	}
+
 	submit() {
 		this.templateService.submit();
 	}
