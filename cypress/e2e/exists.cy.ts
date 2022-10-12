@@ -163,7 +163,7 @@ describe('Result JSON', () => {
 				// We extract the inner text of label without braces
 				// We extract the input value
 				// We build a MergeField object
-				return { find: label.innerText.slice(3, -3), replace: input.value };
+				return { find: label.innerText, replace: input.value };
 			});
 
 			//Assert
@@ -191,7 +191,7 @@ describe('Result JSON', () => {
 				const label = el.children[0] as HTMLLabelElement;
 				const input = el.children[1] as HTMLInputElement;
 				// We extract the inner text of label without braces and the input value
-				const find = label.innerText.slice(3, -3);
+				const find = label.innerText;
 				const replace = input.value;
 				// We build a MergeField object and return it
 				return { find, replace };
@@ -238,7 +238,7 @@ describe('Result JSON', () => {
 				// We extract the inner text of label without braces
 				// We extract the input value
 				// We build a MergeField object
-				return { find: label.innerText.slice(3, -3), replace: input.value };
+				return { find: label.innerText, replace: input.value };
 			});
 
 			// Assert

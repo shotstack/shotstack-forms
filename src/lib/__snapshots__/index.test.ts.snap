@@ -54,7 +54,7 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                 class="block mb-2 monospace svelte-r93edu"
                 for="NAME"
               >
-                {{ NAME }} 
+                NAME
               </label>
                
               <input
@@ -211,7 +211,7 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                 class="block mb-2 monospace svelte-r93edu"
                 for="NAME"
               >
-                {{ NAME }} 
+                NAME
               </label>
                
               <input
@@ -368,7 +368,7 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                 class="block mb-2 monospace svelte-r93edu"
                 for="NAME"
               >
-                {{ NAME }} 
+                NAME
               </label>
                
               <input
