@@ -75,4 +75,11 @@ export class ShotstackEditTemplateService {
 	logger(error: unknown) {
 		console.error(error);
 	}
+
+	addMergeField(field: MergeField) {
+		this.setTemplateSource({
+			...this.result,
+			merge: [...this.result.merge, field]
+		});
+	}
 }
