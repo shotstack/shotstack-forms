@@ -6,7 +6,7 @@ export interface JSONLikeObject {
 
 export interface MergeField {
 	find: string;
-	replace: JSONValidTypes;
+	replace: string;
 }
 
 export interface IParsedEditSchema {
