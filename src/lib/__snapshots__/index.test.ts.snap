@@ -33,36 +33,58 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
         </div>
          
          
-        <div
-          class="svelte-r93edu"
-          data-cy="merge-fields-input-section"
-        >
-          <h1
-            class="text-teal-400 px-1 svelte-r93edu"
+        <div>
+          <div
+            data-cy="merge-fields-input-section"
           >
-            Modify Merge Values
-          </h1>
+            <h1
+              class="text-teal-400 px-1"
+            >
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            >
+              <div
+                data-cy="label-input"
+              >
+                <label
+                  class="block mb-2 monospace"
+                  for="NAME"
+                >
+                  NAME
+                </label>
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  id="NAME"
+                  type="text"
+                />
+                 
+              </div>
+            </div>
+          </div>
            
           <div
-            class="border p-4 mb-6 svelte-r93edu"
+            class="flex"
           >
-            <div
-              class="svelte-r93edu"
-              data-cy="label-input"
-            >
-              <label
-                class="block mb-2 monospace svelte-r93edu"
-                for="NAME"
-              >
-                NAME
-              </label>
-               
+            <div>
               <input
-                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
-                id="NAME"
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
                 type="text"
               />
                
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-3xl"
+            >
+              +
             </div>
           </div>
         </div>
@@ -190,36 +212,58 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
         </div>
          
          
-        <div
-          class="svelte-r93edu"
-          data-cy="merge-fields-input-section"
-        >
-          <h1
-            class="text-teal-400 px-1 svelte-r93edu"
+        <div>
+          <div
+            data-cy="merge-fields-input-section"
           >
-            Modify Merge Values
-          </h1>
+            <h1
+              class="text-teal-400 px-1"
+            >
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            >
+              <div
+                data-cy="label-input"
+              >
+                <label
+                  class="block mb-2 monospace"
+                  for="NAME"
+                >
+                  NAME
+                </label>
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  id="NAME"
+                  type="text"
+                />
+                 
+              </div>
+            </div>
+          </div>
            
           <div
-            class="border p-4 mb-6 svelte-r93edu"
+            class="flex"
           >
-            <div
-              class="svelte-r93edu"
-              data-cy="label-input"
-            >
-              <label
-                class="block mb-2 monospace svelte-r93edu"
-                for="NAME"
-              >
-                NAME
-              </label>
-               
+            <div>
               <input
-                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
-                id="NAME"
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
                 type="text"
               />
                
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-3xl"
+            >
+              +
             </div>
           </div>
         </div>
@@ -347,36 +391,58 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
         </div>
          
          
-        <div
-          class="svelte-r93edu"
-          data-cy="merge-fields-input-section"
-        >
-          <h1
-            class="text-teal-400 px-1 svelte-r93edu"
+        <div>
+          <div
+            data-cy="merge-fields-input-section"
           >
-            Modify Merge Values
-          </h1>
+            <h1
+              class="text-teal-400 px-1"
+            >
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            >
+              <div
+                data-cy="label-input"
+              >
+                <label
+                  class="block mb-2 monospace"
+                  for="NAME"
+                >
+                  NAME
+                </label>
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  id="NAME"
+                  type="text"
+                />
+                 
+              </div>
+            </div>
+          </div>
            
           <div
-            class="border p-4 mb-6 svelte-r93edu"
+            class="flex"
           >
-            <div
-              class="svelte-r93edu"
-              data-cy="label-input"
-            >
-              <label
-                class="block mb-2 monospace svelte-r93edu"
-                for="NAME"
-              >
-                NAME
-              </label>
-               
+            <div>
               <input
-                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
-                id="NAME"
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
                 type="text"
               />
                
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-3xl"
+            >
+              +
             </div>
           </div>
         </div>
