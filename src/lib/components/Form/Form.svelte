@@ -81,7 +81,7 @@
 						{#each template.merge as { find, replace }}
 							<div data-cy="label-input">
 								<label for={find} class="block mb-2 monospace">
-									{'{{ ' + find + ' }} '}
+									{find}
 								</label>
 								<input
 									class="border w-full mb-3 pl-2 py-1 text-stone-500"
