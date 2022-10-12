@@ -123,13 +123,13 @@ describe('ShotstackEditTemplateService.updateResultMergeFields', () => {
 
 		expect(editTemplateService.result.merge).toEqual([{ find: 'test', replace: 'foo_edited' }]);
 	});
+});
 
-	describe('ShotstackEditTemplateService.logger', () => {
-		it('On error, by default, should call console.error with the error', () => {
-			console.error = jest.fn();
-			new ShotstackEditTemplateService({ foo: 'bar' });
-			expect(console.error).toHaveBeenCalled();
-			expect(console.error).toHaveBeenCalledWith(new ValidationError(MERGE_NOT_FOUND));
-		});
+describe('ShotstackEditTemplateService.logger', () => {
+	it('On error, by default, should call console.error with the error', () => {
+		console.error = jest.fn();
+		new ShotstackEditTemplateService({ foo: 'bar' });
+		expect(console.error).toHaveBeenCalled();
+		expect(console.error).toHaveBeenCalledWith(new ValidationError(MERGE_NOT_FOUND));
 	});
 });

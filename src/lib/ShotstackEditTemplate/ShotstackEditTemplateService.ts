@@ -63,7 +63,7 @@ export class ShotstackEditTemplateService {
 		}
 	}
 
-	updateResultMergeFields(mergeFieldInput: { find: string; replace: string }) {
+	updateResultMergeFields(mergeFieldInput: MergeField) {
 		const { find, replace } = mergeFieldInput;
 		const validMergeField: MergeField = { find, replace };
 		const merge = this.result.merge.map((mergeField) =>
@@ -74,5 +74,12 @@ export class ShotstackEditTemplateService {
 	}
 	logger(error: unknown) {
 		console.error(error);
+	}
+
+	addMergeField(field: MergeField) {
+		this.setTemplateSource({
+			...this.result,
+			merge: [...this.result.merge, field]
+		});
 	}
 }

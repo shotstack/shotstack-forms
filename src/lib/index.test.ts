@@ -159,4 +159,25 @@ describe('Testing Shotstack methods', () => {
 		expect(mock).toHaveBeenCalled();
 		expect(mock).toHaveBeenCalledWith(newJson, prevJson);
 	});
+
+	it('addMergeField should add an entry on the source template and the result template', () => {
+		const validJson = { merge: [{ find: 'foo', replace: 'baz' }] };
+		const find = 'fizz';
+		const replace = 'buzz';
+		const validMergeField = { find, replace };
+		const mergedJson = { ...validJson, merge: [...validJson.merge, validMergeField] };
+		const service = new Shotstack(validJson);
+		service.addField(find, replace);
+		expect(service.templateService.template).toEqual(mergedJson);
+		expect(service.merge()).toEqual(mergedJson);
+	});
+
+	it('If correct, it should trigger onChange events', () => {
+		const validJson = { merge: [{ find: 'foo', replace: 'baz' }] };
+		const service = new Shotstack(validJson);
+		const mock = jest.fn();
+		service.on('change', mock);
+		service.addField('fizz', 'buzz');
+		expect(mock).toHaveBeenCalled();
+	});
 });

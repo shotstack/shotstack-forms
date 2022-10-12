@@ -76,6 +76,10 @@ class Shotstack {
 	load(input: unknown) {
 		this.templateService.setTemplateSource(input);
 	}
+
+	addField(find: string, replace: string) {
+		this.templateService.addMergeField({ find, replace });
+	}
 }
 
 export default Shotstack;
