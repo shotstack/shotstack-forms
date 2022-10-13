@@ -33,36 +33,85 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
         </div>
          
          
-        <div
-          class="svelte-r93edu"
-          data-cy="merge-fields-input-section"
-        >
-          <h1
-            class="text-teal-400 px-1 svelte-r93edu"
-          >
-            Modify Merge Values
-          </h1>
-           
+        <div>
           <div
-            class="border p-4 mb-6 svelte-r93edu"
+            data-cy="merge-fields-input-section"
           >
-            <div
-              class="svelte-r93edu"
-              data-cy="label-input"
+            <h1
+              class="text-teal-400 px-1"
             >
-              <label
-                class="block mb-2 monospace svelte-r93edu"
-                for="NAME"
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            >
+              <div
+                class="relative"
+                data-cy="label-input"
               >
-                NAME
-              </label>
+                <label
+                  class="block mb-2 monospace"
+                  for="NAME"
+                >
+                  NAME
+                </label>
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  id="NAME"
+                  type="text"
+                />
+                 
+                <button
+                  class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+                 
+              </div>
+            </div>
+          </div>
+           
+          <div>
+            <div>
+              <h1
+                class="text-teal-400 px-1"
+              >
+                Add a new merge field
+              </h1>
                
-              <input
-                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
-                id="NAME"
-                type="text"
-              />
-               
+              <div
+                class="border p-4 mb-6"
+              >
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <div
+                  class="flex flex-row-reverse"
+                >
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -190,36 +239,85 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
         </div>
          
          
-        <div
-          class="svelte-r93edu"
-          data-cy="merge-fields-input-section"
-        >
-          <h1
-            class="text-teal-400 px-1 svelte-r93edu"
-          >
-            Modify Merge Values
-          </h1>
-           
+        <div>
           <div
-            class="border p-4 mb-6 svelte-r93edu"
+            data-cy="merge-fields-input-section"
           >
-            <div
-              class="svelte-r93edu"
-              data-cy="label-input"
+            <h1
+              class="text-teal-400 px-1"
             >
-              <label
-                class="block mb-2 monospace svelte-r93edu"
-                for="NAME"
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            >
+              <div
+                class="relative"
+                data-cy="label-input"
               >
-                NAME
-              </label>
+                <label
+                  class="block mb-2 monospace"
+                  for="NAME"
+                >
+                  NAME
+                </label>
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  id="NAME"
+                  type="text"
+                />
+                 
+                <button
+                  class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+                 
+              </div>
+            </div>
+          </div>
+           
+          <div>
+            <div>
+              <h1
+                class="text-teal-400 px-1"
+              >
+                Add a new merge field
+              </h1>
                
-              <input
-                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
-                id="NAME"
-                type="text"
-              />
-               
+              <div
+                class="border p-4 mb-6"
+              >
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <div
+                  class="flex flex-row-reverse"
+                >
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -347,36 +445,85 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
         </div>
          
          
-        <div
-          class="svelte-r93edu"
-          data-cy="merge-fields-input-section"
-        >
-          <h1
-            class="text-teal-400 px-1 svelte-r93edu"
-          >
-            Modify Merge Values
-          </h1>
-           
+        <div>
           <div
-            class="border p-4 mb-6 svelte-r93edu"
+            data-cy="merge-fields-input-section"
           >
-            <div
-              class="svelte-r93edu"
-              data-cy="label-input"
+            <h1
+              class="text-teal-400 px-1"
             >
-              <label
-                class="block mb-2 monospace svelte-r93edu"
-                for="NAME"
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            >
+              <div
+                class="relative"
+                data-cy="label-input"
               >
-                NAME
-              </label>
+                <label
+                  class="block mb-2 monospace"
+                  for="NAME"
+                >
+                  NAME
+                </label>
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  id="NAME"
+                  type="text"
+                />
+                 
+                <button
+                  class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+                 
+              </div>
+            </div>
+          </div>
+           
+          <div>
+            <div>
+              <h1
+                class="text-teal-400 px-1"
+              >
+                Add a new merge field
+              </h1>
                
-              <input
-                class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu"
-                id="NAME"
-                type="text"
-              />
-               
+              <div
+                class="border p-4 mb-6"
+              >
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <div
+                  class="flex flex-row-reverse"
+                >
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -506,6 +653,55 @@ exports[`Testing Shotstack module entry point On initialization, should render t
         </div>
          
          
+        <div>
+          <div
+            data-cy="merge-fields-input-section"
+          >
+            <h1
+              class="text-teal-400 px-1"
+            >
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            />
+          </div>
+           
+          <div>
+            <div>
+              <h1
+                class="text-teal-400 px-1"
+              >
+                Add a new merge field
+              </h1>
+               
+              <div
+                class="border p-4 mb-6"
+              >
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <div
+                  class="flex flex-row-reverse"
+                >
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
        
       <div
@@ -602,6 +798,55 @@ exports[`Testing Shotstack module entry point Shotstack.render() should deploy t
         </div>
          
          
+        <div>
+          <div
+            data-cy="merge-fields-input-section"
+          >
+            <h1
+              class="text-teal-400 px-1"
+            >
+              Modify Merge Values
+            </h1>
+             
+            <div
+              class="border p-4 mb-6"
+            />
+          </div>
+           
+          <div>
+            <div>
+              <h1
+                class="text-teal-400 px-1"
+              >
+                Add a new merge field
+              </h1>
+               
+              <div
+                class="border p-4 mb-6"
+              >
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <input
+                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  type="text"
+                />
+                 
+                <div
+                  class="flex flex-row-reverse"
+                >
+                  <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
        
       <div

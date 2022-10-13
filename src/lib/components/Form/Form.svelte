@@ -5,8 +5,9 @@
 	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
-	import type { IParsedEditSchema } from '$lib/ShotstackEditTemplate/types';
+	import type { IParsedEditSchema, MergeField } from '$lib/ShotstackEditTemplate/types';
 	import SubmitArea from './submit/SubmitArea.svelte';
+	import Fields from './fields/Fields.svelte';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
@@ -50,6 +51,21 @@
 	}
 
 	$: download = makeBlob(result) || '';
+
+	function addField(input: MergeField) {
+		editTemplateService.addMergeField(input);
+		template = editTemplateService.template;
+		result = editTemplateService.result;
+		error = editTemplateService.error;
+	}
+
+	function removeField(field: MergeField) {
+		const ref = editTemplateService.getMergeFieldItem(field);
+		editTemplateService.removeMergeField(ref as MergeField);
+		template = editTemplateService.template;
+		result = editTemplateService.result;
+		error = editTemplateService.error;
+	}
 </script>
 
 <div class="shotstack-mergefield-form">
@@ -74,26 +90,8 @@
 				</p>
 			{/if}
 
-			{#if template.merge?.length && !error}
-				<div data-cy="merge-fields-input-section">
-					<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
-					<div class="border p-4 mb-6">
-						{#each template.merge as { find, replace }}
-							<div data-cy="label-input">
-								<label for={find} class="block mb-2 monospace">
-									{find}
-								</label>
-								<input
-									class="border w-full mb-3 pl-2 py-1 text-stone-500"
-									id={find}
-									type="text"
-									value={replace}
-									on:input={(e) => handleFormInput({ find, replace: e.currentTarget.value })}
-								/>
-							</div>
-						{/each}
-					</div>
-				</div>
+			{#if !error}
+				<Fields fields={template.merge} {handleFormInput} {addField} {removeField} />
 			{/if}
 		</form>
 
