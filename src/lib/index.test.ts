@@ -1,7 +1,7 @@
 import { describe, expect } from '@jest/globals';
 import Shotstack from './index';
 import defaultJsonInput from '../lib/components/Form/defaultMerge.json';
-import type { IParsedEditSchema } from './ShotstackEditTemplate/types';
+import type { IParsedEditSchema, MergeField } from './ShotstackEditTemplate/types';
 
 beforeEach(() => {
 	//Since window.URL.createObjectURL is not (yet) available in jest-dom,
@@ -178,6 +178,71 @@ describe('Testing Shotstack methods', () => {
 		const mock = jest.fn();
 		service.on('change', mock);
 		service.addField('fizz', 'buzz');
+		expect(mock).toHaveBeenCalled();
+	});
+
+	it('getField should return a reference from the merge property', () => {
+		const field = { find: 'foo', replace: 'bar' };
+		const validJson = { merge: [field] };
+		const service = new Shotstack(validJson);
+		expect(service.getField('foo')).toEqual(field);
+		expect(service.getField('foo')).toBe(service.templateService.result.merge[0]);
+	});
+
+	it('if no reference is found, should return undefined', () => {
+		const field = { find: 'foo', replace: 'bar' };
+		const validJson = { merge: [field] };
+		const service = new Shotstack(validJson);
+		expect(service.getField('fizz')).toEqual(undefined);
+	});
+
+	it('if multiple items are found, should return the first', () => {
+		const field = { find: 'foo', replace: 'bar' };
+		const repeatedField = { find: 'foo', replace: 'baz' };
+		const validJson = { merge: [field, repeatedField] };
+		const service = new Shotstack(validJson);
+		const item = service.getField('foo');
+		expect(item).toEqual(field);
+		expect(item).toBe(service.templateService.result.merge[0]);
+		expect(item).not.toBe(service.templateService.result.merge[1]);
+	});
+
+	it('if a replace argument is present, should also check for replace property equality', () => {
+		const field = { find: 'foo', replace: 'bar' };
+		const repeatedField = { find: 'foo', replace: 'baz' };
+		const validJson = { merge: [field, repeatedField] };
+		const service = new Shotstack(validJson);
+		const item = service.getField('foo', 'baz');
+		expect(item).toEqual(repeatedField);
+		expect(item).toBe(service.templateService.result.merge[1]);
+		expect(item).not.toBe(service.templateService.result.merge[0]);
+	});
+
+	it('removeField should remove an entry from the merge property', () => {
+		const validJson = {
+			merge: [
+				{ find: 'foo', replace: 'baz' },
+				{ find: 'fizz', replace: 'buzz' }
+			]
+		};
+		const service = new Shotstack(validJson);
+		const item = service.getField('foo') as MergeField;
+		service.removeField(item);
+		expect(service.merge()).toEqual({ merge: [{ find: 'fizz', replace: 'buzz' }] });
+	});
+
+	it('removeField should trigger onChange events', () => {
+		const validJson = {
+			merge: [
+				{ find: 'foo', replace: 'baz' },
+				{ find: 'fizz', replace: 'buzz' }
+			]
+		};
+		const service = new Shotstack(validJson);
+		const item = service.getField('foo') as MergeField;
+		const mock = jest.fn();
+		service.on('change', mock);
+		service.removeField(item);
 		expect(mock).toHaveBeenCalled();
 	});
 });
