@@ -1,6 +1,6 @@
 import { Form } from './components';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplate/ShotstackEditTemplateService';
-import type { IShotstackEvents, TemplateEvent } from './ShotstackEditTemplate/types';
+import type { IShotstackEvents, MergeField, TemplateEvent } from './ShotstackEditTemplate/types';
 
 class Shotstack {
 	public templateService: ShotstackEditTemplateService;
@@ -79,6 +79,14 @@ class Shotstack {
 
 	addField(find: string, replace: string) {
 		this.templateService.addMergeField({ find, replace });
+	}
+
+	removeField(item: MergeField) {
+		this.templateService.removeMergeField(item);
+	}
+
+	getField(field: { find?: string; replace?: string }) {
+		return this.templateService.getMergeFieldItem(field);
 	}
 }
 

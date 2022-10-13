@@ -72,6 +72,7 @@ export class ShotstackEditTemplateService {
 		this.result = { ...this.result, merge };
 		return merge;
 	}
+
 	logger(error: unknown) {
 		console.error(error);
 	}
@@ -81,5 +82,24 @@ export class ShotstackEditTemplateService {
 			...this.result,
 			merge: [...this.result.merge, field]
 		});
+	}
+
+	removeMergeField(field: MergeField) {
+		this.setTemplateSource({
+			...this.result,
+			merge: this.result.merge.filter((k) => k !== field)
+		});
+	}
+
+	getMergeFieldItem(field: { find?: string; replace?: string }) {
+		if (Object.keys(field).length === 0) return undefined;
+		const finderCallback = function (k: MergeField) {
+			let prop: keyof MergeField;
+			for (prop in field) {
+				if (k[prop] !== field[prop]) return false;
+			}
+			return true;
+		};
+		return this.result.merge.find(finderCallback);
 	}
 }
