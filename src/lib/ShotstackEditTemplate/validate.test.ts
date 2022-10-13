@@ -40,11 +40,6 @@ describe('ShotstackEditTemplate/validate.ts', () => {
 		const noArray = JSON.stringify({ merge: { foo: 'bar' } });
 		expect(() => validateTemplate(noArray)).toThrowError(MERGE_NOT_ARRAY);
 	});
-
-	test('Should throw if merge is empty', () => {
-		const emptyArray = JSON.stringify({ merge: [] });
-		expect(() => validateTemplate(emptyArray)).toThrowError(MERGE_NOT_EMPTY);
-	});
 });
 
 describe('ShotstackEditTemplate/validate.ts .validateMerge', () => {

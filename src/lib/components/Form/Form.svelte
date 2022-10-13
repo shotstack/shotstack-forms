@@ -58,6 +58,14 @@
 		result = editTemplateService.result;
 		error = editTemplateService.error;
 	}
+
+	function removeField(field: MergeField) {
+		const ref = editTemplateService.getMergeFieldItem(field);
+		editTemplateService.removeMergeField(ref as MergeField);
+		template = editTemplateService.template;
+		result = editTemplateService.result;
+		error = editTemplateService.error;
+	}
 </script>
 
 <div class="shotstack-mergefield-form">
@@ -82,8 +90,8 @@
 				</p>
 			{/if}
 
-			{#if template.merge?.length && !error}
-				<Fields fields={template.merge} {handleFormInput} {addField} />
+			{#if !error}
+				<Fields fields={template.merge} {handleFormInput} {addField} {removeField} />
 			{/if}
 		</form>
 

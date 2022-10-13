@@ -52,7 +52,6 @@ export function validateTemplate(jsonTemplate: string): IParsedEditSchema {
 		const parsed = JSON.parse(jsonTemplate);
 		if (propertyDoesNotExist('merge', parsed)) throw new ValidationError(MERGE_NOT_FOUND);
 		if (isNotInstanceOfArray('merge', parsed)) throw new ValidationError(MERGE_NOT_ARRAY);
-		if (isEmptyArray('merge', parsed)) throw new ValidationError(MERGE_NOT_EMPTY);
 		const { merge: unknownMergeField } = parsed as { merge: unknown[] };
 		const merge = validateMerge(unknownMergeField);
 		return { ...parsed, merge };
