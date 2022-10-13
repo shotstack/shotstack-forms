@@ -85,8 +85,8 @@ class Shotstack {
 		this.templateService.removeMergeField(item);
 	}
 
-	getField(find: string, replace?: string) {
-		return this.templateService.getMergeFieldItem(find, replace);
+	getField(field: { find?: string; replace?: string }) {
+		return this.templateService.getMergeFieldItem(field);
 	}
 }
 

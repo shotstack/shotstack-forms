@@ -185,15 +185,28 @@ describe('Testing Shotstack methods', () => {
 		const field = { find: 'foo', replace: 'bar' };
 		const validJson = { merge: [field] };
 		const service = new Shotstack(validJson);
-		expect(service.getField('foo')).toEqual(field);
-		expect(service.getField('foo')).toBe(service.templateService.result.merge[0]);
+		const item = service.getField({ find: 'foo' });
+		const itemByReplace = service.getField({ replace: 'bar' });
+		expect(item).toEqual(field);
+		expect(item).toBe(service.templateService.result.merge[0]);
+		expect(itemByReplace).toEqual(field);
+		expect(itemByReplace).toBe(service.templateService.result.merge[0]);
 	});
 
 	it('if no reference is found, should return undefined', () => {
 		const field = { find: 'foo', replace: 'bar' };
 		const validJson = { merge: [field] };
 		const service = new Shotstack(validJson);
-		expect(service.getField('fizz')).toEqual(undefined);
+		const item = service.getField({ find: 'fizz' });
+		expect(item).toEqual(undefined);
+	});
+
+	it('if an empty collection is provided, should return undefined', () => {
+		const field = { find: 'foo', replace: 'bar' };
+		const validJson = { merge: [field] };
+		const service = new Shotstack(validJson);
+		const item = service.getField({});
+		expect(item).toEqual(undefined);
 	});
 
 	it('if multiple items are found, should return the first', () => {
@@ -201,7 +214,7 @@ describe('Testing Shotstack methods', () => {
 		const repeatedField = { find: 'foo', replace: 'baz' };
 		const validJson = { merge: [field, repeatedField] };
 		const service = new Shotstack(validJson);
-		const item = service.getField('foo');
+		const item = service.getField({ find: 'foo' });
 		expect(item).toEqual(field);
 		expect(item).toBe(service.templateService.result.merge[0]);
 		expect(item).not.toBe(service.templateService.result.merge[1]);
@@ -212,7 +225,7 @@ describe('Testing Shotstack methods', () => {
 		const repeatedField = { find: 'foo', replace: 'baz' };
 		const validJson = { merge: [field, repeatedField] };
 		const service = new Shotstack(validJson);
-		const item = service.getField('foo', 'baz');
+		const item = service.getField({ find: 'foo', replace: 'baz' });
 		expect(item).toEqual(repeatedField);
 		expect(item).toBe(service.templateService.result.merge[1]);
 		expect(item).not.toBe(service.templateService.result.merge[0]);
@@ -226,7 +239,7 @@ describe('Testing Shotstack methods', () => {
 			]
 		};
 		const service = new Shotstack(validJson);
-		const item = service.getField('foo') as MergeField;
+		const item = service.getField({ find: 'foo' }) as MergeField;
 		service.removeField(item);
 		expect(service.merge()).toEqual({ merge: [{ find: 'fizz', replace: 'buzz' }] });
 	});
@@ -239,7 +252,7 @@ describe('Testing Shotstack methods', () => {
 			]
 		};
 		const service = new Shotstack(validJson);
-		const item = service.getField('foo') as MergeField;
+		const item = service.getField({ find: 'foo' }) as MergeField;
 		const mock = jest.fn();
 		service.on('change', mock);
 		service.removeField(item);

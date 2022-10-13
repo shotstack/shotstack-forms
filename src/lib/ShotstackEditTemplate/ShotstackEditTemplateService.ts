@@ -91,9 +91,15 @@ export class ShotstackEditTemplateService {
 		});
 	}
 
-	getMergeFieldItem(find: string, replace?: string) {
-		return this.result.merge.find((k) =>
-			replace ? k.find === find && k.replace === replace : k.find === find
-		);
+	getMergeFieldItem(field: { find?: string; replace?: string }) {
+		if (Object.keys(field).length === 0) return undefined;
+		const finderCallback = function (k: MergeField) {
+			let prop: keyof MergeField;
+			for (prop in field) {
+				if (k[prop] !== field[prop]) return false;
+			}
+			return true;
+		};
+		return this.result.merge.find(finderCallback);
 	}
 }
