@@ -5,14 +5,14 @@
 		<link rel="icon" href="/shotstack-merge-fields/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-	<link href="/shotstack-merge-fields/app/immutable/assets/_page-41f3aa03.css" rel="stylesheet">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/start-d1885f90.js">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/index-35df3809.js">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/singletons-b321dff1.js">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/layout.svelte-1ca47993.js">
+	<link href="/shotstack-merge-fields/app/immutable/assets/_page-2f690465.css" rel="stylesheet">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/start-fb857371.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/index-844d5f2f.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/singletons-340274bc.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/layout.svelte-2f589832.js">
 	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/modules/pages/_layout.ts-2d55546e.js">
 	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/chunks/_layout-c9a66c0f.js">
-	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/pages/_page.svelte-23fbdf37.js">
+	<link rel="modulepreload" href="/shotstack-merge-fields/app/immutable/components/pages/_page.svelte-53b3dc59.js">
 	</head>
 	<body>
 		<div>
@@ -51,10 +51,17 @@
 
 			
 
-			<div data-cy="merge-fields-input-section" class="svelte-r93edu"><h1 class="text-teal-400 px-1 svelte-r93edu">Modify Merge Values</h1>
-					<div class="border p-4 mb-6 svelte-r93edu"><div data-cy="label-input" class="svelte-r93edu"><label for="NAME" class="block mb-2 monospace svelte-r93edu">NAME</label>
-								<input class="border w-full mb-3 pl-2 py-1 text-stone-500 svelte-r93edu" id="NAME" type="text" value="world">
-							</div></div></div></form>
+			<div><div data-cy="merge-fields-input-section"><h1 class="text-teal-400 px-1">Modify Merge Values</h1>
+		<div class="border p-4 mb-6"><div data-cy="label-input" class="relative"><label for="NAME" class="block mb-2 monospace">NAME</label>
+					<input class="border w-full mb-3 pl-2 py-1 text-stone-500" id="NAME" type="text" value="world">
+
+					<button class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="white" d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z"></path></svg></button>
+				</div></div></div>
+	<div><div><h1 class="text-teal-400 px-1">Add a new merge field</h1>
+		<div class="border p-4 mb-6"><input class="border w-full mb-3 pl-2 py-1 text-stone-500" type="text" value="find">
+			<input class="border w-full mb-3 pl-2 py-1 text-stone-500" type="text" value="replace">
+			<div class="flex flex-row-reverse"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end">Add
+				</button></div></div></div></div></div></form>
 
 		<div data-cy="result-section" class="svelte-r93edu"><h1 class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu">Result</h1>
 				<abbr title="Copy to clipboard" class="svelte-r93edu"><img src="/shotstack-merge-fields/app/immutable/assets/copy-regular-423f8619.svg" alt="copy-button" class="h-4 cursor-pointer inline mb-1 svelte-r93edu"></abbr>
@@ -95,8 +102,8 @@
 </div>
 
 
-		<script type="module" data-sveltekit-hydrate="rz99sn">
-		import { start } from "/shotstack-merge-fields/app/immutable/start-d1885f90.js";
+		<script type="module" data-sveltekit-hydrate="4k3egl">
+		import { start } from "/shotstack-merge-fields/app/immutable/start-fb857371.js";
 
 		start({
 			env: {},
@@ -110,7 +117,7 @@
 				form: null
 			},
 			paths: {"base":"/shotstack-merge-fields","assets":"/shotstack-merge-fields"},
-			target: document.querySelector('[data-sveltekit-hydrate="rz99sn"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="4k3egl"]').parentNode,
 			trailing_slash: "always"
 		});
 	</script>
