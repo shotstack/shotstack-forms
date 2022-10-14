@@ -32,6 +32,30 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
           />
         </div>
          
+        <div
+          class="hidden"
+        >
+          <p
+            class="bg-rose-200 rounded py-2 my-4 px-4"
+            data-cy="template-input-error"
+          >
+            <span
+              class="monospace text-orange-900"
+            >
+              
+            </span>
+          </p>
+           
+          <div
+            class="flex flex-row-reverse "
+          >
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
          
         <div>
           <div
@@ -238,6 +262,30 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
           />
         </div>
          
+        <div
+          class="hidden"
+        >
+          <p
+            class="bg-rose-200 rounded py-2 my-4 px-4"
+            data-cy="template-input-error"
+          >
+            <span
+              class="monospace text-orange-900"
+            >
+              
+            </span>
+          </p>
+           
+          <div
+            class="flex flex-row-reverse "
+          >
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
          
         <div>
           <div
@@ -444,6 +492,30 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
           />
         </div>
          
+        <div
+          class="hidden"
+        >
+          <p
+            class="bg-rose-200 rounded py-2 my-4 px-4"
+            data-cy="template-input-error"
+          >
+            <span
+              class="monospace text-orange-900"
+            >
+              
+            </span>
+          </p>
+           
+          <div
+            class="flex flex-row-reverse "
+          >
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
          
         <div>
           <div
@@ -652,6 +724,30 @@ exports[`Testing Shotstack module entry point On initialization, should render t
           />
         </div>
          
+        <div
+          class="hidden"
+        >
+          <p
+            class="bg-rose-200 rounded py-2 my-4 px-4"
+            data-cy="template-input-error"
+          >
+            <span
+              class="monospace text-orange-900"
+            >
+              
+            </span>
+          </p>
+           
+          <div
+            class="flex flex-row-reverse "
+          >
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
          
         <div>
           <div
@@ -797,6 +893,30 @@ exports[`Testing Shotstack module entry point Shotstack.render() should deploy t
           />
         </div>
          
+        <div
+          class="hidden"
+        >
+          <p
+            class="bg-rose-200 rounded py-2 my-4 px-4"
+            data-cy="template-input-error"
+          >
+            <span
+              class="monospace text-orange-900"
+            >
+              
+            </span>
+          </p>
+           
+          <div
+            class="flex flex-row-reverse "
+          >
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
          
         <div>
           <div

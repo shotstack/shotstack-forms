@@ -27,7 +27,7 @@ describe('Form component', () => {
 		//Assert
 		cy.get(formContainer).should('be.visible');
 		cy.get(templateInputSection).should('be.visible');
-		cy.get(templateInputError).should('not.exist');
+		cy.get(templateInputError).should('not.be.visible');
 		cy.get(mergeFieldsInputSection).should('be.visible');
 		cy.get(mergeFieldsInputError).should('not.exist');
 		cy.get(resultSection).should('be.visible');
