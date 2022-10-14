@@ -8,6 +8,7 @@
 	import type { IParsedEditSchema, MergeField } from '$lib/ShotstackEditTemplate/types';
 	import SubmitArea from './submit/SubmitArea.svelte';
 	import Fields from './fields/Fields.svelte';
+	import ErrorField from './error/ErrorField.svelte';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
@@ -66,6 +67,13 @@
 		result = editTemplateService.result;
 		error = editTemplateService.error;
 	}
+
+	function resetSourceTemplate() {
+		editTemplateService.setTemplateSource(editTemplateService.result);
+		template = editTemplateService.template;
+		result = editTemplateService.result;
+		error = editTemplateService.error;
+	}
 </script>
 
 <div class="shotstack-mergefield-form">
@@ -82,13 +90,7 @@
 				/>
 			</div>
 
-			{#if error}
-				<p data-cy="template-input-error" class=" bg-rose-200 rounded py-2 px-4">
-					<span class="monospace text-orange-900">
-						{error.message}
-					</span>
-				</p>
-			{/if}
+			<ErrorField {error} onClick={resetSourceTemplate} />
 
 			{#if !error}
 				<Fields fields={template.merge} {handleFormInput} {addField} {removeField} />
