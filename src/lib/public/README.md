@@ -112,4 +112,4 @@ To implement this library as a global variable, just include the following in th
 
 #### This is how the component will be rendered on your application.
 
-![Merge Fields Component](https://i.gyazo.com/ef623968ebe67f20322c43b43d16ba2b.png)
+![Merge Fields Component](https://user-images.githubusercontent.com/55909151/195859063-7c87212b-be7b-484e-a835-70fda764bd2c.png)
