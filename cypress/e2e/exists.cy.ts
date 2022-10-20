@@ -39,7 +39,7 @@ describe('Template input section', () => {
 
 		// Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.exist');
+		cy.get(mergeFieldsInputSection).should('not.be.visible');
 		cy.get(resultSection).should('not.exist');
 
 		// Act
@@ -47,7 +47,7 @@ describe('Template input section', () => {
 
 		// Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.exist');
+		cy.get(mergeFieldsInputSection).should('not.be.visible');
 		cy.get(resultSection).should('not.exist');
 
 		// Act
@@ -55,7 +55,7 @@ describe('Template input section', () => {
 
 		// Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.exist');
+		cy.get(mergeFieldsInputSection).should('not.be.visible');
 		cy.get(resultSection).should('not.exist');
 
 		// Act
@@ -63,7 +63,7 @@ describe('Template input section', () => {
 
 		// // Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.exist');
+		cy.get(mergeFieldsInputSection).should('not.be.visible');
 		cy.get(resultSection).should('not.exist');
 	});
 	it('When an error has been found, it should log the error in the console', () => {
