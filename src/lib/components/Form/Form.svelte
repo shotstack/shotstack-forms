@@ -91,10 +91,7 @@
 			</div>
 
 			<ErrorField {error} onClick={resetSourceTemplate} />
-
-			{#if !error}
-				<Fields fields={template.merge} {handleFormInput} {addField} {removeField} />
-			{/if}
+			<Fields fields={template.merge} {handleFormInput} {addField} {removeField} {error} />
 		</form>
 
 		{#if !error}
