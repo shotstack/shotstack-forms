@@ -17,7 +17,12 @@ beforeEach(() => {
 	// implements intercepting svelte file and wait until it finishes downloading.
 
 	cy.intercept(intercept).as('svelte');
-	cy.visit('localhost:5173');
+	cy.visit('localhost:5173', {
+		onBeforeLoad(win) {
+			//We stub the console.error
+			cy.stub(win.console, 'error').as('consoleError');
+		}
+	});
 	cy.wait('@svelte');
 });
 
@@ -32,6 +37,14 @@ describe('Form component', () => {
 	});
 });
 
+describe('Error logger', () => {
+	it('When an error has been found, it should log the error in the console', () => {
+		// Act
+		cy.get(templateInput).click().clear();
+		// Assert
+		cy.get('@consoleError').should('be.calledOnce');
+	});
+});
 describe('Template input section', () => {
 	it('Shows template error if invalid JSON template passed to template textarea input', () => {
 		// Act
@@ -65,23 +78,6 @@ describe('Template input section', () => {
 		cy.get(templateInputError).should('exist');
 		cy.get(mergeFieldsInputSection).should('not.be.visible');
 		cy.get(resultSection).should('not.exist');
-	});
-	it('When an error has been found, it should log the error in the console', () => {
-		// Arrange
-		cy.intercept(intercept).as('svelte');
-		cy.visit('localhost:5173', {
-			onBeforeLoad(win) {
-				//We stub the console.error
-				cy.stub(win.console, 'error').as('consoleError');
-			}
-		});
-		cy.wait('@svelte');
-
-		// Act
-		cy.get(templateInput).click().clear();
-
-		// Assert
-		cy.get('@consoleError').should('be.calledOnce');
 	});
 });
 
@@ -209,7 +205,7 @@ describe('Result JSON', () => {
 			array: [1, '2', 3]
 		};
 		const jsonInvalidTypes: { [key: string]: unknown } = {
-			fn: '() => { }',
+			fn: '() => {}',
 			bUndefined: 'undefined',
 			symbol: "Symbol('foo')",
 			date: 'new Date()'
