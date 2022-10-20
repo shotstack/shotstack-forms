@@ -1029,9 +1029,7 @@ function Gt(t) {
   };
 }
 function qt(t, e, n) {
-  let { error: r } = e;
-  console.log(r);
-  let { fields: i = [] } = e, { handleFormInput: s } = e, { addField: l } = e, { removeField: o } = e;
+  let { error: r } = e, { fields: i = [] } = e, { handleFormInput: s } = e, { addField: l } = e, { removeField: o } = e;
   const u = (c, f) => s({
     find: c.find,
     replace: f.currentTarget.value
