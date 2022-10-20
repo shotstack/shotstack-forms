@@ -98,9 +98,8 @@ describe('Merge inputs section', () => {
 			});
 
 		// Assert
-		cy.get(mergeFieldsInputSection + ' input').should('have.length', 1);
-		cy.get(mergeFieldsInputSection + ' label').contains('TEST');
-		cy.get(mergeFieldsInputSection + ' input').should('have.value', 'foo');
+		cy.get(mergeFieldsInputSection).find("[role='textbox']").should('have.value', 'foo');
+		cy.get(mergeFieldsInputSection).find('label').should('have.text', 'TEST');
 
 		// Act
 		cy.get(templateInput)
@@ -182,9 +181,8 @@ describe('Result JSON', () => {
 		) as MergeField;
 		// We modify the replace value
 		modifiedField.replace = EDITED_VALUE;
-
 		// We update target field value
-		cy.get(`#${TARGET}`).click().clear().type(EDITED_VALUE);
+		cy.get(mergeFieldsLabelInputContainer).find('input').first().click().clear().type(EDITED_VALUE);
 		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
 			//For each label input container return an object where
 			const mapped = labelInputContainers.map((index: number, el: HTMLElement) => {

@@ -18,8 +18,8 @@
 						{field.find}
 					</label>
 					<input
+						role="textbox"
 						class="border w-full mb-3 pl-2 py-1 text-stone-500"
-						id={field.find}
 						type="text"
 						value={field.replace}
 						on:input={(e) => handleFormInput({ find: field.find, replace: e.currentTarget.value })}
