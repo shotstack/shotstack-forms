@@ -6,7 +6,6 @@ const templateInput = '[data-cy=template-input]';
 const templateInputError = '[data-cy=template-input-error]';
 const mergeFieldsInputSection = '[data-cy=merge-fields-input-section]';
 const mergeFieldsLabelInputContainer = '[data-cy=label-input]';
-const mergeFieldsInputError = '[data-cy=merge-fields-input-error]';
 const resultSection = '[data-cy=result-section]';
 const result = '[data-cy=result]';
 const intercept = 'Form.svelte?svelte&type=style&lang.css';
@@ -29,7 +28,6 @@ describe('Form component', () => {
 		cy.get(templateInputSection).should('be.visible');
 		cy.get(templateInputError).should('not.be.visible');
 		cy.get(mergeFieldsInputSection).should('be.visible');
-		cy.get(mergeFieldsInputError).should('not.exist');
 		cy.get(resultSection).should('be.visible');
 	});
 });
