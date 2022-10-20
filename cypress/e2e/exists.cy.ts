@@ -6,6 +6,7 @@ const templateInput = '[data-cy=template-input]';
 const templateInputError = '[data-cy=template-input-error]';
 const mergeFieldsInputSection = '[data-cy=merge-fields-input-section]';
 const mergeFieldsLabelInputContainer = '[data-cy=label-input]';
+const mergeFieldsInputError = '[data-cy=merge-fields-input-error]';
 const resultSection = '[data-cy=result-section]';
 const result = '[data-cy=result]';
 const intercept = 'Form.svelte?svelte&type=style&lang.css';
@@ -17,12 +18,7 @@ beforeEach(() => {
 	// implements intercepting svelte file and wait until it finishes downloading.
 
 	cy.intercept(intercept).as('svelte');
-	cy.visit('localhost:5173', {
-		onBeforeLoad(win) {
-			//We stub the console.error
-			cy.stub(win.console, 'error').as('consoleError');
-		}
-	});
+	cy.visit('localhost:5173');
 	cy.wait('@svelte');
 });
 
@@ -33,18 +29,11 @@ describe('Form component', () => {
 		cy.get(templateInputSection).should('be.visible');
 		cy.get(templateInputError).should('not.be.visible');
 		cy.get(mergeFieldsInputSection).should('be.visible');
+		cy.get(mergeFieldsInputError).should('not.exist');
 		cy.get(resultSection).should('be.visible');
 	});
 });
 
-describe('Error logger', () => {
-	it('When an error has been found, it should log the error in the console', () => {
-		// Act
-		cy.get(templateInput).click().clear();
-		// Assert
-		cy.get('@consoleError').should('be.calledOnce');
-	});
-});
 describe('Template input section', () => {
 	it('Shows template error if invalid JSON template passed to template textarea input', () => {
 		// Act
@@ -52,7 +41,7 @@ describe('Template input section', () => {
 
 		// Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.be.visible');
+		cy.get(mergeFieldsInputSection).should('not.exist');
 		cy.get(resultSection).should('not.exist');
 
 		// Act
@@ -60,7 +49,7 @@ describe('Template input section', () => {
 
 		// Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.be.visible');
+		cy.get(mergeFieldsInputSection).should('not.exist');
 		cy.get(resultSection).should('not.exist');
 
 		// Act
@@ -68,7 +57,7 @@ describe('Template input section', () => {
 
 		// Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.be.visible');
+		cy.get(mergeFieldsInputSection).should('not.exist');
 		cy.get(resultSection).should('not.exist');
 
 		// Act
@@ -76,8 +65,25 @@ describe('Template input section', () => {
 
 		// // Assert
 		cy.get(templateInputError).should('exist');
-		cy.get(mergeFieldsInputSection).should('not.be.visible');
+		cy.get(mergeFieldsInputSection).should('not.exist');
 		cy.get(resultSection).should('not.exist');
+	});
+	it('When an error has been found, it should log the error in the console', () => {
+		// Arrange
+		cy.intercept(intercept).as('svelte');
+		cy.visit('localhost:5173', {
+			onBeforeLoad(win) {
+				//We stub the console.error
+				cy.stub(win.console, 'error').as('consoleError');
+			}
+		});
+		cy.wait('@svelte');
+
+		// Act
+		cy.get(templateInput).click().clear();
+
+		// Assert
+		cy.get('@consoleError').should('be.calledOnce');
 	});
 });
 
@@ -92,8 +98,9 @@ describe('Merge inputs section', () => {
 			});
 
 		// Assert
-		cy.get(mergeFieldsInputSection).find("[role='textbox']").should('have.value', 'foo');
-		cy.get(mergeFieldsInputSection).find('label').should('have.text', 'TEST');
+		cy.get(mergeFieldsInputSection + ' input').should('have.length', 1);
+		cy.get(mergeFieldsInputSection + ' label').contains('TEST');
+		cy.get(mergeFieldsInputSection + ' input').should('have.value', 'foo');
 
 		// Act
 		cy.get(templateInput)
@@ -175,8 +182,9 @@ describe('Result JSON', () => {
 		) as MergeField;
 		// We modify the replace value
 		modifiedField.replace = EDITED_VALUE;
+
 		// We update target field value
-		cy.get(mergeFieldsLabelInputContainer).find('input').first().click().clear().type(EDITED_VALUE);
+		cy.get(`#${TARGET}`).click().clear().type(EDITED_VALUE);
 		cy.get(mergeFieldsLabelInputContainer).then((labelInputContainers) => {
 			//For each label input container return an object where
 			const mapped = labelInputContainers.map((index: number, el: HTMLElement) => {
@@ -205,7 +213,7 @@ describe('Result JSON', () => {
 			array: [1, '2', 3]
 		};
 		const jsonInvalidTypes: { [key: string]: unknown } = {
-			fn: '() => {}',
+			fn: '() => { }',
 			bUndefined: 'undefined',
 			symbol: "Symbol('foo')",
 			date: 'new Date()'

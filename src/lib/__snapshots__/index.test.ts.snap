@@ -83,7 +83,7 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                  
                 <input
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
-                  role="textbox"
+                  id="NAME"
                   type="text"
                 />
                  
@@ -313,7 +313,7 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                  
                 <input
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
-                  role="textbox"
+                  id="NAME"
                   type="text"
                 />
                  
@@ -543,7 +543,7 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                  
                 <input
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
-                  role="textbox"
+                  id="NAME"
                   type="text"
                 />
                  
