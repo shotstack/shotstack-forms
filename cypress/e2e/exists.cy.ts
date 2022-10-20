@@ -24,7 +24,7 @@ beforeEach(() => {
 		}
 	});
 	// cy.wait('@svelte');
-	cy.wait(1000)
+	cy.wait(1000);
 });
 
 describe('Form component', () => {
