@@ -3,7 +3,6 @@
 	import Add from './Add.svelte';
 	import Badge from './Badge.svelte';
 	export let error: Error | null;
-	console.log(error);
 	export let fields: MergeField[] = [];
 	export let handleFormInput: (field: MergeField) => void;
 	export let addField: (field: MergeField) => void;

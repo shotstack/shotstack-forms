@@ -23,7 +23,8 @@ beforeEach(() => {
 			cy.stub(win.console, 'error').as('consoleError');
 		}
 	});
-	cy.wait('@svelte');
+	// cy.wait('@svelte');
+	cy.wait(1000)
 });
 
 describe('Form component', () => {
