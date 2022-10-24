@@ -23,8 +23,8 @@
 		error = editTemplateService.error;
 	}
 
-	function handleFormInput(mergeField: { find: string; replace: string }) {
-		editTemplateService.updateResultMergeFields(mergeField);
+	function handleFormInput(mergeField: MergeField, fieldReference: MergeField) {
+		editTemplateService.updateResultMergeFields(mergeField, fieldReference);
 		result = editTemplateService.result;
 	}
 
@@ -91,7 +91,7 @@
 			</div>
 
 			<ErrorField {error} onClick={resetSourceTemplate} />
-			<Fields fields={template.merge} {handleFormInput} {addField} {removeField} {error} />
+			<Fields fields={result.merge} {handleFormInput} {addField} {removeField} {error} />
 		</form>
 
 		{#if !error}

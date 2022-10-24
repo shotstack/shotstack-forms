@@ -63,12 +63,11 @@ export class ShotstackEditTemplateService {
 		}
 	}
 
-	updateResultMergeFields(mergeFieldInput: MergeField) {
-		const { find, replace } = mergeFieldInput;
-		const validMergeField: MergeField = { find, replace };
-		const merge = this.result.merge.map((mergeField) =>
-			mergeField?.find === mergeFieldInput.find ? validMergeField : mergeField
-		);
+	updateResultMergeFields(updatedField: MergeField, fieldReference?: MergeField) {
+		const reference = fieldReference
+			? fieldReference
+			: this.getMergeFieldItem({ find: updatedField.find });
+		const merge = this.result.merge.map((el) => (el === reference ? updatedField : el));
 		this.result = { ...this.result, merge };
 		return merge;
 	}

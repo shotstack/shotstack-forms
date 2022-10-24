@@ -4,7 +4,7 @@
 	import Badge from './Badge.svelte';
 	export let error: Error | null;
 	export let fields: MergeField[] = [];
-	export let handleFormInput: (field: MergeField) => void;
+	export let handleFormInput: (field: MergeField, fieldReference: MergeField) => void;
 	export let addField: (field: MergeField) => void;
 	export let removeField: (field: MergeField) => void;
 </script>
@@ -23,7 +23,8 @@
 						class="border w-full mb-3 pl-2 py-1 text-stone-500"
 						type="text"
 						value={field.replace}
-						on:input={(e) => handleFormInput({ find: field.find, replace: e.currentTarget.value })}
+						on:input={(e) =>
+							handleFormInput({ find: field.find, replace: e.currentTarget.value }, field)}
 					/>
 
 					<Badge onClick={() => removeField(field)} />
