@@ -32,7 +32,6 @@ describe('Testing Shotstack module entry point', () => {
 
 	it("When .on(event, fn) is called, it should add a 'fn' handler for that particular 'event'", () => {
 		const shotstackService = new Shotstack();
-		const defaultMergeField = shotstackService.templateService.result;
 		const mockChange = jest.fn();
 		const find = 'Hello';
 		const replace = 'World';
@@ -44,10 +43,10 @@ describe('Testing Shotstack module entry point', () => {
 
 		shotstackService.on('change', mockChange);
 		shotstackService.templateService.setTemplateSource(JSON.stringify(jsonTemplate));
-		expect(mockChange).toHaveBeenCalledWith(jsonTemplate, defaultMergeField);
+		expect(mockChange).toHaveBeenCalledWith(jsonTemplate);
 
 		shotstackService.templateService.updateResultMergeFields(replacedEntry);
-		expect(mockChange).toHaveBeenCalledWith(expectedResultTemplate, jsonTemplate);
+		expect(mockChange).toHaveBeenCalledWith(expectedResultTemplate);
 		expect(mockChange).toHaveBeenCalledTimes(2);
 
 		const mockSubmit = jest.fn();
@@ -157,7 +156,7 @@ describe('Testing Shotstack methods', () => {
 		shotstackService.on('change', mock);
 		shotstackService.load(newJson);
 		expect(mock).toHaveBeenCalled();
-		expect(mock).toHaveBeenCalledWith(newJson, prevJson);
+		expect(mock).toHaveBeenCalledWith(newJson);
 	});
 
 	it('addMergeField should add an entry on the source template and the result template', () => {

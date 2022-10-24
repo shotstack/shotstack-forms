@@ -2,9 +2,10 @@
 	import type { MergeField } from '$lib/ShotstackEditTemplate/types';
 	import Add from './Add.svelte';
 	import Badge from './Badge.svelte';
+	import Input from './Input.svelte';
 	export let error: Error | null;
 	export let fields: MergeField[] = [];
-	export let handleFormInput: (field: MergeField, fieldReference: MergeField) => void;
+	export let handleFormInput: (field: MergeField, fieldReference?: MergeField) => void;
 	export let addField: (field: MergeField) => void;
 	export let removeField: (field: MergeField) => void;
 </script>
@@ -18,15 +19,7 @@
 					<label for={field.find} class="block mb-2 monospace">
 						{field.find}
 					</label>
-					<input
-						role="textbox"
-						class="border w-full mb-3 pl-2 py-1 text-stone-500"
-						type="text"
-						value={field.replace}
-						on:input={(e) =>
-							handleFormInput({ find: field.find, replace: e.currentTarget.value }, field)}
-					/>
-
+					<Input find={field.find} replace={field.replace} {field} {handleFormInput} />
 					<Badge onClick={() => removeField(field)} />
 				</div>
 			{/each}

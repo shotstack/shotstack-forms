@@ -26,9 +26,8 @@ export class ShotstackEditTemplateService {
 	}
 
 	public set result(validParsedTemplate: IParsedEditSchema) {
-		const previousResult = { ...this._result };
 		this._result = validParsedTemplate;
-		this.handlers.change.forEach((fn) => fn(validParsedTemplate, previousResult));
+		this.handlers.change.forEach((fn) => fn(validParsedTemplate));
 	}
 
 	public get result() {
@@ -67,9 +66,13 @@ export class ShotstackEditTemplateService {
 		const reference = fieldReference
 			? fieldReference
 			: this.getMergeFieldItem({ find: updatedField.find });
-		const merge = this.result.merge.map((el) => (el === reference ? updatedField : el));
-		this.result = { ...this.result, merge };
-		return merge;
+		this.result.merge.forEach((el) => {
+			if (el !== reference) return;
+			el.find = updatedField.find;
+			el.replace = updatedField.replace;
+		});
+		this.result = { ...this.result, merge: this.result.merge };
+		return this.result.merge;
 	}
 
 	logger(error: unknown) {

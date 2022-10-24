@@ -42,7 +42,7 @@ describe('ShoststackEditTemplateService._error', () => {
 		expect(mock).toHaveBeenCalled();
 	});
 });
-describe('ShoststackEditTemplateService._results', () => {
+describe('ShotstackEditTemplateService._results', () => {
 	const sampleJson = { merge: [{ find: 'Hello', replace: 'World' }] };
 	const modifiedJson = { merge: [{ find: 'Hello', replace: 'Worlds' }] };
 
@@ -61,7 +61,7 @@ describe('ShoststackEditTemplateService._results', () => {
 		editTemplateService.on('change', mock);
 		editTemplateService.result = modifiedJson;
 		expect(mock).toHaveBeenCalled();
-		expect(mock).toHaveBeenCalledWith(modifiedJson, sampleJson);
+		expect(mock).toHaveBeenCalledWith(modifiedJson);
 	});
 });
 

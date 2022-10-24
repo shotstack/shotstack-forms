@@ -23,7 +23,7 @@
 		error = editTemplateService.error;
 	}
 
-	function handleFormInput(mergeField: MergeField, fieldReference: MergeField) {
+	function handleFormInput(mergeField: MergeField, fieldReference?: MergeField) {
 		editTemplateService.updateResultMergeFields(mergeField, fieldReference);
 		result = editTemplateService.result;
 	}
