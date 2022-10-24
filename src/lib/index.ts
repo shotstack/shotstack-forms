@@ -4,12 +4,9 @@ import type { IShotstackEvents, MergeField, TemplateEvent } from './ShotstackEdi
 
 class Shotstack {
 	public templateService: ShotstackEditTemplateService;
-	constructor(
-		initialTemplate?: unknown,
-		public containerElement = document.querySelector('#shotstack-form-field') as HTMLElement | null
-	) {
+
+	constructor(initialTemplate?: unknown, public container?: HTMLElement) {
 		this.templateService = new ShotstackEditTemplateService(initialTemplate);
-		this.initialize();
 	}
 
 	on(eventName: TemplateEvent, callback: IShotstackEvents[TemplateEvent]) {
@@ -24,13 +21,7 @@ class Shotstack {
 		this.templateService.submit();
 	}
 
-	initialize() {
-		if (!this.containerElement) {
-			return;
-		}
-		this.containerElement && this.render(this.containerElement);
-	}
-	render(container: HTMLElement) {
+	renderForm(container: Element) {
 		new Form({
 			target: container,
 			props: {
@@ -38,35 +29,23 @@ class Shotstack {
 			}
 		});
 	}
+
 	display() {
-		if (!this.containerElement) {
-			return;
-		}
-		this.containerElement.style.display = 'block';
-	}
-	hide() {
-		if (!this.containerElement) {
-			return;
-		}
-		this.containerElement.style.display = 'none';
-	}
-	attach(newElement: HTMLElement) {
-		this.remove();
-		this.containerElement = newElement;
-		this.render(this.containerElement);
-	}
-	remove() {
-		if (!this.containerElement) {
-			return;
-		}
-		this.containerElement.replaceChildren();
+		if (this.container) this.container.style.display = 'block';
 	}
 
-	get container() {
-		if (!this.containerElement) {
-			return;
-		}
-		return this.containerElement;
+	hide() {
+		if (this.container) this.container.style.display = 'none';
+	}
+
+	attach(newElement: HTMLElement) {
+		this.remove();
+		this.container = newElement;
+		this.renderForm(this.container);
+	}
+
+	remove() {
+		this.container && this.container.replaceChildren();
 	}
 
 	merge() {
