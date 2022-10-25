@@ -4,12 +4,12 @@
     "src": "src/lib/components/Form/copy-regular.svg"
   },
   "node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "app/immutable/start-9b62c4a5.js",
+    "file": "app/immutable/start-e7419fb6.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
       "_index-0c661f1c.js",
-      "_singletons-b2b8b2f3.js"
+      "_singletons-a62f72ed.js"
     ],
     "dynamicImports": [
       ".svelte-kit/generated/nodes/0.js",
@@ -26,12 +26,12 @@
     ]
   },
   "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
-    "file": "app/immutable/components/error.svelte-4a8c0d63.js",
+    "file": "app/immutable/components/error.svelte-e686cafc.js",
     "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
     "isEntry": true,
     "imports": [
       "_index-0c661f1c.js",
-      "_singletons-b2b8b2f3.js"
+      "_singletons-a62f72ed.js"
     ]
   },
   "src/routes/+page.svelte": {
@@ -57,8 +57,8 @@
       "__layout-c9a66c0f.js"
     ]
   },
-  "_singletons-b2b8b2f3.js": {
-    "file": "app/immutable/chunks/singletons-b2b8b2f3.js",
+  "_singletons-a62f72ed.js": {
+    "file": "app/immutable/chunks/singletons-a62f72ed.js",
     "imports": [
       "_index-5edcacc6.js"
     ]
@@ -85,7 +85,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/1.js": {
-    "file": "app/immutable/chunks/1-7a29bd65.js",
+    "file": "app/immutable/chunks/1-f48e1d98.js",
     "src": ".svelte-kit/generated/nodes/1.js",
     "isDynamicEntry": true,
     "imports": [
