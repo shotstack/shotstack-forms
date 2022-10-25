@@ -78,14 +78,16 @@ describe('Testing Shotstack module entry point', () => {
 describe('Testing Shotstack methods', () => {
 	it('Shotstack.display(), container element should have property display = "block" ', () => {
 		const newContainer = document.createElement('div');
-		const shotstackService = new Shotstack(defaultJsonInput, newContainer);
+		const shotstackService = new Shotstack(defaultJsonInput);
+		shotstackService.renderForm(newContainer);
 		shotstackService.display();
 		expect(newContainer).toMatchSnapshot();
 	});
 
 	it('Shotstack.hide(), container element should have property display = "none"', () => {
 		const newContainer = document.createElement('div');
-		const shotstackService = new Shotstack(defaultJsonInput, newContainer);
+		const shotstackService = new Shotstack(defaultJsonInput);
+		shotstackService.renderForm(newContainer);
 		shotstackService.hide();
 		expect(newContainer).toMatchSnapshot();
 	});
@@ -95,7 +97,8 @@ describe('Testing Shotstack methods', () => {
 		previousContainer.id = 'previous-container';
 		const newContainer = document.createElement('div');
 		newContainer.id = 'new-container';
-		const shotstackService = new Shotstack(defaultJsonInput, previousContainer);
+		const shotstackService = new Shotstack(defaultJsonInput);
+		shotstackService.renderForm(previousContainer);
 		shotstackService.attach(newContainer);
 		expect(previousContainer.childNodes).toHaveLength(0);
 		expect(newContainer).toMatchSnapshot();
@@ -103,7 +106,8 @@ describe('Testing Shotstack methods', () => {
 
 	it('Shotstack.remove(), should remove content of the container where the component is rendered on', () => {
 		const newContainer = document.createElement('div');
-		const shotstackService = new Shotstack(defaultJsonInput, newContainer);
+		const shotstackService = new Shotstack(defaultJsonInput);
+		shotstackService.renderForm(newContainer);
 		shotstackService.remove();
 		expect(newContainer.childNodes).toHaveLength(0);
 		expect(newContainer).toMatchSnapshot();
@@ -111,7 +115,8 @@ describe('Testing Shotstack methods', () => {
 	it('Shotstack.container should return container where the component is being rendered on', () => {
 		const containerElement = document.createElement('div');
 		containerElement.id = 'container-element';
-		const shotstackService = new Shotstack(defaultJsonInput, containerElement);
+		const shotstackService = new Shotstack(defaultJsonInput);
+		shotstackService.renderForm(containerElement);
 		expect(shotstackService.container).toBe(containerElement);
 	});
 

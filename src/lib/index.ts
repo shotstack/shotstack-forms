@@ -4,9 +4,10 @@ import type { IShotstackEvents, MergeField, TemplateEvent } from './ShotstackEdi
 
 class Shotstack {
 	public templateService: ShotstackEditTemplateService;
-
-	constructor(initialTemplate?: unknown, public container?: HTMLElement) {
+	public container: HTMLElement | undefined;
+	constructor(initialTemplate?: unknown) {
 		this.templateService = new ShotstackEditTemplateService(initialTemplate);
+		this.container = undefined;
 	}
 
 	on(eventName: TemplateEvent, callback: IShotstackEvents[TemplateEvent]) {
@@ -21,7 +22,8 @@ class Shotstack {
 		this.templateService.submit();
 	}
 
-	renderForm(container: Element) {
+	renderForm(container: HTMLElement) {
+		this.container = container;
 		new Form({
 			target: container,
 			props: {
