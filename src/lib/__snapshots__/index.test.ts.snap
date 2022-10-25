@@ -244,7 +244,7 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
 
 exports[`Testing Shotstack methods Shotstack.remove(), should remove content of the container where the component is rendered on 1`] = `<div />`;
 
-exports[`Testing Shotstack module entry point Shotstack.render() should deploy the app inside target element 1`] = `
+exports[`Testing Shotstack module entry point Shotstack.renderForm() should deploy the app inside target element 1`] = `
 <div>
   <div
     class="shotstack-mergefield-form svelte-r93edu"

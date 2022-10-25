@@ -9,7 +9,7 @@ beforeEach(() => {
 	window.URL.createObjectURL = jest.fn();
 });
 describe('Testing Shotstack module entry point', () => {
-	it('Shotstack.render() should deploy the app inside target element', () => {
+	it('Shotstack.renderForm() should deploy the app inside target element', () => {
 		const element = document.createElement('div');
 		const shotstackFormService = new Shotstack();
 		shotstackFormService.renderForm(element);
@@ -248,5 +248,52 @@ describe('Testing Shotstack methods', () => {
 		service.on('change', mock);
 		service.removeField(item);
 		expect(mock).toHaveBeenCalled();
+	});
+});
+
+describe('Testing Shotstack render methods', () => {
+	const merge = [
+		{ find: 'foo', replace: 'bar' },
+		{ find: 'fizz', replace: 'buzz' },
+		{ find: 'a', replace: 'b' },
+		{ find: 'b', replace: 'c' }
+	];
+	const shotstack = new Shotstack({ merge });
+	it('getInputs should return an HTMLCollection of input tags', () => {
+		const collection = shotstack.getInputs();
+		expect(collection).toBeInstanceOf(HTMLCollection);
+		const inputs = Array.from(collection);
+		inputs.forEach((input) => expect(input).toBeInstanceOf(HTMLInputElement));
+	});
+	it('For each merge field, should return an input tag with the replace value', () => {
+		const replaceValues = merge.map((key) => key.replace);
+		const collection = shotstack.getInputs();
+		Array.from<HTMLInputElement>(collection).forEach((input) =>
+			expect(replaceValues).toContain(input.value)
+		);
+	});
+	it('renderElements should render an input field for each merge field', () => {
+		const container = document.createElement('div');
+		shotstack.renderElements(container);
+		const children = container.children as HTMLCollectionOf<HTMLInputElement>;
+		const inputs = Array.from<HTMLInputElement>(children);
+		const replaceValues = shotstack.merge().merge.map((el) => el.replace);
+		expect(inputs.length).toBeGreaterThan(0);
+		expect(inputs).toHaveLength(replaceValues.length);
+		inputs.forEach((el) => expect(replaceValues).toContain(el.value));
+	});
+	it('if an after argument is provided, should render the fields after that element', () => {
+		const container = document.createElement('div');
+		const p1 = document.createElement('p');
+		const p2 = document.createElement('p');
+		const p3 = document.createElement('p');
+		container.append(p1, p2, p3);
+		shotstack.renderElements(container, p1);
+		const children = container.children;
+		expect(children.item(0)).toBe(p1);
+		expect(children.item(1)).not.toBe(p2);
+		expect(children.item(1)).toBeInstanceOf(HTMLInputElement);
+		expect(children.item(merge.length)).toBeInstanceOf(HTMLInputElement);
+		expect(children.item(merge.length + 1)).toBe(p2);
 	});
 });

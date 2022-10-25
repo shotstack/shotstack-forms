@@ -30,6 +30,12 @@ class Shotstack {
 		});
 	}
 
+	renderElements(container: HTMLElement, after?: HTMLElement) {
+		const inputs = this.getInputs();
+		if (after) after.after(...inputs);
+		else container.append(...inputs);
+	}
+
 	display() {
 		if (this.container) this.container.style.display = 'block';
 	}
@@ -84,7 +90,7 @@ class Shotstack {
 					}
 				})
 		);
-		return container.children;
+		return container.children as HTMLCollectionOf<HTMLInputElement>;
 	}
 }
 
