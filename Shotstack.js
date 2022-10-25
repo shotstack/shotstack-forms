@@ -1,6 +1,6 @@
 var He = Object.defineProperty;
 var Qe = (t, e, n) => e in t ? He(t, e, { enumerable: !0, configurable: !0, writable: !0, value: n }) : t[e] = n;
-var W = (t, e, n) => (Qe(t, typeof e != "symbol" ? e + "" : e, n), n);
+var q = (t, e, n) => (Qe(t, typeof e != "symbol" ? e + "" : e, n), n);
 function S() {
 }
 function Le(t) {
@@ -243,16 +243,16 @@ function it(t) {
   }
 }
 const oe = /* @__PURE__ */ new Set();
-let q;
+let Z;
 function Ye() {
-  q = {
+  Z = {
     r: 0,
     c: [],
-    p: q
+    p: Z
   };
 }
 function Re() {
-  q.r || K(q.c), q = q.p;
+  Z.r || K(Z.c), Z = Z.p;
 }
 function D(t, e) {
   t && t.i && (oe.delete(t), t.i(e));
@@ -261,7 +261,7 @@ function j(t, e, n, i) {
   if (t && t.o) {
     if (oe.has(t))
       return;
-    oe.add(t), q.c.push(() => {
+    oe.add(t), Z.c.push(() => {
       oe.delete(t), i && (n && t.d(1), i());
     }), t.o(e);
   } else
@@ -410,10 +410,10 @@ function Ue(t) {
 }
 class Ve {
   constructor(e) {
-    W(this, "template");
-    W(this, "_result");
-    W(this, "_error");
-    W(this, "handlers");
+    q(this, "template");
+    q(this, "_result");
+    q(this, "_error");
+    q(this, "handlers");
     this._error = null, this.template = { merge: [] }, this._result = { merge: [] }, this.handlers = { change: [], submit: [], error: [this.logger] }, this.setTemplateSource(e);
   }
   set error(e) {
@@ -770,12 +770,12 @@ function Rt(t) {
       i = I(G, "H1", { class: !0 });
       var ee = y(i);
       r = P(ee, "Add a new merge field"), ee.forEach(p), s = C(G), l = I(G, "DIV", { class: !0 });
-      var Z = y(l);
-      R(o.$$.fragment, Z), u = C(Z), R(m.$$.fragment, Z), E = C(Z), c = I(Z, "DIV", { class: !0 });
+      var W = y(l);
+      R(o.$$.fragment, W), u = C(W), R(m.$$.fragment, W), E = C(W), c = I(W, "DIV", { class: !0 });
       var Me = y(c);
       f = I(Me, "BUTTON", { class: !0 });
       var Ee = y(f);
-      b = P(Ee, "Add"), Ee.forEach(p), Me.forEach(p), Z.forEach(p), G.forEach(p), H.forEach(p), this.h();
+      b = P(Ee, "Add"), Ee.forEach(p), Me.forEach(p), W.forEach(p), G.forEach(p), H.forEach(p), this.h();
     },
     h() {
       h(i, "class", "text-teal-400 px-1"), h(f, "class", "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"), h(c, "class", "flex flex-row-reverse"), h(l, "class", "border p-4 mb-6");
@@ -1351,9 +1351,10 @@ class cn extends U {
   }
 }
 class dn {
-  constructor(e, n) {
-    W(this, "templateService");
-    this.container = n, this.templateService = new Ve(e);
+  constructor(e) {
+    q(this, "templateService");
+    q(this, "container");
+    this.templateService = new Ve(e), this.container = void 0;
   }
   on(e, n) {
     this.templateService.on(e, n);
@@ -1365,12 +1366,16 @@ class dn {
     this.templateService.submit();
   }
   renderForm(e) {
-    new cn({
+    this.container = e, new cn({
       target: e,
       props: {
         editTemplateService: this.templateService
       }
     });
+  }
+  renderElements(e, n) {
+    const i = this.getInputs();
+    n ? n.after(...i) : e.append(...i);
   }
   display() {
     this.container && (this.container.style.display = "block");
