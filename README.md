@@ -145,3 +145,121 @@ shotstack.renderForm(container)
 #### This is how the component will be rendered on your application.
 
 ![Merge Fields Component](https://user-images.githubusercontent.com/55909151/197715455-8ef8070c-4cbb-4132-85fb-bbdd656269f8.png)
+
+### Extending your form with renderElements.
+
+Assuming you have a template with uncontrolled values and your own form with user controlled values, you probably don't need to render the full Shotstack Form, and you can render the input elements instead.
+
+#### With template only
+
+- Consider the following example:
+  `template`
+
+```
+    {
+            "timeline": {
+                "tracks": [{
+                    "clips": [
+                        {
+                            "asset": {
+                                "type": "title",
+                                "text": "Hello {{ NAME }}",
+                                "style": "future"
+                            },
+                            "start": 0,
+                            "length": 5
+                        }
+                    ]
+                }
+                ]
+            },
+            "output": {
+                "format": "mp4",
+                "resolution": "hd"
+            },
+            "merge": [{
+                "find": "NAME",
+                "replace": "world"
+            }]
+        }
+```
+
+`form`
+
+```
+<form name="your-custom-form">
+    <h3>My form</h3>
+    <p>Merge fields:</p>
+    <div id="your-merge-fields-container"></div>
+    <p>Press to submit the form</p>
+    <input name="submit" type="button" value="Submit" />
+</form>
+```
+
+- Initialize the component with the template and call `shotstack.renderElements` on your container.
+
+```
+        const form = document.querySelector('form')
+        const shotstack = new Shotstack(template)
+        const container = document.querySelector("#your-merge-fields-container")
+        shotstack.renderElements(container)
+```
+
+- Add a submit event to Shotstack (in this case, we are just logging the resulting template to the console), and bind `shotstack.submit` to your submit button
+
+```
+        shotstack.on('submit', resultingTemplate => console.log(resultingTemplate))
+        function submit(e) {
+            e.preventDefault()
+            shotstack.submit()
+        }
+        const submitInput = form.elements.namedItem('submit')
+        submitInput.addEventListener('click', submit)
+```
+
+Note: calling `shotstack.load` after rendering the input elements will make the inputs lose their reference to the template service and you will need to generate new ones.
+
+#### With template and other user controlled inputs
+
+- Considering the same template as before, but with a form that modifies other sections of the template via user controlled inputs.
+
+`form`
+
+```
+<form name="your-custom-form">
+    <h3>My form</h3>
+    <input name="name" type="text">
+    <p>Merge fields:</p>
+    <div id="your-merge-fields-container"></div>
+    <p>Press to submit the form</p>
+    <input name="submit" type="button" value="Submit" />
+</form>
+```
+
+- In order to update values of the template apart from the merge field, we have to set a new source template by using shotstack.load(updatedTemplate). However, as previously stated, updating the source template makes the inputs lose their reference to the Shotstack service, so we have to generate new input tags every time we call shotstack.load:
+
+```
+        function updateContainer() {
+            // We select the container
+            const container = document.querySelector("#your-merge-fields-container")
+            // Erase its contents
+            container.innerHTML = ""
+            // And attach the new inputs
+            shotstack.renderElements(container)
+        }
+```
+
+- Finally, select the user controlled input and bind an onChange function that calls updateContainer in it:
+
+```
+        function handleNameChange(e) {
+            //We get the current form data from the service
+            const currentTemplate = shotstack.merge()
+            //We load the template with the property and updated value
+            shotstack.load({ ...currentTemplate, name: e.target.value })
+            //We re-generate the inputs
+            updateContainer()
+        }
+        const nameInput = form.elements.namedItem('name')
+        nameInput.addEventListener('change', handleNameChange)
+```
