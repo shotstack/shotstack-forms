@@ -1,4 +1,4 @@
-import { Form, Input } from './components';
+import { Field, Form } from './components';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplate/ShotstackEditTemplateService';
 import type { IShotstackEvents, MergeField, TemplateEvent } from './ShotstackEditTemplate/types';
 
@@ -80,11 +80,9 @@ class Shotstack {
 		const container = document.createElement('div');
 		this.templateService.template.merge.forEach(
 			(field) =>
-				new Input({
+				new Field({
 					target: container,
 					props: {
-						find: field.find,
-						replace: field.replace,
 						field,
 						handleFormInput: (updatedField: MergeField) => {
 							this.templateService.updateResultMergeFields(updatedField, field);
