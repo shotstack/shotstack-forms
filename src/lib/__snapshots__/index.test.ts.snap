@@ -72,20 +72,24 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
             >
               <div
                 class="relative"
-                data-cy="label-input"
               >
-                <label
-                  class="block mb-2 monospace"
-                  for="NAME"
+                <div
+                  data-cy="label-input"
                 >
-                  NAME
-                </label>
-                 
-                <input
-                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
-                  role="textbox"
-                  type="text"
-                />
+                  <label
+                    class="block mb-2 monospace"
+                    for="NAME"
+                  >
+                    NAME
+                  </label>
+                   
+                  <input
+                    class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                    label="NAME"
+                    role="textbox"
+                    type="text"
+                  />
+                </div>
                  
                 <button
                   class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
@@ -302,20 +306,24 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
             >
               <div
                 class="relative"
-                data-cy="label-input"
               >
-                <label
-                  class="block mb-2 monospace"
-                  for="NAME"
+                <div
+                  data-cy="label-input"
                 >
-                  NAME
-                </label>
-                 
-                <input
-                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
-                  role="textbox"
-                  type="text"
-                />
+                  <label
+                    class="block mb-2 monospace"
+                    for="NAME"
+                  >
+                    NAME
+                  </label>
+                   
+                  <input
+                    class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                    label="NAME"
+                    role="textbox"
+                    type="text"
+                  />
+                </div>
                  
                 <button
                   class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
@@ -532,20 +540,24 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
             >
               <div
                 class="relative"
-                data-cy="label-input"
               >
-                <label
-                  class="block mb-2 monospace"
-                  for="NAME"
+                <div
+                  data-cy="label-input"
                 >
-                  NAME
-                </label>
-                 
-                <input
-                  class="border w-full mb-3 pl-2 py-1 text-stone-500"
-                  role="textbox"
-                  type="text"
-                />
+                  <label
+                    class="block mb-2 monospace"
+                    for="NAME"
+                  >
+                    NAME
+                  </label>
+                   
+                  <input
+                    class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                    label="NAME"
+                    role="textbox"
+                    type="text"
+                  />
+                </div>
                  
                 <button
                   class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"

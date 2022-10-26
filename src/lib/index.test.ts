@@ -264,28 +264,41 @@ describe('Testing Shotstack render methods', () => {
 		{ find: 'b', replace: 'c' }
 	];
 	const shotstack = new Shotstack({ merge });
-	it('getInputs should return an HTMLCollection of input tags', () => {
+	it('getInputs should return an HTMLCollection of div containers tags', () => {
 		const collection = shotstack.getInputs();
 		expect(collection).toBeInstanceOf(HTMLCollection);
 		const inputs = Array.from(collection);
-		inputs.forEach((input) => expect(input).toBeInstanceOf(HTMLInputElement));
+		inputs.forEach((input) => expect(input).toBeInstanceOf(HTMLDivElement));
 	});
-	it('For each merge field, should return an input tag with the replace value', () => {
-		const replaceValues = merge.map((key) => key.replace);
+	it('For each merge field, should return a div with a label and an input', () => {
 		const collection = shotstack.getInputs();
-		Array.from<HTMLInputElement>(collection).forEach((input) =>
-			expect(replaceValues).toContain(input.value)
-		);
+		Array.from<HTMLDivElement>(collection).forEach((divContainer) => {
+			const [label, input] = Array.from(divContainer.children) as [
+				HTMLLabelElement,
+				HTMLInputElement
+			];
+			expect(label).toBeInstanceOf(HTMLLabelElement);
+			expect(input).toBeInstanceOf(HTMLInputElement);
+		});
 	});
-	it('renderElements should render an input field for each merge field', () => {
+	it('renderElements should render a div container with an input field and a label for each merge field', () => {
 		const container = document.createElement('div');
-		shotstack.renderElements(container);
-		const children = container.children as HTMLCollectionOf<HTMLInputElement>;
-		const inputs = Array.from<HTMLInputElement>(children);
+		const findValues = shotstack.merge().merge.map((el) => el.find);
 		const replaceValues = shotstack.merge().merge.map((el) => el.replace);
-		expect(inputs.length).toBeGreaterThan(0);
-		expect(inputs).toHaveLength(replaceValues.length);
-		inputs.forEach((el) => expect(replaceValues).toContain(el.value));
+
+		shotstack.renderElements(container);
+		const children = container.children as HTMLCollectionOf<HTMLDivElement>;
+		const divContainer = Array.from<HTMLDivElement>(children);
+		expect(divContainer.length).toBeGreaterThan(0);
+		expect(divContainer.length).toEqual(replaceValues.length);
+
+		divContainer.forEach((el) => {
+			const [label, input] = Array.from(el.children) as [HTMLLabelElement, HTMLInputElement];
+			expect(label).toBeInstanceOf(HTMLLabelElement);
+			expect(input).toBeInstanceOf(HTMLInputElement);
+			expect(findValues).toContain(label.textContent);
+			expect(replaceValues).toContain(input.value);
+		});
 	});
 	it('if an after argument is provided, should render the fields after that element', () => {
 		const container = document.createElement('div');
@@ -297,8 +310,8 @@ describe('Testing Shotstack render methods', () => {
 		const children = container.children;
 		expect(children.item(0)).toBe(p1);
 		expect(children.item(1)).not.toBe(p2);
-		expect(children.item(1)).toBeInstanceOf(HTMLInputElement);
-		expect(children.item(merge.length)).toBeInstanceOf(HTMLInputElement);
+		expect(children.item(1)).toBeInstanceOf(HTMLDivElement);
+		expect(children.item(merge.length)).toBeInstanceOf(HTMLDivElement);
 		expect(children.item(merge.length + 1)).toBe(p2);
 	});
 });
