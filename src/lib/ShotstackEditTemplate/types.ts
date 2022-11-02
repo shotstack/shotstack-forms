@@ -12,6 +12,7 @@ export interface MergeField {
 export interface IParsedEditSchema {
 	merge: MergeField[];
 	[key: string]: unknown;
+	src?: string;
 }
 
 export type TemplateEvent = 'submit' | 'change' | 'error';

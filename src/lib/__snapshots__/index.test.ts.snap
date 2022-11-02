@@ -143,6 +143,35 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
             </div>
           </div>
         </div>
+         
+        <div
+          data-cy="source-input"
+        >
+          <label
+            class="block mb-2 monospace"
+            for="input"
+          >
+            Upload src
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            disabled=""
+            type="text"
+          />
+           
+          <label
+            class="block mb-2 monospace"
+            for="input-files"
+          >
+            Add your files
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            type="file"
+          />
+        </div>
       </form>
        
       <div
@@ -376,6 +405,35 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
               </div>
             </div>
           </div>
+        </div>
+         
+        <div
+          data-cy="source-input"
+        >
+          <label
+            class="block mb-2 monospace"
+            for="input"
+          >
+            Upload src
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            disabled=""
+            type="text"
+          />
+           
+          <label
+            class="block mb-2 monospace"
+            for="input-files"
+          >
+            Add your files
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            type="file"
+          />
         </div>
       </form>
        
@@ -611,6 +669,35 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
             </div>
           </div>
         </div>
+         
+        <div
+          data-cy="source-input"
+        >
+          <label
+            class="block mb-2 monospace"
+            for="input"
+          >
+            Upload src
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            disabled=""
+            type="text"
+          />
+           
+          <label
+            class="block mb-2 monospace"
+            for="input-files"
+          >
+            Add your files
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            type="file"
+          />
+        </div>
       </form>
        
       <div
@@ -807,6 +894,35 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
               </div>
             </div>
           </div>
+        </div>
+         
+        <div
+          data-cy="source-input"
+        >
+          <label
+            class="block mb-2 monospace"
+            for="input"
+          >
+            Upload src
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            disabled=""
+            type="text"
+          />
+           
+          <label
+            class="block mb-2 monospace"
+            for="input-files"
+          >
+            Add your files
+          </label>
+           
+          <input
+            class="border w-full mb-3 pl-2 py-1 text-stone-500"
+            type="file"
+          />
         </div>
       </form>
        
