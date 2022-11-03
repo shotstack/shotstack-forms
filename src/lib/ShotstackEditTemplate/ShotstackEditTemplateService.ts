@@ -1,4 +1,3 @@
-import { map } from 'jquery';
 import type {
 	Asset,
 	IParsedEditSchema,
