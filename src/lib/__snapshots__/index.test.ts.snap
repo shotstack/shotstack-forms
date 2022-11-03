@@ -160,13 +160,6 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
             type="text"
           />
            
-          <label
-            class="block mb-2 monospace"
-            for="input-files"
-          >
-            Add your files
-          </label>
-           
           <input
             class="border w-full mb-3 pl-2 py-1 text-stone-500"
             type="file"
@@ -422,13 +415,6 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
             disabled=""
             type="text"
           />
-           
-          <label
-            class="block mb-2 monospace"
-            for="input-files"
-          >
-            Add your files
-          </label>
            
           <input
             class="border w-full mb-3 pl-2 py-1 text-stone-500"
@@ -686,13 +672,6 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
             type="text"
           />
            
-          <label
-            class="block mb-2 monospace"
-            for="input-files"
-          >
-            Add your files
-          </label>
-           
           <input
             class="border w-full mb-3 pl-2 py-1 text-stone-500"
             type="file"
@@ -911,13 +890,6 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
             disabled=""
             type="text"
           />
-           
-          <label
-            class="block mb-2 monospace"
-            for="input-files"
-          >
-            Add your files
-          </label>
            
           <input
             class="border w-full mb-3 pl-2 py-1 text-stone-500"
