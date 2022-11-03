@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 
-const basePath = process.env.NODE_ENV === 'production' ? '/shotstack-merge-fields' : '';
+const basePath = process.env.NODE_ENV === 'production' ? '/shotstack-forms' : '';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
