@@ -1,4 +1,4 @@
-import { Field, Form } from './components';
+import { Field, Form, Source } from './components';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplate/ShotstackEditTemplateService';
 import type { IShotstackEvents, MergeField, TemplateEvent } from './ShotstackEditTemplate/types';
 
@@ -91,6 +91,14 @@ class Shotstack {
 				})
 		);
 		return container.children as HTMLCollectionOf<HTMLInputElement>;
+	}
+
+	getInputSource() {
+		const container = document.createElement('div');
+		new Source({
+			target: container
+		});
+		return container.children as HTMLCollection;
 	}
 }
 

@@ -133,3 +133,20 @@ describe('ShotstackEditTemplateService.logger', () => {
 		expect(console.error).toHaveBeenCalledWith(new ValidationError(MERGE_NOT_FOUND));
 	});
 });
+
+describe('ShotstackEditTemplateService.getSrcPlaceholders', () => {
+	it('Should return an array assets that have placeholder values', () => {
+		const asset = { src: '{{Merge_field}}' };
+		const local = { src: 'http://localhost' };
+		const editTemplateService = new ShotstackEditTemplateService({
+			merge: [{ find: 'NAME', replace: 'John' }],
+			tracks: [{ clips: [{ asset }, { asset: local }] }]
+		});
+		const result = editTemplateService.getSrcPlaceholders();
+		expect(result).toEqual([{ placeholder: asset.src, asset }]);
+		expect(result).not.toEqual([
+			{ placeholder: asset.src, asset },
+			{ placeholder: local.src, asset: local }
+		]);
+	});
+});

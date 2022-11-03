@@ -9,6 +9,7 @@
 	import SubmitArea from './submit/SubmitArea.svelte';
 	import Fields from './fields/Fields.svelte';
 	import ErrorField from './error/ErrorField.svelte';
+	import Source from './source/Source.svelte';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
@@ -92,6 +93,7 @@
 
 			<ErrorField {error} onClick={resetSourceTemplate} />
 			<Fields fields={result.merge} {handleFormInput} {addField} {removeField} {error} />
+			<Source />
 		</form>
 
 		{#if !error}
