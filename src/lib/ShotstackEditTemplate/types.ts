@@ -12,7 +12,7 @@ export interface MergeField {
 export interface IParsedEditSchema {
 	merge: MergeField[];
 	[key: string]: unknown;
-	src?: string;
+	tracks?: Track[];
 }
 
 export type TemplateEvent = 'submit' | 'change' | 'error';
@@ -30,4 +30,19 @@ type ShotstackHandlersArray<T, K extends keyof T> = T[K][];
 
 export type IShotstackHandlers = {
 	[key in TemplateEvent]: ShotstackHandlersArray<IShotstackEvents, key>;
+};
+
+export type Clip = {
+	asset: Asset;
+	[key: string]: unknown;
+};
+
+export type Asset = {
+	src: string;
+	[key: string]: unknown;
+};
+
+export type Track = {
+	clips: Clip[];
+	[key: string]: unknown;
 };

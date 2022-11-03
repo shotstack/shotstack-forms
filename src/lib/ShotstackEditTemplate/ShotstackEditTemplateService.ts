@@ -1,4 +1,11 @@
-import type { IParsedEditSchema, IShotstackEvents, IShotstackHandlers, MergeField } from './types';
+import { map } from 'jquery';
+import type {
+	Asset,
+	IParsedEditSchema,
+	IShotstackEvents,
+	IShotstackHandlers,
+	MergeField
+} from './types';
 import { validateError, validateTemplate, stringifyIfNotString } from './validate';
 
 export class ShotstackEditTemplateService {
@@ -103,5 +110,21 @@ export class ShotstackEditTemplateService {
 			return true;
 		};
 		return this.result.merge.find(finderCallback);
+	}
+
+	getSrcPlaceholders(): { placeholder: string; asset: Asset }[] {
+		if (!this.template.tracks) return [];
+		const result: { placeholder: string; asset: Asset }[] = [];
+
+		for (let i = 0; i < this.template.tracks.length; i++) {
+			for (let j = 0; j < this.template.tracks[i].clips.length; j++) {
+				const key = {
+					placeholder: this.template.tracks[i].clips[j].asset.src,
+					asset: this.template.tracks[i].clips[j].asset
+				};
+				if (key.placeholder.charAt(0) === '{') result.push(key);
+			}
+		}
+		return result;
 	}
 }
