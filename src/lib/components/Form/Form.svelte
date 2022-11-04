@@ -5,23 +5,25 @@
 	import copyRegular from './copy-regular.svg';
 	import { ShotstackEditTemplateService } from '../../ShotstackEditTemplate/ShotstackEditTemplateService';
 	import defaultJSONInput from './defaultMerge.json';
-	import type { IParsedEditSchema, MergeField } from '$lib/ShotstackEditTemplate/types';
+	import type { Asset, IParsedEditSchema, MergeField } from '$lib/ShotstackEditTemplate/types';
 	import SubmitArea from './submit/SubmitArea.svelte';
 	import Fields from './fields/Fields.svelte';
 	import ErrorField from './error/ErrorField.svelte';
-	import Source from './source/Source.svelte';
+	import SourceFields from './source/SourceFields.svelte';
 
 	export let editTemplateService = new ShotstackEditTemplateService(defaultJSONInput);
 
 	let template = editTemplateService.template;
 	let result = editTemplateService.result;
 	let error: Error | null = null;
+	let sources = editTemplateService.getSrcPlaceholders();
 
 	function handleTemplateInput(value: string) {
 		editTemplateService.setTemplateSource(value);
 		template = editTemplateService.template;
 		result = editTemplateService.result;
 		error = editTemplateService.error;
+		sources = editTemplateService.getSrcPlaceholders();
 	}
 
 	function handleFormInput(mergeField: MergeField, fieldReference?: MergeField) {
@@ -75,6 +77,12 @@
 		result = editTemplateService.result;
 		error = editTemplateService.error;
 	}
+
+	async function handleSourceFieldUpdate(file: FileList | null, asset: Asset) {
+		await editTemplateService.updateSrc(file, asset);
+		template = editTemplateService.template;
+		result = editTemplateService.result;
+	}
 </script>
 
 <div class="shotstack-mergefield-form">
@@ -93,7 +101,7 @@
 
 			<ErrorField {error} onClick={resetSourceTemplate} />
 			<Fields fields={result.merge} {handleFormInput} {addField} {removeField} {error} />
-			<Source />
+			<SourceFields {sources} {handleSourceFieldUpdate} />
 		</form>
 
 		{#if !error}

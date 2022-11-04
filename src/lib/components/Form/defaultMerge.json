@@ -13,7 +13,8 @@
 						"asset": {
 							"type": "title",
 							"text": "Hello {{ NAME }}",
-							"style": "future"
+							"style": "future",
+							"src": "{{ ASSET }}"
 						},
 						"start": 0,
 						"length": 5

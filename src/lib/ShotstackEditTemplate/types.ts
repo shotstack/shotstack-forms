@@ -10,16 +10,16 @@ export interface MergeField {
 }
 
 export interface IParsedEditSchema {
+	timeline?: Timeline;
 	merge: MergeField[];
 	[key: string]: unknown;
-	tracks?: Track[];
 }
 
 export type TemplateEvent = 'submit' | 'change' | 'error' | 'upload';
 export type ResultTemplateCallback = (resultTemplate: IParsedEditSchema) => void;
 export type ErrorCallback = (err: unknown, previousError?: unknown) => void;
 export type SubmitCallback = (resultTemplate: IParsedEditSchema) => void;
-export type UploadCallback = () => string;
+export type UploadCallback = (files: FileList | null) => Promise<string>;
 
 export interface IShotstackEvents {
 	change: ResultTemplateCallback;
@@ -46,5 +46,10 @@ export type Asset = {
 
 export type Track = {
 	clips: Clip[];
+	[key: string]: unknown;
+};
+
+export type Timeline = {
+	tracks: Track[];
 	[key: string]: unknown;
 };
