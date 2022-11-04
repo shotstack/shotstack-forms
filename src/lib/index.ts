@@ -95,10 +95,11 @@ class Shotstack {
 				new Source({
 					target: container,
 					props: {
-						label: source.placeholder,
+						value: source.asset.src,
 						asset: source.asset,
-						handleChange: (files: FileList | null) => {
-							this.templateService.updateSrc(files, source.asset);
+						label: source.placeholder,
+						handleChange: async (files: FileList | null) => {
+							await this.templateService.updateSrc(files, source.asset);
 						}
 					}
 				})

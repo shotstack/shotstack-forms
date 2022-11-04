@@ -78,8 +78,8 @@
 		error = editTemplateService.error;
 	}
 
-	function handleSourceFieldUpdate(file: FileList | null, asset: Asset) {
-		editTemplateService.updateSrc(file, asset);
+	async function handleSourceFieldUpdate(file: FileList | null, asset: Asset) {
+		await editTemplateService.updateSrc(file, asset);
 		template = editTemplateService.template;
 		result = editTemplateService.result;
 	}
