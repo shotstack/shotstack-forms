@@ -7,7 +7,7 @@
 		handleSourceFieldUpdate(files, asset);
 </script>
 
-<div data-cy="source-container">
+<div data-cy="source-container" class:hidden={sources.length < 1}>
 	<h1 class="text-teal-400 px-1">Update sources</h1>
 	<div class="border p-4 mb-6">
 		{#each sources as source}

@@ -921,6 +921,7 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
         </div>
          
         <div
+          class="hidden"
           data-cy="source-container"
         >
           <h1

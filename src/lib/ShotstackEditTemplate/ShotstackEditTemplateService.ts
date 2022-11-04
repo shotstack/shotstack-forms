@@ -127,7 +127,7 @@ export class ShotstackEditTemplateService {
 					placeholder: tracks[i].clips[j].asset.src,
 					asset: tracks[i].clips[j].asset
 				};
-				if (key.placeholder.charAt(0) === '{') result.push(key);
+				if (key.placeholder !== undefined && key.placeholder.charAt(0) === '{') result.push(key);
 			}
 		}
 		return result;
