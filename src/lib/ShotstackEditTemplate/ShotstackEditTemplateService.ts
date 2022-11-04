@@ -18,7 +18,12 @@ export class ShotstackEditTemplateService {
 		this._error = null;
 		this.template = { merge: [] };
 		this._result = { merge: [] };
-		this.handlers = { change: [], submit: [], error: [this.logger], upload: [] };
+		this.handlers = {
+			change: [],
+			submit: [],
+			error: [this.logger],
+			upload: []
+		};
 		this.setTemplateSource(template);
 	}
 
@@ -113,13 +118,14 @@ export class ShotstackEditTemplateService {
 	}
 
 	getSrcPlaceholders(): { placeholder: string; asset: Asset }[] {
-		if (!this.template.tracks) return [];
+		if (!this.template.timeline || !this.template.timeline.tracks) return [];
+		const tracks = this.template.timeline.tracks;
 		const result: { placeholder: string; asset: Asset }[] = [];
-		for (let i = 0; i < this.template.tracks.length; i++) {
-			for (let j = 0; j < this.template.tracks[i].clips.length; j++) {
+		for (let i = 0; i < tracks.length; i++) {
+			for (let j = 0; j < tracks[i].clips.length; j++) {
 				const key = {
-					placeholder: this.template.tracks[i].clips[j].asset.src,
-					asset: this.template.tracks[i].clips[j].asset
+					placeholder: tracks[i].clips[j].asset.src,
+					asset: tracks[i].clips[j].asset
 				};
 				if (key.placeholder.charAt(0) === '{') result.push(key);
 			}
@@ -127,9 +133,9 @@ export class ShotstackEditTemplateService {
 		return result;
 	}
 
-	updateSrc(asset: Asset) {
+	updateSrc(files: FileList | null, asset: Asset) {
 		const url: string = this.handlers.upload.reduce(
-			(acc: string, curr: UploadCallback) => curr(),
+			(acc: string, curr: UploadCallback) => curr(files),
 			''
 		);
 		asset.src = url;
