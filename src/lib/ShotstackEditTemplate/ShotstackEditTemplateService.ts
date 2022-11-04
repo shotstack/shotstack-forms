@@ -3,7 +3,8 @@ import type {
 	IParsedEditSchema,
 	IShotstackEvents,
 	IShotstackHandlers,
-	MergeField
+	MergeField,
+	UploadCallback
 } from './types';
 import { validateError, validateTemplate, stringifyIfNotString } from './validate';
 
@@ -17,7 +18,7 @@ export class ShotstackEditTemplateService {
 		this._error = null;
 		this.template = { merge: [] };
 		this._result = { merge: [] };
-		this.handlers = { change: [], submit: [], error: [this.logger] };
+		this.handlers = { change: [], submit: [], error: [this.logger], upload: [] };
 		this.setTemplateSource(template);
 	}
 
@@ -114,7 +115,6 @@ export class ShotstackEditTemplateService {
 	getSrcPlaceholders(): { placeholder: string; asset: Asset }[] {
 		if (!this.template.tracks) return [];
 		const result: { placeholder: string; asset: Asset }[] = [];
-
 		for (let i = 0; i < this.template.tracks.length; i++) {
 			for (let j = 0; j < this.template.tracks[i].clips.length; j++) {
 				const key = {
@@ -125,5 +125,14 @@ export class ShotstackEditTemplateService {
 			}
 		}
 		return result;
+	}
+
+	updateSrc(asset: Asset) {
+		const url: string = this.handlers.upload.reduce(
+			(acc: string, curr: UploadCallback) => curr(),
+			''
+		);
+		asset.src = url;
+		this.handlers.change.forEach((fn) => fn(this.result));
 	}
 }

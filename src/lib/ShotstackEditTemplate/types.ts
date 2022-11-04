@@ -15,15 +15,17 @@ export interface IParsedEditSchema {
 	tracks?: Track[];
 }
 
-export type TemplateEvent = 'submit' | 'change' | 'error';
+export type TemplateEvent = 'submit' | 'change' | 'error' | 'upload';
 export type ResultTemplateCallback = (resultTemplate: IParsedEditSchema) => void;
 export type ErrorCallback = (err: unknown, previousError?: unknown) => void;
 export type SubmitCallback = (resultTemplate: IParsedEditSchema) => void;
+export type UploadCallback = () => string;
 
 export interface IShotstackEvents {
 	change: ResultTemplateCallback;
 	submit: SubmitCallback;
 	error: ErrorCallback;
+	upload: UploadCallback;
 }
 
 type ShotstackHandlersArray<T, K extends keyof T> = T[K][];
