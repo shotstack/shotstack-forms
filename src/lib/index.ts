@@ -78,6 +78,12 @@ class Shotstack {
 
 	getInputs() {
 		const container = document.createElement('div');
+		this.renderMergeFields(container)
+		this.renderSourceFields(container)
+		return container.children as HTMLCollection;
+	}
+
+	renderMergeFields(container: HTMLElement){
 		this.templateService.template.merge.forEach(
 			(field) =>
 				new Field({
@@ -90,6 +96,9 @@ class Shotstack {
 					}
 				})
 		);
+	}
+
+	renderSourceFields(container: HTMLElement){
 		this.templateService.getSrcPlaceholders().forEach(
 			(source) =>
 				new Source({
@@ -104,7 +113,6 @@ class Shotstack {
 					}
 				})
 		);
-		return container.children as HTMLCollectionOf<HTMLInputElement>;
 	}
 
 	getInputSource() {
