@@ -18,7 +18,12 @@ export class ShotstackEditTemplateService {
 		this._error = null;
 		this.template = { merge: [] };
 		this._result = { merge: [] };
-		this.handlers = { change: [], submit: [], error: [this.logger], upload: [] };
+		this.handlers = {
+			change: [],
+			submit: [],
+			error: [this.logger],
+			upload: []
+		};
 		this.setTemplateSource(template);
 	}
 
@@ -128,9 +133,9 @@ export class ShotstackEditTemplateService {
 		return result;
 	}
 
-	updateSrc(asset: Asset) {
+	updateSrc(files: FileList | null, asset: Asset) {
 		const url: string = this.handlers.upload.reduce(
-			(acc: string, curr: UploadCallback) => curr(),
+			(acc: string, curr: UploadCallback) => curr(files),
 			''
 		);
 		asset.src = url;
