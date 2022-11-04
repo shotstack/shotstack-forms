@@ -32,9 +32,9 @@ class Shotstack {
 		});
 	}
 
-	renderElements(container: HTMLElement, after?: HTMLElement) {
+	renderElements(container: HTMLElement, nextToElement?: HTMLElement) {
 		const inputs = this.getInputs();
-		if (after) after.after(...inputs);
+		if (nextToElement) nextToElement.after(...inputs);
 		else container.append(...inputs);
 	}
 
@@ -78,12 +78,12 @@ class Shotstack {
 
 	getInputs() {
 		const container = document.createElement('div');
-		this.renderMergeFields(container)
-		this.renderSourceFields(container)
-		return container.children as HTMLCollection;
+		this.renderMergeFields(container);
+		this.renderSourceFields(container);
+		return container.children;
 	}
 
-	renderMergeFields(container: HTMLElement){
+	renderMergeFields(container: HTMLElement) {
 		this.templateService.template.merge.forEach(
 			(field) =>
 				new Field({
@@ -98,7 +98,7 @@ class Shotstack {
 		);
 	}
 
-	renderSourceFields(container: HTMLElement){
+	renderSourceFields(container: HTMLElement) {
 		this.templateService.getSrcPlaceholders().forEach(
 			(source) =>
 				new Source({
@@ -113,14 +113,6 @@ class Shotstack {
 					}
 				})
 		);
-	}
-
-	getInputSource() {
-		const container = document.createElement('div');
-		new Source({
-			target: container
-		});
-		return container.children as HTMLCollection;
 	}
 }
 
