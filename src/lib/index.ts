@@ -90,6 +90,19 @@ class Shotstack {
 					}
 				})
 		);
+		this.templateService.getSrcPlaceholders().forEach(
+			(source) =>
+				new Source({
+					target: container,
+					props: {
+						label: source.placeholder,
+						asset: source.asset,
+						handleChange: (files: FileList | null) => {
+							this.templateService.updateSrc(files, source.asset);
+						}
+					}
+				})
+		);
 		return container.children as HTMLCollectionOf<HTMLInputElement>;
 	}
 

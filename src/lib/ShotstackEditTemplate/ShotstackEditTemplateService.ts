@@ -136,7 +136,7 @@ export class ShotstackEditTemplateService {
 	updateSrc(files: FileList | null, asset: Asset) {
 		const url: string = this.handlers.upload.reduce(
 			(acc: string, curr: UploadCallback) => curr(files),
-			''
+			asset.src
 		);
 		asset.src = url;
 		this.handlers.change.forEach((fn) => fn(this.result));

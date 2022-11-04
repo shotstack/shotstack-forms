@@ -145,25 +145,39 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
         </div>
          
         <div
-          data-cy="source-input"
+          data-cy="source-container"
         >
-          <label
-            class="block mb-2 monospace"
-            for="input"
+          <h1
+            class="text-teal-400 px-1"
           >
-            Upload src
-          </label>
+            Update sources
+          </h1>
            
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            disabled=""
-            type="text"
-          />
-           
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            type="file"
-          />
+          <div
+            class="border p-4 mb-6"
+          >
+            <div
+              data-cy="source-input"
+            >
+              <label
+                class="block mb-2 monospace"
+                for="input"
+              >
+                ASSET
+              </label>
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                disabled=""
+                type="text"
+              />
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                type="file"
+              />
+            </div>
+          </div>
         </div>
       </form>
        
@@ -207,7 +221,8 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
             "asset": {
               "type": "title",
               "text": "Hello {{ NAME }}",
-              "style": "future"
+              "style": "future",
+              "src": "{{ ASSET }}"
             },
             "start": 0,
             "length": 5
@@ -401,25 +416,39 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
         </div>
          
         <div
-          data-cy="source-input"
+          data-cy="source-container"
         >
-          <label
-            class="block mb-2 monospace"
-            for="input"
+          <h1
+            class="text-teal-400 px-1"
           >
-            Upload src
-          </label>
+            Update sources
+          </h1>
            
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            disabled=""
-            type="text"
-          />
-           
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            type="file"
-          />
+          <div
+            class="border p-4 mb-6"
+          >
+            <div
+              data-cy="source-input"
+            >
+              <label
+                class="block mb-2 monospace"
+                for="input"
+              >
+                ASSET
+              </label>
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                disabled=""
+                type="text"
+              />
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                type="file"
+              />
+            </div>
+          </div>
         </div>
       </form>
        
@@ -463,7 +492,8 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
             "asset": {
               "type": "title",
               "text": "Hello {{ NAME }}",
-              "style": "future"
+              "style": "future",
+              "src": "{{ ASSET }}"
             },
             "start": 0,
             "length": 5
@@ -657,25 +687,39 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
         </div>
          
         <div
-          data-cy="source-input"
+          data-cy="source-container"
         >
-          <label
-            class="block mb-2 monospace"
-            for="input"
+          <h1
+            class="text-teal-400 px-1"
           >
-            Upload src
-          </label>
+            Update sources
+          </h1>
            
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            disabled=""
-            type="text"
-          />
-           
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            type="file"
-          />
+          <div
+            class="border p-4 mb-6"
+          >
+            <div
+              data-cy="source-input"
+            >
+              <label
+                class="block mb-2 monospace"
+                for="input"
+              >
+                ASSET
+              </label>
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                disabled=""
+                type="text"
+              />
+               
+              <input
+                class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                type="file"
+              />
+            </div>
+          </div>
         </div>
       </form>
        
@@ -719,7 +763,8 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
             "asset": {
               "type": "title",
               "text": "Hello {{ NAME }}",
-              "style": "future"
+              "style": "future",
+              "src": "{{ ASSET }}"
             },
             "start": 0,
             "length": 5
@@ -876,24 +921,16 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
         </div>
          
         <div
-          data-cy="source-input"
+          data-cy="source-container"
         >
-          <label
-            class="block mb-2 monospace"
-            for="input"
+          <h1
+            class="text-teal-400 px-1"
           >
-            Upload src
-          </label>
+            Update sources
+          </h1>
            
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            disabled=""
-            type="text"
-          />
-           
-          <input
-            class="border w-full mb-3 pl-2 py-1 text-stone-500"
-            type="file"
+          <div
+            class="border p-4 mb-6"
           />
         </div>
       </form>
