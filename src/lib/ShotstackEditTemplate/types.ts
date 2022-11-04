@@ -19,7 +19,7 @@ export type TemplateEvent = 'submit' | 'change' | 'error' | 'upload';
 export type ResultTemplateCallback = (resultTemplate: IParsedEditSchema) => void;
 export type ErrorCallback = (err: unknown, previousError?: unknown) => void;
 export type SubmitCallback = (resultTemplate: IParsedEditSchema) => void;
-export type UploadCallback = (files: FileList | null) => string;
+export type UploadCallback = (files: FileList | null) => Promise<string>;
 
 export interface IShotstackEvents {
 	change: ResultTemplateCallback;

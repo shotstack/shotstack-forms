@@ -1,18 +1,25 @@
 <script lang="ts">
-	let urlFile = '';
-
-	function handleChange(event: FileList | null) {
-		if (!event) return;
-		urlFile = event.item(0)?.name || '';
-	}
+	import type { Asset } from '../../../ShotstackEditTemplate/types';
+	export let asset: Asset;
+	export let value: string;
+	export let label: string;
+	export let handleChange: (files: FileList | null) => Promise<void>;
+	let loading = false;
+	$: disabled = loading;
+	let loadFile = async (files: FileList | null) => {
+		loading = true;
+		await handleChange(files);
+		value = asset.src;
+		loading = false;
+	};
 </script>
 
 <div data-cy="source-input">
-	<label class="block mb-2 monospace" for="input">Upload src</label>
-	<input class="border w-full mb-3 pl-2 py-1 text-stone-500" type="text" value={urlFile} disabled />
-
+	<label class="block mb-2 monospace" for="input">{label.slice(2, -2).trim()}</label>
+	<input class="border w-full mb-3 pl-2 py-1 text-stone-500" type="text" {value} disabled />
 	<input
-		on:change={(e) => handleChange(e.currentTarget.files)}
+		{disabled}
+		on:change={(e) => loadFile(e.currentTarget.files)}
 		class="border w-full mb-3 pl-2 py-1 text-stone-500"
 		type="file"
 	/>
