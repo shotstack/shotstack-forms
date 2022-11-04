@@ -36,26 +36,27 @@ To use provided styles: include a `<link rel="stylesheet" href="style.css">` tag
 
 ### Shotstack references
 
-|        | method         | arguments                                                           | effect                                                                                                                                                                                                                   |
-| ------ | -------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|        | constructor    | initialTemplate?: any                                               | Initializes the component with the provided template. If no initial template is found, Shotstack will mount with minimal data instead.                                                                                   |
-| public | renderForm     | container: HTMLElement                                              | Renders and appends the form inside target HTMLElement container                                                                                                                                                         |
-| public | renderElements | container: HTMLElement, after?: HTMLElement => void;                | Renders and appends a div with a label and an input tag for each merge field in the source template inside the container. If an 'after' HTMLElement is provided, it renders the inputs after that element instead.       |
-| public | on             | event: 'change' \| 'submit', callback: (resultTemplate) => void;    | Appends a new event handler for a specific event at the component's lifecycle                                                                                                                                            |
-| public | on             | event: 'error', callback: (error, previousError) => void;           | Appends a new event handler for the error event at the component's lifecycle                                                                                                                                             |
-| public | off            | event: 'change' \| 'submit' \| 'error', callbackReference           | Removes the callback handler from the target event handler array                                                                                                                                                         |
-| public | load           | sourceTemplate: any => void                                         | Sets a new template source for the form and triggers on change events                                                                                                                                                    |
-| public | submit         | none                                                                | Calls all submit event handlers (default is none)                                                                                                                                                                        |
-| public | display        | none                                                                | Changes the display of the current container to show the component                                                                                                                                                       |
-| public | hide           | none                                                                | Changes the display of the current container to hide the component                                                                                                                                                       |
-| public | attach         | newElement: HTMLElement                                             | Changes the current container where the element should be rendered, cleaning the previous container                                                                                                                      |
-| public | remove         | none                                                                | Removes the component from the container where it has been rendered                                                                                                                                                      |
-| public | container      | none => HTMLElement                                                 | Returns the HTML Element where the component is being rendered                                                                                                                                                           |
-| public | addField       | find: string, replace: string => void                               | Adds a field to the source JSON template with the provided find and replace properties. Triggers change events                                                                                                           |
-| public | getField       | field: {find?: string, replace?: string} => MergeField \| undefined | Searchs for the first MergeField element with the same find and replace (if provided) properties and returns the reference. If search fails, or no properties are supplied, it returns undefined                         |
-| public | removeField    | field: MergeField => void                                           | Removes provided item reference from the merge array. Triggers change events                                                                                                                                             |
-| public | merge          | none => JSON                                                        | Returns a merged JSON template to be used on the Shotstack API                                                                                                                                                           |
-| public | getInputs      | none => HTMLCollection                                              | Returns an HTMLCollection of `div` tags containing a `label` with the find value, and an `input` with the replace value, which can be used to modify and update the template JSON. On change, they trigger change events |
+|        | method         | arguments                                                           | effect                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------ | -------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|        | constructor    | initialTemplate?: any                                               | Initializes the component with the provided template. If no initial template is found, Shotstack will mount with minimal data instead.                                                                                                                                                                                                                                                      |
+| public | renderForm     | container: HTMLElement                                              | Renders and appends the form inside target HTMLElement container                                                                                                                                                                                                                                                                                                                            |
+| public | renderElements | container: HTMLElement, after?: HTMLElement => void;                | Renders and appends A) a div with a label and an input tag for each merge field in the source template inside the container, and B) a div with a label and two input tags for every src property inside timeline that contains placeholder variables. If an 'after' HTMLElement is provided, it renders the inputs after that element instead.                                              |
+| public | on             | event: 'change' \| 'submit', callback: (resultTemplate) => void;    | Appends a new event handler for a specific event at the component's lifecycle                                                                                                                                                                                                                                                                                                               |
+| public | on             | event: 'error', callback: (error, previousError) => void;           | Appends a new event handler for the error event at the component's lifecycle                                                                                                                                                                                                                                                                                                                |
+| public | on             | event: 'upload', callback: (FileList \| null) => `Promise<string>`; | Appends a new event handler for the upload event regarding asset and media upload. The handler should be able to receive the the FileList from the input and should return a Promise that resolves into a valid public URL string                                                                                                                                                           |
+| public | off            | event: 'change' \| 'submit' \| 'error', callbackReference           | Removes the callback handler from the target event handler array                                                                                                                                                                                                                                                                                                                            |
+| public | load           | sourceTemplate: any => void                                         | Sets a new template source for the form and triggers on change events                                                                                                                                                                                                                                                                                                                       |
+| public | submit         | none                                                                | Calls all submit event handlers (default is none)                                                                                                                                                                                                                                                                                                                                           |
+| public | display        | none                                                                | Changes the display of the current container to show the component                                                                                                                                                                                                                                                                                                                          |
+| public | hide           | none                                                                | Changes the display of the current container to hide the component                                                                                                                                                                                                                                                                                                                          |
+| public | attach         | newElement: HTMLElement                                             | Changes the current container where the element should be rendered, cleaning the previous container                                                                                                                                                                                                                                                                                         |
+| public | remove         | none                                                                | Removes the component from the container where it has been rendered                                                                                                                                                                                                                                                                                                                         |
+| public | container      | none => HTMLElement                                                 | Returns the HTML Element where the component is being rendered                                                                                                                                                                                                                                                                                                                              |
+| public | addField       | find: string, replace: string => void                               | Adds a field to the source JSON template with the provided find and replace properties. Triggers change events                                                                                                                                                                                                                                                                              |
+| public | getField       | field: {find?: string, replace?: string} => MergeField \| undefined | Searchs for the first MergeField element with the same find and replace (if provided) properties and returns the reference. If search fails, or no properties are supplied, it returns undefined                                                                                                                                                                                            |
+| public | removeField    | field: MergeField => void                                           | Removes provided item reference from the merge array. Triggers change events                                                                                                                                                                                                                                                                                                                |
+| public | merge          | none => JSON                                                        | Returns a merged JSON template to be used on the Shotstack API                                                                                                                                                                                                                                                                                                                              |
+| public | getInputs      | none => HTMLCollection                                              | Returns an HTMLCollection of `div` tags containing: A) a `label` with the find value, and an `input` with the replace value for every Merge Field, and B) a `label`, a text `input` and a file `input` (that triggers upload events) for every `src` property with a placeholder variable, which can be used to modify and update the template JSON. On change, they trigger change events. |
 
 ### Using Shotstack to generate a Form
 
@@ -263,3 +264,70 @@ Note: calling `shotstack.load` after rendering the input elements will make the 
         const nameInput = form.elements.namedItem('name')
         nameInput.addEventListener('change', handleNameChange)
 ```
+
+#### Setting your own asset loading event
+
+- When working with templates, you can easily set your own media storage service. Suppose a template that has media assets with placeholder values at their `src`, in this case, a video and an image:
+
+```
+    {
+            "timeline": {
+                "tracks": [{
+                    "clips": [
+                        {
+                            "asset": {
+                                "type": "video",
+                                "src": "{{ VIDEO }}",
+                                "trim": 3,
+                                "volume": 5,
+                            },
+                            "start": 1,
+                            "length": 10,
+                        },
+                        {
+                            "asset": {
+                                "type": "image",
+                                "src": "{{ IMAGE }}",
+                                "trim": 2,
+                                "crop": {
+                                    "top": 0.15,
+                                    "bottom": 0.15,
+                                    "left": 0,
+                                    "right": 0
+                                }
+                            },
+                            "start": 2,
+                            "length": 5,
+                        }
+                    ]
+                }]
+            },
+            "output": {
+                "format": "mp4",
+                "resolution": "hd"
+            },
+            "merge": [{
+                "find": "NAME",
+                "replace": "world"
+            }]
+        }
+```
+
+- You will need an async function that receives the files and returns a promise which resolves into a string, for example:
+
+```
+        async function fetchUrl(files) {
+            const formData = new FormData()
+            formData.append('file', files[0])
+            let data = await fetch("https://your-media-storage/", {
+                method: "POST",
+                body: formData
+            })
+            let json = await data.json()
+            return url = json.url
+        }
+```
+
+- Start a shotstack instance with the template and call `shotstack.on('upload', fetchUrl)
+- Finally, either render the form with `shotstack.renderForm` or the input elements with `shotstack.renderElements`.
+- When the user uploads a file using the provided file type `input`, they will call the provided upload function, and will update accordingly, triggering change events.
