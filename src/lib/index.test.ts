@@ -10,7 +10,6 @@ import type {
 	Track
 } from './ShotstackEditTemplate/types';
 
-
 beforeEach(() => {
 	//Since window.URL.createObjectURL is not (yet) available in jest-dom,
 	//we need to provide a mock implementation for it.
@@ -356,6 +355,60 @@ describe('Testing Shotstack render methods getInputs and renderSourceFields', ()
 			expect(labels).toContainEqual(label.textContent);
 			const inputs = ['{{VALUE}}', '{{ANOTHER_VALUE}}'];
 			expect(inputs).toContainEqual(input.value);
+		});
+	});
+});
+
+describe('Shostack.renderMergeFields', () => {
+	const find = 'Hello';
+	const replace = 'world';
+	const template: IParsedEditSchema = { merge: [{ find, replace }] };
+	const shotstack = new Shotstack(template);
+	const container: HTMLElement = document.createElement('div');
+	shotstack.renderMergeFields(container);
+	it('renderMergeFields should render a div with a label and an input', () => {
+		const collection = container.children;
+		Array.from(collection).forEach((divContainer) => {
+			const [label, input] = Array.from(divContainer.children) as [
+				HTMLLabelElement,
+				HTMLInputElement
+			];
+			expect(label).toBeInstanceOf(HTMLLabelElement);
+			expect(input).toBeInstanceOf(HTMLInputElement);
+			expect(label.textContent).toEqual(find);
+			expect(input.value).toEqual(replace);
+		});
+	});
+});
+
+describe('Shotstack.renderSourceFields', () => {
+	const placeholder = '{{VALUE}}';
+	const clip1: Clip = { asset: { src: placeholder } };
+	const asset: Asset = { src: 'http://localhost' };
+	const clip: Clip = { asset };
+	const track: Track = { clips: [clip, clip1] };
+	const timeline: Timeline = { tracks: [track] };
+	const template: IParsedEditSchema = { timeline, merge: [] };
+
+	const shotstack = new Shotstack(template);
+	const $div: HTMLElement = document.createElement('div');
+	shotstack.renderSourceFields($div);
+
+	it('renderSourceFields should render a div with a label and two inputs', () => {
+		const collection = $div.children;
+		Array.from(collection).forEach((divContainer) => {
+			const [label, textInput, fileInput] = Array.from(divContainer.children) as [
+				HTMLLabelElement,
+				HTMLInputElement,
+				HTMLInputElement
+			];
+			expect(label).toBeInstanceOf(HTMLLabelElement);
+			expect(textInput).toBeInstanceOf(HTMLInputElement);
+			expect(fileInput).toBeInstanceOf(HTMLInputElement);
+			expect(label.textContent).toEqual(placeholder.slice(2, -2).trim());
+			expect(textInput.value).toEqual(placeholder);
+			expect(textInput.type).toEqual('text');
+			expect(fileInput.type).toEqual('file');
 		});
 	});
 });
