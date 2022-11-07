@@ -1,7 +1,15 @@
 import { describe, expect } from '@jest/globals';
 import Shotstack from './index';
 import defaultJsonInput from '../lib/components/Form/defaultMerge.json';
-import type { IParsedEditSchema, MergeField } from './ShotstackEditTemplate/types';
+import type {
+	Asset,
+	Clip,
+	IParsedEditSchema,
+	MergeField,
+	Timeline,
+	Track
+} from './ShotstackEditTemplate/types';
+
 
 beforeEach(() => {
 	//Since window.URL.createObjectURL is not (yet) available in jest-dom,
@@ -272,7 +280,7 @@ describe('Testing Shotstack render methods', () => {
 	});
 	it('For each merge field, should return a div with a label and an input', () => {
 		const collection = shotstack.getInputs();
-		Array.from<HTMLDivElement>(collection).forEach((divContainer) => {
+		Array.from(collection).forEach((divContainer) => {
 			const [label, input] = Array.from(divContainer.children) as [
 				HTMLLabelElement,
 				HTMLInputElement
@@ -313,5 +321,41 @@ describe('Testing Shotstack render methods', () => {
 		expect(children.item(1)).toBeInstanceOf(HTMLDivElement);
 		expect(children.item(merge.length)).toBeInstanceOf(HTMLDivElement);
 		expect(children.item(merge.length + 1)).toBe(p2);
+	});
+});
+
+describe('Testing Shotstack render methods getInputs and renderSourceFields', () => {
+	const clip1: Clip = { asset: { src: '{{VALUE}}' } };
+	const clip2: Clip = { asset: { src: '{{ANOTHER_VALUE}}' } };
+	const asset: Asset = { src: 'http://localhost' };
+	const clip: Clip = { asset };
+	const track: Track = { clips: [clip, clip1, clip2] };
+	const timeline: Timeline = { tracks: [track] };
+
+	const template: IParsedEditSchema = { timeline, merge: [] };
+
+	const shotstack = new Shotstack(template);
+
+	it('getInput should return and HTLMElement ', () => {
+		const collection = shotstack.getInputs();
+		expect(collection).toBeInstanceOf(HTMLCollection);
+	});
+	it('For each asset with placeholder, should return a div with a label and two input', () => {
+		const collection = shotstack.getInputs();
+		Array.from(collection).forEach((divContainer) => {
+			const [label, input, input2] = Array.from(divContainer.children) as [
+				HTMLLabelElement,
+				HTMLInputElement,
+				HTMLInputElement
+			];
+			expect(label).toBeInstanceOf(HTMLLabelElement);
+			expect(input).toBeInstanceOf(HTMLInputElement);
+			expect(input2).toBeInstanceOf(HTMLInputElement);
+
+			const labels = ['VALUE', 'ANOTHER_VALUE'];
+			expect(labels).toContainEqual(label.textContent);
+			const inputs = ['{{VALUE}}', '{{ANOTHER_VALUE}}'];
+			expect(inputs).toContainEqual(input.value);
+		});
 	});
 });
