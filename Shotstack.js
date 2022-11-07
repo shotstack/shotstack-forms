@@ -1327,10 +1327,19 @@ function pn(t) {
       var g = v(e);
       n = w(g, "LABEL", { class: !0, for: !0 });
       var h = v(n);
-      r = Q(h, l), h.forEach(p), s = j(g), i = w(g, "INPUT", { class: !0, type: !0 }), u = j(g), a = w(g, "INPUT", { class: !0, type: !0 }), g.forEach(p), this.h();
+      r = Q(h, l), h.forEach(p), s = j(g), i = w(g, "INPUT", {
+        "aria-label": !0,
+        class: !0,
+        type: !0
+      }), u = j(g), a = w(g, "INPUT", {
+        role: !0,
+        "aria-label": !0,
+        class: !0,
+        type: !0
+      }), g.forEach(p), this.h();
     },
     h() {
-      d(n, "class", "block mb-2 monospace"), d(n, "for", "input"), d(i, "class", "border w-full mb-3 pl-2 py-1 text-stone-500"), d(i, "type", "text"), i.value = t[0], i.disabled = !0, a.disabled = t[2], d(a, "class", "border w-full mb-3 pl-2 py-1 text-stone-500"), d(a, "type", "file"), d(e, "data-cy", "source-input");
+      d(n, "class", "block mb-2 monospace"), d(n, "for", "input"), d(i, "aria-label", "Current source value"), d(i, "class", "border w-full mb-3 pl-2 py-1 text-stone-500"), d(i, "type", "text"), i.value = t[0], i.disabled = !0, a.disabled = t[2], d(a, "role", "button"), d(a, "aria-label", "File upload"), d(a, "class", "border w-full mb-3 pl-2 py-1 text-stone-500"), d(a, "type", "file"), d(e, "data-cy", "source-input");
     },
     m(c, g) {
       L(c, e, g), m(e, n), m(n, r), m(e, s), m(e, i), m(e, u), m(e, a), o || (f = J(a, "change", t[7]), o = !0);
