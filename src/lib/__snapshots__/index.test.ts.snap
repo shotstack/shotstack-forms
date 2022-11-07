@@ -92,6 +92,7 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                 </div>
                  
                 <button
+                  aria-label="Remove field"
                   class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
                 >
                   <svg
@@ -363,6 +364,7 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                 </div>
                  
                 <button
+                  aria-label="Remove field"
                   class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
                 >
                   <svg
@@ -634,6 +636,7 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                 </div>
                  
                 <button
+                  aria-label="Remove field"
                   class="bg-blue-400 hover:bg-blue-700 text-white font-bold absolute top-0 right-0 rounded-full w-4 h-4 p-1"
                 >
                   <svg
