@@ -2,7 +2,7 @@
 const templateInput = '[data-cy=template-input]';
 const result = '[data-cy=result]';
 const mergeFieldsInputSection = '[data-cy=merge-fields-input-section]';
-
+const addMergeFieldSection = '[data-cy=add-merge-field-section]';
 beforeEach(() => {
 	cy.waitForHydrationThenVisit();
 });
@@ -71,5 +71,34 @@ describe('Merge inputs section', () => {
 		cy.get(mergeFieldsInputSection).find('label').should('not.exist');
 		cy.get(templateInput).should('have.value', JSON.stringify({ merge: [] }, null, 2));
 		cy.get(result).should('have.text', JSON.stringify({ merge: [] }, null, 2));
+	});
+	it('Should show a button that, when pressed, adds a new MergeField', () => {
+		//Arrange
+		const findInput = 'input[aria-label="MergeField.find"]';
+		const replaceInput = 'input[aria-label="MergeField.replace"]';
+
+		// Act
+		cy.get(templateInput)
+			.click()
+			.clear()
+			.type(
+				JSON.stringify({
+					merge: []
+				}),
+				{ parseSpecialCharSequences: false }
+			);
+
+		// Assert
+		cy.get(addMergeFieldSection).should('exist');
+
+		cy.get(addMergeFieldSection).find(findInput).should('exist').click().type('fizz');
+
+		cy.get(addMergeFieldSection).find(replaceInput).should('exist').click().type('buzz');
+		cy.get(addMergeFieldSection).find('button').should('exist').click();
+
+		cy.get(result).should(
+			'have.text',
+			JSON.stringify({ merge: [{ find: 'fizz', replace: 'buzz' }] }, null, 2)
+		);
 	});
 });

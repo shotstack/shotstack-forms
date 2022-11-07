@@ -110,7 +110,9 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
             </div>
           </div>
            
-          <div>
+          <div
+            data-cy="add-merge-field-section"
+          >
             <div>
               <h1
                 class="text-teal-400 px-1"
@@ -122,12 +124,16 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                 class="border p-4 mb-6"
               >
                 <input
+                  aria-label="MergeField.find"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
                 <input
+                  aria-label="MergeField.replace"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
@@ -135,6 +141,7 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                   class="flex flex-row-reverse"
                 >
                   <button
+                    aria-label="Add field"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
                   >
                     Add
@@ -382,7 +389,9 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
             </div>
           </div>
            
-          <div>
+          <div
+            data-cy="add-merge-field-section"
+          >
             <div>
               <h1
                 class="text-teal-400 px-1"
@@ -394,12 +403,16 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                 class="border p-4 mb-6"
               >
                 <input
+                  aria-label="MergeField.find"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
                 <input
+                  aria-label="MergeField.replace"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
@@ -407,6 +420,7 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                   class="flex flex-row-reverse"
                 >
                   <button
+                    aria-label="Add field"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
                   >
                     Add
@@ -654,7 +668,9 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
             </div>
           </div>
            
-          <div>
+          <div
+            data-cy="add-merge-field-section"
+          >
             <div>
               <h1
                 class="text-teal-400 px-1"
@@ -666,12 +682,16 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                 class="border p-4 mb-6"
               >
                 <input
+                  aria-label="MergeField.find"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
                 <input
+                  aria-label="MergeField.replace"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
@@ -679,6 +699,7 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                   class="flex flex-row-reverse"
                 >
                   <button
+                    aria-label="Add field"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
                   >
                     Add
@@ -888,7 +909,9 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
             />
           </div>
            
-          <div>
+          <div
+            data-cy="add-merge-field-section"
+          >
             <div>
               <h1
                 class="text-teal-400 px-1"
@@ -900,12 +923,16 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
                 class="border p-4 mb-6"
               >
                 <input
+                  aria-label="MergeField.find"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
                 <input
+                  aria-label="MergeField.replace"
                   class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                  role="textbox"
                   type="text"
                 />
                  
@@ -913,6 +940,7 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
                   class="flex flex-row-reverse"
                 >
                   <button
+                    aria-label="Add field"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"
                   >
                     Add
