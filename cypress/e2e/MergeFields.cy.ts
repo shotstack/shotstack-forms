@@ -1,8 +1,14 @@
 /// <reference types="Cypress"/>
+
+import { IParsedEditSchema } from '../../src/lib/ShotstackEditTemplate/types';
+
 const templateInput = '[data-cy=template-input]';
 const result = '[data-cy=result]';
 const mergeFieldsInputSection = '[data-cy=merge-fields-input-section]';
 const addMergeFieldSection = '[data-cy=add-merge-field-section]';
+const sourceFieldSection = '[data-cy=source-container]';
+const sourceFieldInput = '[data-cy=source-input]';
+
 beforeEach(() => {
 	cy.waitForHydrationThenVisit();
 });
@@ -100,5 +106,69 @@ describe('Merge inputs section', () => {
 			'have.text',
 			JSON.stringify({ merge: [{ find: 'fizz', replace: 'buzz' }] }, null, 2)
 		);
+	});
+});
+
+describe('Source fields', () => {
+	const placeholderValueOne = '{{ VALUE }}';
+	const placeholderValueTwo = '{{ ANOTHER_VALUE }}';
+	const labels = ['VALUE', 'ANOTHER_VALUE'];
+	const inputs = [placeholderValueOne, placeholderValueTwo];
+	const urlValue = 'http://localhost';
+	const template: IParsedEditSchema = {
+		merge: [],
+		timeline: {
+			tracks: [
+				{
+					clips: [
+						{ asset: { src: placeholderValueOne } },
+						{ asset: { src: placeholderValueTwo } },
+						{ asset: { src: urlValue } }
+					]
+				}
+			]
+		}
+	};
+	it('Renders the Update Sources section', () => {
+		cy.get(sourceFieldSection).should('exist');
+	});
+	it('If no placeholder value is found, it should not display the source section', () => {
+		//Act
+		cy.get(templateInput)
+			.click()
+			.clear()
+			.type(JSON.stringify({ merge: [] }), { parseSpecialCharSequences: false });
+		//Assert
+		cy.get(sourceFieldSection).should('not.be.visible');
+	});
+
+	it('Shows a source field component for each src clip with a placeholder value and ignore the rest', () => {
+		//Act
+		cy.get(templateInput).click().clear().type(JSON.stringify(template), {
+			parseSpecialCharSequences: false
+		});
+
+		//Assert
+		cy.get(sourceFieldSection).should('be.visible').find(sourceFieldInput).should('have.length', 2);
+		cy.get(sourceFieldSection)
+			.find(sourceFieldInput)
+			.find('label')
+			.then((items) => {
+				const list = Array.from(items, (item) => item.innerText);
+				cy.wrap(list).should('eql', labels);
+			});
+
+		cy.get(sourceFieldSection)
+			.find(sourceFieldInput)
+			.find<HTMLInputElement>('input[type=text]')
+			.then((items) => {
+				const list = Array.from(items, (item) => item.value);
+				cy.wrap(list).should('eql', inputs);
+			});
+
+		cy.get(sourceFieldSection)
+			.find(sourceFieldInput)
+			.find('input[type=file]')
+			.should('have.length', 2);
 	});
 });

@@ -175,13 +175,16 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
               </label>
                
               <input
+                aria-label="Current source value"
                 class="border w-full mb-3 pl-2 py-1 text-stone-500"
                 disabled=""
                 type="text"
               />
                
               <input
+                aria-label="File upload"
                 class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                role="button"
                 type="file"
               />
             </div>
@@ -454,13 +457,16 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
               </label>
                
               <input
+                aria-label="Current source value"
                 class="border w-full mb-3 pl-2 py-1 text-stone-500"
                 disabled=""
                 type="text"
               />
                
               <input
+                aria-label="File upload"
                 class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                role="button"
                 type="file"
               />
             </div>
@@ -733,13 +739,16 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
               </label>
                
               <input
+                aria-label="Current source value"
                 class="border w-full mb-3 pl-2 py-1 text-stone-500"
                 disabled=""
                 type="text"
               />
                
               <input
+                aria-label="File upload"
                 class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                role="button"
                 type="file"
               />
             </div>
