@@ -8,23 +8,9 @@ const mergeFieldsInputSection = '[data-cy=merge-fields-input-section]';
 const mergeFieldsLabelInputContainer = '[data-cy=label-input]';
 const resultSection = '[data-cy=result-section]';
 const result = '[data-cy=result]';
-const intercept = 'Form.svelte?svelte&type=style&lang.css';
 
 beforeEach(() => {
-	// Vite SSR creates issues when testing e2e with cypress, due to cypress
-	// running the tests before vite has a chance to hydrate, making the tests flaky.
-	// Potential solutions involve waiting until hydration finishes. Current solution
-	// implements intercepting svelte file and wait until it finishes downloading.
-
-	cy.intercept(intercept).as('svelte');
-	cy.visit('localhost:5173', {
-		onBeforeLoad(win) {
-			//We stub the console.error
-			cy.stub(win.console, 'error').as('consoleError');
-		}
-	});
-	// cy.wait('@svelte');
-	cy.wait(1000);
+	cy.waitForHydrationThenVisit();
 });
 
 describe('Form component', () => {

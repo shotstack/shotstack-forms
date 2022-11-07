@@ -29,7 +29,26 @@
 
 declare global {
 	namespace Cypress {
-		interface Chainable {}
+		interface Chainable {
+			/**
+			Vite SSR creates issues when testing e2e with cypress, due to cypress
+			running the tests before vite has a chance to hydrate, making the tests flaky.
+			Potential solutions involve waiting until hydration finishes. Current solution
+			implements setting a timeout. Another option would be to intercept component
+			files and wait until they finish downloading.			
+			*/
+			waitForHydrationThenVisit(): Chainable<void>;
+		}
 	}
 }
+Cypress.Commands.add('waitForHydrationThenVisit', () => {
+	cy.visit('localhost:5173', {
+		onBeforeLoad(win) {
+			//We stub the console.error
+			cy.stub(win.console, 'error').as('consoleError');
+		}
+	});
+	// cy.wait('@svelte');
+	cy.wait(1000);
+});
 export {};
