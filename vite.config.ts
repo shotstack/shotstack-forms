@@ -28,7 +28,8 @@ function configOptions(environment: boolean): UserConfig {
 				plugins: [svelte()],
 				build: {
 					outDir: 'build'
-				}
+				},
+				base: './'
 			};
 	}
 }
