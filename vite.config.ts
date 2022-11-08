@@ -1,4 +1,3 @@
-import { sveltekit } from '@sveltejs/kit/vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import type { UserConfig } from 'vite';
 import { resolve } from 'path';
@@ -26,7 +25,7 @@ function configOptions(environment: boolean): UserConfig {
 			};
 		default:
 			return {
-				plugins: [sveltekit()]
+				plugins: [svelte()]
 			};
 	}
 }

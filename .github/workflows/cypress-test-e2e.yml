@@ -29,12 +29,6 @@ jobs:
       - name: Create package folder
         run: npm run package
 
-      - name: Store .svelte-kit folder as artifact for testing
-        uses: actions/upload-artifact@v3
-        with:
-          name: .svelte-kit
-          path: .svelte-kit
-
       - name: Store build folder as artifact for deploy
         uses: actions/upload-artifact@v3
         with:
@@ -81,11 +75,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Downloads .svelte-kit  a Build Artifact
+      - name: Downloads build as artifact
         uses: actions/download-artifact@v3.0.0
         with:
-          name: .svelte-kit
-          path: .svelte-kit
+          name: build
+          path: build
 
       - name: Cypress E2E on chrome
         uses: cypress-io/github-action@v4.2.0
