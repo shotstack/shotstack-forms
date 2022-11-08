@@ -10,7 +10,7 @@ const sourceFieldSection = '[data-cy=source-container]';
 const sourceFieldInput = '[data-cy=source-input]';
 
 beforeEach(() => {
-	cy.waitForHydrationThenVisit();
+	cy.visit('localhost:5173');
 });
 
 describe('Merge inputs section', () => {

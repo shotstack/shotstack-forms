@@ -10,7 +10,12 @@ const resultSection = '[data-cy=result-section]';
 const result = '[data-cy=result]';
 
 beforeEach(() => {
-	cy.waitForHydrationThenVisit();
+	cy.visit('localhost:5173', {
+		onBeforeLoad(win) {
+			//We stub the console.error
+			cy.stub(win.console, 'error').as('consoleError');
+		}
+	});
 });
 
 describe('Form component', () => {
