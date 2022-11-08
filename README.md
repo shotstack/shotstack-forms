@@ -8,7 +8,7 @@ After downloading this repository, it is necessary to install the required depen
 
 ### Production Build
 
-This project is made on base of Svelte-kit and uses Vite to create a production build. To initialize a production server you may execute `npm run dev` and Vite will build a development build of the content of `src/lib`, available by default on `http://localhost:5173/`.
+This project is made on Svelte and uses Vite to create a production build. To initialize a production server you may execute `npm run dev` and Vite will build a development build of the content of `src/lib`, available by default on `http://localhost:5173/`.
 
 ### Package Distribution
 
@@ -16,7 +16,7 @@ To create a new `package` of this app and leave it ready to implement in any par
 
 ## Tech Stack
 
-This project is built with [SvelteKit](https://kit.svelte.dev/) and TypeScript. It also uses Jest for Unit Tests and Cypress for the E2E/integration tests.
+This project is built with [Svelte](https://svelte.dev/) and TypeScript. It also uses Jest for Unit Tests and Cypress for the E2E/integration tests.
 
 As to ensure the quality of the code we use ESLint as a Linter and Prettier as a Code Formatter. To keep stability and stay sure of the changes made we use [Husky](https://typicode.github.io/husky/#/) to automatically run various scripts before a commit, being these both the Linter and the Code Formatter, and both test environments, Jest and Cypress, if any of the stages witnesses a lint or code style error, as well as any of the tests fail, no commit or change can be submitted and therefore aborted.
 

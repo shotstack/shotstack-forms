@@ -25,7 +25,10 @@ function configOptions(environment: boolean): UserConfig {
 			};
 		default:
 			return {
-				plugins: [svelte()]
+				plugins: [svelte()],
+				build: {
+					outDir: 'build'
+				}
 			};
 	}
 }
