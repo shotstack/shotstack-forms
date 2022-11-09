@@ -18,7 +18,8 @@ import {
 	stringifyIfNotString,
 	validateError,
 	ValidationError,
-	hasErrorMessage
+	hasErrorMessage,
+	removeCurlyBraces
 } from './validate';
 describe('ShotstackEditTemplate/validate.ts', () => {
 	test('If valid stringified json is passed, it should return a valid json', () => {
@@ -117,5 +118,21 @@ describe('validate.ts/hasErrorMessage', () => {
 		const isNotErrorLike = hasErrorMessage(notError);
 		expect(isErrorLike).toEqual(true);
 		expect(isNotErrorLike).toEqual(false);
+	});
+});
+
+describe('validate.ts/removeCurlyBraces', () => {
+	test('When passed a placeholder value with curly braces should remove them keeping the value intact', () => {
+		expect(removeCurlyBraces('{{ANOTHER_VALUE}}')).toEqual('ANOTHER_VALUE');
+		expect(removeCurlyBraces('{{ VALUE}')).toEqual('VALUE');
+		expect(removeCurlyBraces('{{ FOO }}')).toEqual('FOO');
+		expect(removeCurlyBraces('{{BAR}}')).toEqual('BAR');
+		expect(removeCurlyBraces('{{WORLD')).toEqual('WORLD');
+		expect(removeCurlyBraces('{{ VAL UE }}')).toEqual('VAL UE');
+		expect(removeCurlyBraces('   {{ FIZZ }}')).toEqual('FIZZ');
+		expect(removeCurlyBraces('{')).toEqual('{');
+		expect(removeCurlyBraces('{VALUE}}')).toEqual('{VALUE}}');
+		expect(removeCurlyBraces('{ { VALUE } }')).toEqual('{ { VALUE } }');
+		expect(removeCurlyBraces('VALUE')).toEqual('VALUE');
 	});
 });
