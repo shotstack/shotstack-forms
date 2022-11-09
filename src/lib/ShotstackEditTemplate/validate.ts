@@ -89,3 +89,9 @@ export function stringifyIfNotString(input: unknown): string {
 	if (typeof input === 'string') return input;
 	else return JSON.stringify(input);
 }
+
+export function removeCurlyBraces(placeholder: string): string {
+	const regex = /(?<={{).+(?=}})|(?<={{).+(?=}$)|(?<={{).+(?=$)/g;
+	const match = placeholder.match(regex);
+	return (match && match.toString().trim()) || placeholder;
+}
