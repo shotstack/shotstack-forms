@@ -7,7 +7,6 @@ import { jest } from '@jest/globals';
 describe('source/Source.svelte', () => {
 	const textInputAriaLabel = 'Current source value';
 	const fileInputAriaLabel = 'File upload';
-
 	const asset: Asset = {
 		src: '{{ VALUE }}'
 	};
@@ -17,7 +16,6 @@ describe('source/Source.svelte', () => {
 	const handleChange = async (): Promise<void> => {
 		mock();
 	};
-
 	test('Should render Source component', () => {
 		const source = render(Source, { asset, label, handleChange, value });
 		expect(source.getByRole('button')).toBeInTheDocument();
