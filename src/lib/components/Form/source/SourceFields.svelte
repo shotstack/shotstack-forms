@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { Asset } from '$lib/ShotstackEditTemplate/types';
+	import type { Placeholder } from '../../../ShotstackEditTemplate/types';
+	import type { SourceFieldsCallback } from './utils';
+	import { highOrderHandleChange } from './utils';
 	import Source from './Source.svelte';
-	export let sources: { placeholder: string; asset: Asset }[];
-	export let handleSourceFieldUpdate: (files: FileList | null, asset: Asset) => Promise<void>;
-	const highOrderHandleChange = (asset: Asset) => async (files: FileList | null) =>
-		await handleSourceFieldUpdate(files, asset);
+	export let sources: Placeholder[];
+	export let handleSourceFieldUpdate: SourceFieldsCallback;
 </script>
 
 <div data-cy="source-container" class:hidden={sources.length < 1}>
@@ -13,7 +13,7 @@
 		{#each sources as source}
 			<Source
 				label={source.placeholder}
-				handleChange={highOrderHandleChange(source.asset)}
+				handleChange={highOrderHandleChange(source.asset, handleSourceFieldUpdate)}
 				value={source.asset.src}
 				asset={source.asset}
 			/>
