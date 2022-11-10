@@ -3,9 +3,15 @@ import type {
 	IParsedEditSchema,
 	IShotstackEvents,
 	IShotstackHandlers,
-	MergeField
+	MergeField,
+	Placeholder
 } from './types';
-import { validateError, validateTemplate, stringifyIfNotString } from './validate';
+import {
+	validateError,
+	validateTemplate,
+	stringifyIfNotString,
+	removeCurlyBraces
+} from './validate';
 
 export class ShotstackEditTemplateService {
 	public template: IParsedEditSchema;
@@ -116,17 +122,18 @@ export class ShotstackEditTemplateService {
 		return this.result.merge.find(finderCallback);
 	}
 
-	getSrcPlaceholders(): { placeholder: string; asset: Asset }[] {
+	getSrcPlaceholders(): Placeholder[] {
 		if (!this.template.timeline || !this.template.timeline.tracks) return [];
 		const tracks = this.template.timeline.tracks;
-		const result: { placeholder: string; asset: Asset }[] = [];
+		const result: Placeholder[] = [];
 		for (let i = 0; i < tracks.length; i++) {
 			for (let j = 0; j < tracks[i].clips.length; j++) {
-				const key = {
+				const key: Placeholder = {
 					placeholder: tracks[i].clips[j].asset.src,
 					asset: tracks[i].clips[j].asset
 				};
-				if (key.placeholder !== undefined && key.placeholder.charAt(0) === '{') result.push(key);
+				const isPlaceholderValue = removeCurlyBraces(key.placeholder) !== key.placeholder;
+				isPlaceholderValue && result.push(key);
 			}
 		}
 		return result;

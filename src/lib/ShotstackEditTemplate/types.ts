@@ -53,3 +53,8 @@ export type Timeline = {
 	tracks: Track[];
 	[key: string]: unknown;
 };
+
+export type Placeholder = {
+	asset: Asset;
+	placeholder: string;
+};
