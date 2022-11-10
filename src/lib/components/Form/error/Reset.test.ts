@@ -1,20 +1,20 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor, fireEvent,act } from '@testing-library/svelte';
+import { render, waitFor, fireEvent } from '@testing-library/svelte';
 import Reset from './Reset.svelte';
 
 describe('error/Reset.svelte', () => {
-    let onClick: () => void
-    test('Should render Error component', () => {
-		const reset = render(Reset, {props: {onClick}});
+	let onClick: () => void;
+	test('Should render Error component', () => {
+		const reset = render(Reset, { props: { onClick } });
 		expect(reset.getByRole('button')).toBeInTheDocument();
 	});
-    test('should click button', async () => {
-        const onClick = jest.fn();
-        const reset  = render(Reset, {props: {onClick}});
-        const button = reset.getByText("Reset")
-     await waitFor(() =>{
-            fireEvent.click(button)
-        });
-        expect(onClick).toBeCalled()
-    })
-})
+	test('should click button', async () => {
+		const onClick = jest.fn();
+		const reset = render(Reset, { props: { onClick } });
+		const button = reset.getByText('Reset');
+		await waitFor(() => {
+			fireEvent.click(button);
+		});
+		expect(onClick).toBeCalled();
+	});
+});
