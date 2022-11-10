@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Asset } from '../../../ShotstackEditTemplate/types';
+	import { removeCurlyBraces } from '../../../ShotstackEditTemplate/validate';
 	export let asset: Asset;
 	export let value: string;
 	export let label: string;
@@ -15,7 +16,7 @@
 </script>
 
 <div data-cy="source-input">
-	<label class="block mb-2 monospace" for="input">{label.slice(2, -2).trim()}</label>
+	<label class="block mb-2 monospace" for="input">{removeCurlyBraces(label)}</label>
 	<input
 		aria-label="Current source value"
 		class="border w-full mb-3 pl-2 py-1 text-stone-500"

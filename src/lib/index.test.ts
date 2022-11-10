@@ -1,6 +1,7 @@
 import { describe, expect } from '@jest/globals';
 import Shotstack from './index';
 import defaultJsonInput from '../lib/components/Form/defaultMerge.json';
+import { removeCurlyBraces } from '../lib/ShotstackEditTemplate/validate';
 import type {
 	Asset,
 	Clip,
@@ -405,7 +406,7 @@ describe('Shotstack.renderSourceFields', () => {
 			expect(label).toBeInstanceOf(HTMLLabelElement);
 			expect(textInput).toBeInstanceOf(HTMLInputElement);
 			expect(fileInput).toBeInstanceOf(HTMLInputElement);
-			expect(label.textContent).toEqual(placeholder.slice(2, -2).trim());
+			expect(label.textContent).toEqual(removeCurlyBraces(placeholder));
 			expect(textInput.value).toEqual(placeholder);
 			expect(textInput.type).toEqual('text');
 			expect(fileInput.type).toEqual('file');
