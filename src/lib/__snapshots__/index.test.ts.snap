@@ -15,18 +15,18 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -297,18 +297,18 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -579,18 +579,18 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -861,18 +861,18 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
