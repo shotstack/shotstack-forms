@@ -15,18 +15,18 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -193,28 +193,27 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
       </form>
        
       <div
-        class="svelte-r93edu"
         data-cy="result-section"
       >
-        <h1
-          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        <label
+          class="text-teal-400 px-1"
+          for="json-input"
         >
           Result
-        </h1>
+        </label>
          
         <abbr
-          class="svelte-r93edu"
           title="Copy to clipboard"
         >
           <img
             alt="copy-button"
-            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            class="h-4 cursor-pointer inline mb-1"
             src="[object Object]"
           />
         </abbr>
          
         <p
-          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace"
           data-cy="result"
         >
           {
@@ -297,18 +296,18 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -475,28 +474,27 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
       </form>
        
       <div
-        class="svelte-r93edu"
         data-cy="result-section"
       >
-        <h1
-          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        <label
+          class="text-teal-400 px-1"
+          for="json-input"
         >
           Result
-        </h1>
+        </label>
          
         <abbr
-          class="svelte-r93edu"
           title="Copy to clipboard"
         >
           <img
             alt="copy-button"
-            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            class="h-4 cursor-pointer inline mb-1"
             src="[object Object]"
           />
         </abbr>
          
         <p
-          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace"
           data-cy="result"
         >
           {
@@ -579,18 +577,18 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -757,28 +755,27 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
       </form>
        
       <div
-        class="svelte-r93edu"
         data-cy="result-section"
       >
-        <h1
-          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        <label
+          class="text-teal-400 px-1"
+          for="json-input"
         >
           Result
-        </h1>
+        </label>
          
         <abbr
-          class="svelte-r93edu"
           title="Copy to clipboard"
         >
           <img
             alt="copy-button"
-            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            class="h-4 cursor-pointer inline mb-1"
             src="[object Object]"
           />
         </abbr>
          
         <p
-          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace"
           data-cy="result"
         >
           {
@@ -861,18 +858,18 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
         class="svelte-r93edu"
       >
         <div
-          class="mb-6 svelte-r93edu"
+          class="mb-6"
           data-cy="template-input-section"
         >
           <label
-            class="text-teal-400 px-1 svelte-r93edu"
+            class="text-teal-400 px-1"
             for="json-input"
           >
             Paste template
           </label>
            
           <textarea
-            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none svelte-r93edu"
+            class="w-full h-60 monospace border p-4 overflow-auto whitespace-pre resize-none"
             data-cy="template-input"
             id="json-input"
           />
@@ -977,28 +974,27 @@ exports[`Testing Shotstack module entry point Shotstack.renderForm() should depl
       </form>
        
       <div
-        class="svelte-r93edu"
         data-cy="result-section"
       >
-        <h1
-          class="text-teal-400 px-1 inline-block mr-2 svelte-r93edu"
+        <label
+          class="text-teal-400 px-1"
+          for="json-input"
         >
           Result
-        </h1>
+        </label>
          
         <abbr
-          class="svelte-r93edu"
           title="Copy to clipboard"
         >
           <img
             alt="copy-button"
-            class="h-4 cursor-pointer inline mb-1 svelte-r93edu"
+            class="h-4 cursor-pointer inline mb-1"
             src="[object Object]"
           />
         </abbr>
          
         <p
-          class="h-60 overflow-auto border p-4 whitespace-pre monospace svelte-r93edu"
+          class="h-60 overflow-auto border p-4 whitespace-pre monospace"
           data-cy="result"
         >
           {
