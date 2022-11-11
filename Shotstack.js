@@ -1020,7 +1020,7 @@ function dn(t) {
   let e, n, l, r, i, s, u, a;
   return u = new fn({ props: { onClick: t[0] } }), {
     c() {
-      e = h("div"), n = h("p"), l = h("span"), r = J(t[2]), i = C(), s = h("div"), A(u.$$.fragment), c(l, "class", "monospace text-orange-900"), c(n, "data-cy", "template-input-error"), c(n, "class", "bg-rose-200 rounded py-2 my-4 px-4"), c(s, "class", "flex flex-row-reverse "), B(e, "hidden", !t[1]);
+      e = h("div"), n = h("p"), l = h("span"), r = J(t[2]), i = C(), s = h("div"), A(u.$$.fragment), c(l, "class", "monospace text-orange-900"), c(n, "data-cy", "template-input-error"), c(n, "class", "bg-rose-200 rounded py-2 my-4 px-4"), c(s, "class", "flex flex-row-reverse "), c(e, "data-cy", "error-container"), B(e, "hidden", !t[1]);
     },
     m(o, f) {
       E(o, e, f), m(e, n), m(n, l), m(l, r), m(e, i), m(e, s), j(u, s, null), a = !0;
