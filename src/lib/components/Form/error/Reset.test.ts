@@ -4,11 +4,11 @@ import Reset from './Reset.svelte';
 
 describe('error/Reset.svelte', () => {
 	let onClick: () => void;
-	test('Should render Error component', () => {
+	test('Should render Reset component', () => {
 		const reset = render(Reset, { props: { onClick } });
 		expect(reset.getByRole('button')).toBeInTheDocument();
 	});
-	test('should click button', async () => {
+	test('Should click button', async () => {
 		const onClick = jest.fn();
 		const reset = render(Reset, { props: { onClick } });
 		const button = reset.getByText('Reset');

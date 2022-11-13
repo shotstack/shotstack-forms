@@ -20,7 +20,7 @@ describe('error/ErrorField.svelte', () => {
 		});
 		expect(onClick).toBeCalled();
 	});
-	test('Should add the hidden class when ErrorField doesnt have error', async () => {
+	test('Should add the hidden class when error prop is null', async () => {
 		const errorField = render(ErrorField, { props: { onClick, error } });
 		expect(errorField.container.querySelector('[data-cy=error-container]')).toHaveClass('hidden');
 	});
