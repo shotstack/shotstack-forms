@@ -934,7 +934,7 @@ function ln(n) {
   let e, t, l, r, s, i, o, a;
   return o = new rn({ props: { onClick: n[0] } }), {
     c() {
-      e = p("div"), t = p("p"), l = p("span"), r = x(n[2]), s = D(), i = p("div"), S(o.$$.fragment), d(l, "class", "monospace text-orange-900"), d(t, "data-cy", "template-input-error"), d(t, "class", "bg-rose-200 rounded py-2 my-4 px-4"), d(i, "class", "flex flex-row-reverse "), $(e, "hidden", !n[1]);
+      e = p("div"), t = p("p"), l = p("span"), r = x(n[2]), s = D(), i = p("div"), S(o.$$.fragment), d(l, "class", "monospace text-orange-900"), d(t, "data-cy", "template-input-error"), d(t, "class", "bg-rose-200 rounded py-2 my-4 px-4"), d(i, "class", "flex flex-row-reverse "), d(e, "data-cy", "error-container"), $(e, "hidden", !n[1]);
     },
     m(u, c) {
       M(u, e, c), h(e, t), h(t, l), h(l, r), h(e, s), h(e, i), F(o, i, null), a = !0;
