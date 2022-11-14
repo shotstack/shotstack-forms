@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MergeField } from '$lib/ShotstackEditTemplate/types';
+	import type { MergeField } from '../../../../lib/ShotstackEditTemplate/types';
 	export let field: MergeField;
 	export let find: string;
 	export let replace: string;
