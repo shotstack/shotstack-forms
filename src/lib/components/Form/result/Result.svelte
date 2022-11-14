@@ -13,7 +13,7 @@
 
 <div data-cy="result-section" class:hidden={error}>
 	<Subtitle>Result</Subtitle>
-	<Icon />
+	<Icon {result} />
 	<Json text={formatJson(result)} />
 	<SubmitArea {submit} {download} />
 </div>
