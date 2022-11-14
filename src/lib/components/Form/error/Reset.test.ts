@@ -8,7 +8,7 @@ describe('error/Reset.svelte', () => {
 		const reset = render(Reset, { props: { onClick } });
 		expect(reset.getByRole('button')).toBeInTheDocument();
 	});
-	test('Should click button', async () => {
+	test('Should reset the inputs when you click the button', async () => {
 		const onClick = jest.fn();
 		const reset = render(Reset, { props: { onClick } });
 		const button = reset.getByText('Reset');

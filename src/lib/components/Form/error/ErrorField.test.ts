@@ -11,7 +11,7 @@ describe('error/ErrorField.svelte', () => {
 		const errorField = render(ErrorField, { props: { onClick, error } });
 		expect(errorField.getByRole('button')).toBeInTheDocument();
 	});
-	test('should click button', async () => {
+	test('Should reset the inputs when you click the button', async () => {
 		const onClick = jest.fn();
 		const errorField = render(ErrorField, { props: { onClick, error } });
 		const button = errorField.getByText('Reset');
