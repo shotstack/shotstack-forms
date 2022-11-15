@@ -80,13 +80,14 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                   <label
                     aria-label="Current label"
                     class="block mb-2 monospace"
-                    for="NAME"
+                    for="mergefield-input-id-0"
                   >
                     NAME
                   </label>
                    
                   <input
                     class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                    id="mergefield-input-id-0"
                     label="NAME"
                     role="textbox"
                     type="text"
@@ -363,13 +364,14 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                   <label
                     aria-label="Current label"
                     class="block mb-2 monospace"
-                    for="NAME"
+                    for="mergefield-input-id-0"
                   >
                     NAME
                   </label>
                    
                   <input
                     class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                    id="mergefield-input-id-0"
                     label="NAME"
                     role="textbox"
                     type="text"
@@ -646,13 +648,14 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                   <label
                     aria-label="Current label"
                     class="block mb-2 monospace"
-                    for="NAME"
+                    for="mergefield-input-id-0"
                   >
                     NAME
                   </label>
                    
                   <input
                     class="border w-full mb-3 pl-2 py-1 text-stone-500"
+                    id="mergefield-input-id-0"
                     label="NAME"
                     role="textbox"
                     type="text"

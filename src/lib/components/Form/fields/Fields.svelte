@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MergeField } from '$lib/ShotstackEditTemplate/types';
+	import type { MergeField } from '../../../ShotstackEditTemplate/types';
 	import Add from './Add.svelte';
 	import Badge from './Badge.svelte';
 	import Field from './Field.svelte';
@@ -14,9 +14,9 @@
 	<div data-cy="merge-fields-input-section">
 		<h1 class="text-teal-400 px-1">Modify Merge Values</h1>
 		<div class="border p-4 mb-6">
-			{#each fields as field}
+			{#each fields as field, index}
 				<div class="relative">
-					<Field {field} {handleFormInput} />
+					<Field {field} {handleFormInput} inputId={`mergefield-input-id-${index}`} />
 					<Badge onClick={() => removeField(field)} />
 				</div>
 			{/each}
