@@ -45,7 +45,7 @@ describe('Template input section', () => {
 		// Assert
 		cy.get(templateInputError).should('exist');
 		cy.get(mergeFieldsInputSection).should('not.be.visible');
-		cy.get(resultSection).should('not.exist');
+		cy.get(resultSection).should('not.be.visible');
 
 		// Act
 		cy.get(templateInput).click().clear().type(' 23 ');
@@ -53,7 +53,7 @@ describe('Template input section', () => {
 		// Assert
 		cy.get(templateInputError).should('exist');
 		cy.get(mergeFieldsInputSection).should('not.be.visible');
-		cy.get(resultSection).should('not.exist');
+		cy.get(resultSection).should('not.be.visible');
 
 		// Act
 		cy.get(templateInput).click().clear().type(' asd ');
@@ -61,7 +61,7 @@ describe('Template input section', () => {
 		// Assert
 		cy.get(templateInputError).should('exist');
 		cy.get(mergeFieldsInputSection).should('not.be.visible');
-		cy.get(resultSection).should('not.exist');
+		cy.get(resultSection).should('not.be.visible');
 
 		// Act
 		cy.get(templateInput).click().clear().type('{{} message: "wrong json" } ');
@@ -69,7 +69,7 @@ describe('Template input section', () => {
 		// // Assert
 		cy.get(templateInputError).should('exist');
 		cy.get(mergeFieldsInputSection).should('not.be.visible');
-		cy.get(resultSection).should('not.exist');
+		cy.get(resultSection).should('not.be.visible');
 	});
 });
 

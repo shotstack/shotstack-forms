@@ -17,7 +17,7 @@ describe('fields/Input.svelte', () => {
 		expect(input.getByRole('textbox')).toBeInTheDocument();
 		expect(input.getByRole('textbox')).toHaveValue(replace);
 	});
-	test('Should testing de handleformInput to receive the correct parameters ', () => {
+	test('Should testing the handleformInput to receive the correct parameters ', () => {
 		render(Input, { props: { field, find, replace, handleFormInput } });
 		const inputElement: HTMLInputElement = screen.getByRole<HTMLInputElement>('textbox');
 		fireEvent.input(inputElement, { target: { value: newReplace } });
