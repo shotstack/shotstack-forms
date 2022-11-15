@@ -78,7 +78,7 @@ exports[`Testing Shotstack methods Shotstack.attach(), when passed a new contain
                   data-cy="label-input"
                 >
                   <label
-                    aria-label="Current label Arial"
+                    aria-label="Current label"
                     class="block mb-2 monospace"
                     for="NAME"
                   >
@@ -361,7 +361,7 @@ exports[`Testing Shotstack methods Shotstack.display(), container element should
                   data-cy="label-input"
                 >
                   <label
-                    aria-label="Current label Arial"
+                    aria-label="Current label"
                     class="block mb-2 monospace"
                     for="NAME"
                   >
@@ -644,7 +644,7 @@ exports[`Testing Shotstack methods Shotstack.hide(), container element should ha
                   data-cy="label-input"
                 >
                   <label
-                    aria-label="Current label Arial"
+                    aria-label="Current label"
                     class="block mb-2 monospace"
                     for="NAME"
                   >

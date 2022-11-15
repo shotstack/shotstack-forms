@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/svelte';
 import Label from './Label.svelte';
 
 describe('fields/Label.svelte', () => {
-	const textLabelArialLabel = 'Current label Arial';
+	const textLabelArialLabel = 'Current label';
 	const find = 'text';
 	test('Should render Label component', () => {
 		const label = render(Label, { find });
