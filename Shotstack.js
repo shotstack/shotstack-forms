@@ -681,7 +681,7 @@ function Jt(t) {
   let e, n;
   return {
     c() {
-      e = p("label"), n = P(t[0]), d(e, "for", t[0]), d(e, "class", "block mb-2 monospace");
+      e = p("label"), n = P(t[0]), d(e, "for", t[0]), d(e, "class", "block mb-2 monospace"), d(e, "aria-label", "Current label Arial");
     },
     m(l, r) {
       M(l, e, r), h(e, n);
