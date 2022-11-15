@@ -5,4 +5,5 @@ const $app = document.querySelector<HTMLDivElement>('#app');
 
 if ($app) shotstack.renderForm($app);
 
+// Just for demo purposes, remove before merge into main
 shotstack.on('upload', Shotstack.mediaUploadService);
