@@ -1,6 +1,12 @@
 import { Field, Form, Source } from './components';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplate/ShotstackEditTemplateService';
-import type { IShotstackEvents, MergeField, TemplateEvent } from './ShotstackEditTemplate/types';
+import type {
+	IShotstackEvents,
+	MergeField,
+	ShotstackSourceData,
+	ShotstackUploadURL,
+	TemplateEvent
+} from './ShotstackEditTemplate/types';
 
 class Shotstack {
 	public templateService: ShotstackEditTemplateService;
@@ -113,6 +119,42 @@ class Shotstack {
 					}
 				})
 		);
+	}
+	static async mediaUploadService(files: FileList | null) {
+		if (!files) throw new Error('File not found');
+		const item = files.item(0);
+		if (!item) throw new Error('File not found');
+		const fetchURL = await fetch(
+			'https://0oot5z5cud.execute-api.ap-southeast-2.amazonaws.com/upload',
+			{
+				method: 'POST'
+			}
+		);
+		const { data }: ShotstackUploadURL = await fetchURL.json();
+		await fetch(data.attributes.url, {
+			method: 'PUT',
+			body: item,
+			headers: {
+				'Content-Type': ''
+			}
+		});
+		const finalUrl: string = await new Promise((res, rej) => {
+			const interval = setInterval(async () => {
+				const fetchSourceUrl =
+					'https://0oot5z5cud.execute-api.ap-southeast-2.amazonaws.com/upload/';
+				const fetchSource = await fetch(fetchSourceUrl + data.id);
+				const fetchSourceResponse: ShotstackSourceData = await fetchSource.json();
+				const sourceData = fetchSourceResponse.data;
+				if (sourceData.attributes.status === 'ready' && sourceData.attributes.source) {
+					clearInterval(interval);
+					res(sourceData.attributes.source);
+				} else if (sourceData.attributes.status !== 'importing') {
+					clearInterval(interval);
+					rej();
+				}
+			}, 1000);
+		});
+		return finalUrl;
 	}
 }
 

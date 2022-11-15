@@ -53,3 +53,29 @@ export type Timeline = {
 	tracks: Track[];
 	[key: string]: unknown;
 };
+
+export type ShotstackUploadURL = {
+	data: {
+		attributes: {
+			expiryTime: string;
+			id: string;
+			url: string;
+		};
+		id: string;
+		type: string;
+	};
+};
+export type ShotstackSourceData = {
+	data: {
+		type: string;
+		id: string;
+		attributes: {
+			id: string;
+			owner: string;
+			source?: string;
+			status: string;
+			created: string;
+			updated?: string;
+		};
+	};
+};
