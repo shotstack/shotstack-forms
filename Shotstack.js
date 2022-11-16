@@ -248,7 +248,7 @@ function C(t, e, n, l, r, i, s, o = [-1]) {
   }
   Q(a);
 }
-class j {
+class E {
   $destroy() {
     T(this, 1), this.$destroy = v;
   }
@@ -441,17 +441,24 @@ class Ye {
     let l = n.src;
     for (let r = 0; r < this.handlers.upload.length; r++) {
       const i = this.handlers.upload[r];
-      l = await i(e);
+      try {
+        if (l = await i(e), l)
+          n.src = l;
+        else
+          throw new Error(`Asset URL not found at upload handler index ${r}`);
+      } catch (s) {
+        console.error(s);
+      }
     }
-    n.src = l, this.handlers.change.forEach((r) => r(this.result));
+    this.handlers.change.forEach((r) => r(this.result));
   }
 }
-const jt = [
+const Et = [
   {
     find: "NAME",
     replace: "world"
   }
-], Et = {
+], jt = {
   tracks: [
     {
       clips: [
@@ -472,8 +479,8 @@ const jt = [
   format: "mp4",
   resolution: "hd"
 }, Ot = {
-  merge: jt,
-  timeline: Et,
+  merge: Et,
+  timeline: jt,
   output: Dt
 }, $ = [];
 function Fe(t, e = v) {
@@ -534,13 +541,13 @@ function kt(t, e, n) {
     "value" in a && n(0, l = a.value), "label" in a && n(1, r = a.label), "onFocus" in a && n(2, i = a.onFocus);
   }, [l, r, i, s, o];
 }
-class Te extends j {
+class Te extends E {
   constructor(e) {
     super(), C(this, e, kt, At, N, { value: 0, label: 1, onFocus: 2 });
   }
 }
 function Lt(t) {
-  let e, n, l, r, i, s, o, a, u, c, d, m, _, g, b, E;
+  let e, n, l, r, i, s, o, a, u, c, d, m, _, g, b, j;
   function A(O) {
     t[7](O);
   }
@@ -561,7 +568,7 @@ function Lt(t) {
       e = p("div"), n = p("div"), l = p("h1"), l.textContent = "Add a new merge field", r = D(), i = p("div"), S(s.$$.fragment), a = D(), S(u.$$.fragment), d = D(), m = p("div"), _ = p("button"), _.textContent = "Add", f(l, "class", "text-teal-400 px-1"), f(_, "aria-label", "Add field"), f(_, "class", "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded align-self-end"), f(m, "class", "flex flex-row-reverse"), f(i, "class", "border p-4 mb-6"), f(e, "data-cy", "add-merge-field-section");
     },
     m(O, V) {
-      M(O, e, V), h(e, n), h(n, l), h(n, r), h(n, i), F(s, i, null), h(i, a), F(u, i, null), h(i, d), h(i, m), h(m, _), g = !0, b || (E = k(_, "click", fe(t[10])), b = !0);
+      M(O, e, V), h(e, n), h(n, l), h(n, r), h(n, i), F(s, i, null), h(i, a), F(u, i, null), h(i, d), h(i, m), h(m, _), g = !0, b || (j = k(_, "click", fe(t[10])), b = !0);
     },
     p(O, [V]) {
       const me = {};
@@ -576,7 +583,7 @@ function Lt(t) {
       I(s.$$.fragment, O), I(u.$$.fragment, O), g = !1;
     },
     d(O) {
-      O && y(e), T(s), T(u), b = !1, E();
+      O && y(e), T(s), T(u), b = !1, j();
     }
   };
 }
@@ -611,7 +618,7 @@ function Pt(t, e, n) {
     _
   ];
 }
-class xt extends j {
+class xt extends E {
   constructor(e) {
     super(), C(this, e, Pt, Lt, N, { addField: 0 });
   }
@@ -636,7 +643,7 @@ function zt(t) {
 function Yt(t) {
   return [];
 }
-class Rt extends j {
+class Rt extends E {
   constructor(e) {
     super(), C(this, e, Yt, zt, N, {});
   }
@@ -672,7 +679,7 @@ function Ut(t, e, n) {
     "onClick" in r && n(0, l = r.onClick);
   }, [l];
 }
-class Bt extends j {
+class Bt extends E {
   constructor(e) {
     super(), C(this, e, Ut, $t, N, { onClick: 0 });
   }
@@ -702,7 +709,7 @@ function Qt(t, e, n) {
     "find" in i && n(0, l = i.find), "inputId" in i && n(1, r = i.inputId);
   }, [l, r];
 }
-class Ht extends j {
+class Ht extends E {
   constructor(e) {
     super(), C(this, e, Qt, Jt, N, { find: 0, inputId: 1 });
   }
@@ -733,7 +740,7 @@ function Gt(t, e, n) {
     "field" in u && n(0, l = u.field), "find" in u && n(1, r = u.find), "replace" in u && n(2, i = u.replace), "inputId" in u && n(3, s = u.inputId), "handleFormInput" in u && n(4, o = u.handleFormInput);
   }, [l, r, i, s, o, a];
 }
-class qt extends j {
+class qt extends E {
   constructor(e) {
     super(), C(this, e, Gt, Vt, N, {
       field: 0,
@@ -789,7 +796,7 @@ function Wt(t, e, n) {
     "field" in s && n(0, l = s.field), "inputId" in s && n(1, r = s.inputId), "handleFormInput" in s && n(2, i = s.handleFormInput);
   }, [l, r, i];
 }
-class Re extends j {
+class Re extends E {
   constructor(e) {
     super(), C(this, e, Wt, Zt, N, { field: 0, inputId: 1, handleFormInput: 2 });
   }
@@ -860,8 +867,8 @@ function Xt(t) {
         u = m[1];
         let b;
         for (b = 0; b < u.length; b += 1) {
-          const E = Se(m, u, b);
-          c[b] ? (c[b].p(E, _), w(c[b], 1)) : (c[b] = Ne(E), c[b].c(), w(c[b], 1), c[b].m(i, null));
+          const j = Se(m, u, b);
+          c[b] ? (c[b].p(j, _), w(c[b], 1)) : (c[b] = Ne(j), c[b].c(), w(c[b], 1), c[b].m(i, null));
         }
         for (Le(), b = u.length; b < c.length; b += 1)
           d(b);
@@ -895,7 +902,7 @@ function Kt(t, e, n) {
     "error" in u && n(0, l = u.error), "fields" in u && n(1, r = u.fields), "handleFormInput" in u && n(2, i = u.handleFormInput), "addField" in u && n(3, s = u.addField), "removeField" in u && n(4, o = u.removeField);
   }, [l, r, i, s, o, a];
 }
-class en extends j {
+class en extends E {
   constructor(e) {
     super(), C(this, e, Kt, Xt, N, {
       error: 0,
@@ -933,7 +940,7 @@ function nn(t, e, n) {
     "onClick" in r && n(0, l = r.onClick);
   }, [l];
 }
-class rn extends j {
+class rn extends E {
   constructor(e) {
     super(), C(this, e, nn, tn, N, { onClick: 0 });
   }
@@ -971,7 +978,7 @@ function sn(t, e, n) {
     t.$$.dirty & 2 && n(2, l = i && i.message || "");
   }, [r, i, l];
 }
-class un extends j {
+class un extends E {
   constructor(e) {
     super(), C(this, e, sn, ln, N, { onClick: 0, error: 1 });
   }
@@ -998,7 +1005,14 @@ function on(t) {
 }
 function an(t, e, n) {
   let l, { asset: r } = e, { value: i } = e, { label: s } = e, { handleChange: o } = e, a = !1, u = async (d) => {
-    n(6, a = !0), await o(d), n(0, i = r.src), n(6, a = !1);
+    n(6, a = !0);
+    try {
+      await o(d), n(0, i = r.src);
+    } catch (m) {
+      console.log(m);
+    } finally {
+      n(6, a = !1);
+    }
   };
   const c = (d) => u(d.currentTarget.files);
   return t.$$set = (d) => {
@@ -1007,7 +1021,7 @@ function an(t, e, n) {
     t.$$.dirty & 64 && n(2, l = a);
   }, [i, s, l, u, r, o, a, c];
 }
-class $e extends j {
+class $e extends E {
   constructor(e) {
     super(), C(this, e, an, on, N, {
       asset: 4,
@@ -1017,11 +1031,11 @@ class $e extends j {
     });
   }
 }
-function je(t, e, n) {
+function Ee(t, e, n) {
   const l = t.slice();
   return l[2] = e[n], l;
 }
-function Ee(t) {
+function je(t) {
   let e, n;
   return e = new $e({
     props: {
@@ -1055,7 +1069,7 @@ function Ee(t) {
 function cn(t) {
   let e, n, l, r, i, s = t[0], o = [];
   for (let u = 0; u < s.length; u += 1)
-    o[u] = Ee(je(t, s, u));
+    o[u] = je(Ee(t, s, u));
   const a = (u) => I(o[u], 1, 1, () => {
     o[u] = null;
   });
@@ -1077,8 +1091,8 @@ function cn(t) {
         s = u[0];
         let d;
         for (d = 0; d < s.length; d += 1) {
-          const m = je(u, s, d);
-          o[d] ? (o[d].p(m, c), w(o[d], 1)) : (o[d] = Ee(m), o[d].c(), w(o[d], 1), o[d].m(r, null));
+          const m = Ee(u, s, d);
+          o[d] ? (o[d].p(m, c), w(o[d], 1)) : (o[d] = je(m), o[d].c(), w(o[d], 1), o[d].m(r, null));
         }
         for (Le(), d = s.length; d < o.length; d += 1)
           a(d);
@@ -1110,7 +1124,7 @@ function fn(t, e, n) {
     "sources" in i && n(0, l = i.sources), "handleSourceFieldUpdate" in i && n(1, r = i.handleSourceFieldUpdate);
   }, [l, r];
 }
-class dn extends j {
+class dn extends E {
   constructor(e) {
     super(), C(this, e, fn, cn, N, { sources: 0, handleSourceFieldUpdate: 1 });
   }
@@ -1152,7 +1166,7 @@ function gn(t, e, n) {
     "$$scope" in i && n(0, r = i.$$scope);
   }, [r, l];
 }
-class Ue extends j {
+class Ue extends E {
   constructor(e) {
     super(), C(this, e, gn, mn, N, {});
   }
@@ -1186,7 +1200,7 @@ function pn(t, e, n) {
     "handleTemplateInput" in s && n(0, l = s.handleTemplateInput), "template" in s && n(1, r = s.template);
   }, [l, r, i];
 }
-class _n extends j {
+class _n extends E {
   constructor(e) {
     super(), C(this, e, pn, hn, N, { handleTemplateInput: 0, template: 1 });
   }
@@ -1247,7 +1261,7 @@ function vn(t, e, n) {
     "template" in i && n(0, l = i.template), "handleTemplateInput" in i && n(1, r = i.handleTemplateInput);
   }, [l, r];
 }
-class In extends j {
+class In extends E {
   constructor(e) {
     super(), C(this, e, vn, wn, N, { template: 0, handleTemplateInput: 1 });
   }
@@ -1272,7 +1286,7 @@ function yn(t) {
 function Mn(t) {
   return [];
 }
-class Fn extends j {
+class Fn extends E {
   constructor(e) {
     super(), C(this, e, Mn, yn, N, {});
   }
@@ -1307,7 +1321,7 @@ function Sn(t, e, n) {
     "download" in r && n(0, l = r.download);
   }, [l];
 }
-class Nn extends j {
+class Nn extends E {
   constructor(e) {
     super(), C(this, e, Sn, Tn, N, { download: 0 });
   }
@@ -1333,20 +1347,20 @@ function Cn(t) {
     }
   };
 }
-function jn(t, e, n) {
+function En(t, e, n) {
   let { submit: l } = e;
   return t.$$set = (r) => {
     "submit" in r && n(0, l = r.submit);
   }, [l];
 }
-class En extends j {
+class jn extends E {
   constructor(e) {
-    super(), C(this, e, jn, Cn, N, { submit: 0 });
+    super(), C(this, e, En, Cn, N, { submit: 0 });
   }
 }
 function Dn(t) {
   let e, n, l, r, i;
-  return n = new Nn({ props: { download: t[0] } }), r = new En({ props: { submit: t[1] } }), {
+  return n = new Nn({ props: { download: t[0] } }), r = new jn({ props: { submit: t[1] } }), {
     c() {
       e = p("div"), S(n.$$.fragment), l = D(), S(r.$$.fragment), f(e, "class", "flex justify-between pt-4");
     },
@@ -1376,7 +1390,7 @@ function On(t, e, n) {
     "download" in i && n(0, l = i.download), "submit" in i && n(1, r = i.submit);
   }, [l, r];
 }
-class An extends j {
+class An extends E {
   constructor(e) {
     super(), C(this, e, On, Dn, N, { download: 0, submit: 1 });
   }
@@ -1409,7 +1423,7 @@ function xn(t, e, n) {
     "result" in i && n(0, l = i.result);
   }, [l, r];
 }
-class zn extends j {
+class zn extends E {
   constructor(e) {
     super(), C(this, e, xn, Pn, N, { result: 0 });
   }
@@ -1439,7 +1453,7 @@ function Rn(t, e, n) {
     "text" in r && n(0, l = r.text);
   }, [l];
 }
-class $n extends j {
+class $n extends E {
   constructor(e) {
     super(), C(this, e, Rn, Yn, N, { text: 0 });
   }
@@ -1506,7 +1520,7 @@ function Jn(t, e, n) {
     "result" in o && n(0, l = o.result), "download" in o && n(1, r = o.download), "submit" in o && n(2, i = o.submit), "error" in o && n(3, s = o.error);
   }, [l, r, i, s];
 }
-class Qn extends j {
+class Qn extends E {
   constructor(e) {
     super(), C(this, e, Jn, Bn, N, {
       result: 0,
@@ -1556,8 +1570,8 @@ function Hn(t) {
       M(g, e, b), h(e, n), h(n, l), F(r, l, null), h(l, i), F(s, l, null), h(l, o), F(a, l, null), h(l, u), F(c, l, null), h(n, d), F(m, n, null), _ = !0;
     },
     p(g, [b]) {
-      const E = {};
-      b & 2 && (E.template = g[1]), r.$set(E);
+      const j = {};
+      b & 2 && (j.template = g[1]), r.$set(j);
       const A = {};
       b & 4 && (A.error = g[2]), s.$set(A);
       const R = {};
@@ -1587,30 +1601,30 @@ function Vn(t) {
 }
 function Gn(t, e, n) {
   let l, { editTemplateService: r = new Ye(Ot) } = e, i = r.template, s = r.result, o = null, a = r.getSrcPlaceholders();
-  function u(E) {
-    r.setTemplateSource(E), n(1, i = r.template), n(0, s = r.result), n(2, o = r.error), n(3, a = r.getSrcPlaceholders());
+  function u(j) {
+    r.setTemplateSource(j), n(1, i = r.template), n(0, s = r.result), n(2, o = r.error), n(3, a = r.getSrcPlaceholders());
   }
-  function c(E, A) {
-    r.updateResultMergeFields(E, A), n(0, s = r.result);
+  function c(j, A) {
+    r.updateResultMergeFields(j, A), n(0, s = r.result);
   }
   function d() {
     r.submit(), window.alert("Form successfully submitted!");
   }
-  function m(E) {
-    r.addMergeField(E), n(1, i = r.template), n(0, s = r.result), n(2, o = r.error);
+  function m(j) {
+    r.addMergeField(j), n(1, i = r.template), n(0, s = r.result), n(2, o = r.error);
   }
-  function _(E) {
-    const A = r.getMergeFieldItem(E);
+  function _(j) {
+    const A = r.getMergeFieldItem(j);
     r.removeMergeField(A), n(1, i = r.template), n(0, s = r.result), n(2, o = r.error);
   }
   function g() {
     r.setTemplateSource(r.result), n(1, i = r.template), n(0, s = r.result), n(2, o = r.error);
   }
-  async function b(E, A) {
-    await r.updateSrc(E, A), n(1, i = r.template), n(0, s = r.result);
+  async function b(j, A) {
+    await r.updateSrc(j, A), n(1, i = r.template), n(0, s = r.result);
   }
-  return t.$$set = (E) => {
-    "editTemplateService" in E && n(12, r = E.editTemplateService);
+  return t.$$set = (j) => {
+    "editTemplateService" in j && n(12, r = j.editTemplateService);
   }, t.$$.update = () => {
     t.$$.dirty & 1 && n(4, l = Vn(s) || "");
   }, [
@@ -1629,7 +1643,7 @@ function Gn(t, e, n) {
     r
   ];
 }
-class qn extends j {
+class qn extends E {
   constructor(e) {
     super(), C(this, e, Gn, Hn, N, { editTemplateService: 12 });
   }
