@@ -143,9 +143,14 @@ export class ShotstackEditTemplateService {
 		let result = asset.src;
 		for (let i = 0; i < this.handlers.upload.length; i++) {
 			const handler = this.handlers.upload[i];
-			result = await handler(files);
+			try {
+				result = await handler(files);
+				if (!result) throw new Error(`Asset URL not found at upload handler index ${i}`);
+				else asset.src = result;
+			} catch (error) {
+				console.error(error);
+			}
 		}
-		asset.src = result;
 		this.handlers.change.forEach((fn) => fn(this.result));
 	}
 }

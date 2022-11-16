@@ -9,9 +9,14 @@
 	$: disabled = loading;
 	let loadFile = async (files: FileList | null) => {
 		loading = true;
-		await handleChange(files);
-		value = asset.src;
-		loading = false;
+		try {
+			await handleChange(files);
+			value = asset.src;
+		} catch (error) {
+			console.log(error);
+		} finally {
+			loading = false;
+		}
 	};
 </script>
 
