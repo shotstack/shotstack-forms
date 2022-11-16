@@ -3,8 +3,10 @@
  */
 
 import { describe, expect, test } from '@jest/globals';
+import { fireEvent } from '@testing-library/dom';
 import { MERGE_NOT_FOUND } from './constants';
 import { ShotstackEditTemplateService } from './ShotstackEditTemplateService';
+import type { Asset } from './types';
 import { ValidationError } from './validate';
 
 describe('ShotstackEditTemplateService', () => {
@@ -150,5 +152,52 @@ describe('ShotstackEditTemplateService.getSrcPlaceholders', () => {
 			{ placeholder: asset.src, asset },
 			{ placeholder: local.src, asset: local }
 		]);
+	});
+});
+
+describe('Shotstack.updateSrc', () => {
+	const mock = jest.fn();
+	const fileInput = document.createElement('input');
+	const file = new File(['Image mockup'], 'image.png', { type: 'image/png' });
+	fireEvent.change(fileInput, {
+		target: { files: [file] }
+	});
+	const mockFileList = fileInput.files;
+
+	it('Should call all onUpload events', async () => {
+		const asset: Asset = { src: '{{ Source }}' };
+		const template = { merge: [], tracks: [{ clips: [{ asset }] }] };
+		const shotstack = new ShotstackEditTemplateService(template);
+		const onUpload = async (files: FileList | null) => {
+			mock(files);
+			return 'fizz';
+		};
+		shotstack.on('upload', onUpload);
+		await shotstack.updateSrc(mockFileList, asset);
+		expect(mock).toHaveBeenCalledWith(mockFileList);
+	});
+	it('Should update the source of the passed asset with the result of the upload handler', async () => {
+		const asset: Asset = { src: '{{ Source }}' };
+		const template = { merge: [], tracks: [{ clips: [{ asset }] }] };
+		const shotstack = new ShotstackEditTemplateService(template);
+		const resultValue = 'fizz';
+		const onUpload = async (files: FileList | null) => {
+			mock(files);
+			return resultValue;
+		};
+		shotstack.on('upload', onUpload);
+		await shotstack.updateSrc(mockFileList, asset);
+		expect(asset.src).toEqual(resultValue);
+	});
+	it('If handler fails, it should not update the value of the asset', async () => {
+		const asset: Asset = { src: '{{ Source }}' };
+		const template = { merge: [], tracks: [{ clips: [{ asset }] }] };
+		const shotstack = new ShotstackEditTemplateService(template);
+		const onUpload = async () => {
+			throw new Error('Error');
+		};
+		shotstack.on('upload', onUpload);
+		await shotstack.updateSrc(mockFileList, asset);
+		expect(asset.src).toEqual('{{ Source }}');
 	});
 });
