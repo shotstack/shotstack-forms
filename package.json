@@ -1,5 +1,5 @@
 {
-	"name": "my-app",
+	"name": "shotstack-forms",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -10,8 +10,9 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"cypress": "cypress open",
-		"package": "PACKAGE=package vite build",
-		"package:win": "set PACKAGE=package&& vite build"
+		"package": "PACKAGE=package vite build && cp ./package/Shotstack.iife.js ./package/forms.min.js && cp ./package/style.css ./package/forms.min.css",
+		"package:win": "set PACKAGE=package && vite build",
+    "deploy": "aws s3 sync package/ s3://js.shotstack.io/forms/1.0/ --exclude 'README.md' --exclude 'Shotstack.*' --exclude 'style.css'"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.19.1",
